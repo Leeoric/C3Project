@@ -1,0 +1,36 @@
+[
+  {
+    "id": "b1fa97ea-e7c1-4773-991c-2e99bc0b489e",
+    "meetingId": 5,
+    "signupStatus": true,
+    "signupTime": "null",
+    "bookmarkStatus": true,
+    "code": "6728",
+    "cuser": {
+      "id": 4,
+      "crmId": 1179303,
+      "imId": 0,
+      "name": "揭远杰",
+      "phoneNum": "021-68882280",
+      "email": "ljshen@wind.com.cn",
+      "institutionName": "Wind"
+    }
+  },
+  {
+    "id": "f0cda3c3-c1e4-4186-8215-a7eb2f47a6b9",
+    "meetingId": 8,
+    "signupStatus": true,
+    "signupTime": "null",
+    "bookmarkStatus": true,
+    "code": "null",
+    "cuser": {
+      "id": 4,
+      "crmId": 1179303,
+      "imId": 0,
+      "name": "揭远杰",
+      "phoneNum": "021-68882280",
+      "email": "ljshen@wind.com.cn",
+      "institutionName": "Wind"
+    }
+  }
+]

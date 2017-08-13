@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "institutionName": "桌肚底下扛大旗蹦跶",
+    "displayOrder": 1,
+    "description": "null",
+    "url": "www.baidu.com",
+    "publisher": {
+      "id": 1,
+      "account": "admin",
+      "name": "超级管理员",
+      "cellPhone": "18966666666",
+      "imAccount": "admin@wind.com.cn",
+      "crmId": 1,
+      "password": "62c8ad0a15d9d1ca38d5dee762a16e01",
+      "valid": true,
+      "role": {
+        "id": 1,
+        "name": "超级管理员",
+        "authorities": [
+          {
+            "id": 2,
+            "name": "会议列表",
+            "url": "/manageMeetings.html"
+          },
+          {
+            "id": 7,
+            "name": "合作伙伴",
+            "url": "/partners.html"
+          },
+          {
+            "id": 1,
+            "name": "新建会议",
+            "url": "/creatNewMeeting.html"
+          },
+          {
+            "id": 13,
+            "name": "权限列表",
+            "url": "/manageAuthority.html"
+          },
+          {
+            "id": 8,
+            "name": "主讲人管理",
+            "url": "/keynoteSpeakersList.html"
+          },
+          {
+            "id": 5,
+            "name": "评论管理",
+            "url": "/commentDetail.html"
+          },
+          {
+            "id": 6,
+            "name": "资料管理",
+            "url": "/manageDocuments.html"
+          },
+          {
+            "id": 9,
+            "name": "主办方管理",
+            "url": "/sponsorsList.html"
+          },
+          {
+            "id": 3,
+            "name": "会议管理",
+            "url": "/meetingDetail.html"
+          },
+          {
+            "id": 12,
+            "name": "管理员列表",
+            "url": "/administratorList.html"
+          },
+          {
+            "id": 4,
+            "name": "评论列表",
+            "url": "/manageComments.html"
+          },
+          {
+            "id": 10,
+            "name": "修改个人资料",
+            "url": "/personalInfo.html"
+          },
+          {
+            "id": 11,
+            "name": "修改密码",
+            "url": "/password.html"
+          }
+        ]
+      }
+    },
+    "display": true
+  }
+]

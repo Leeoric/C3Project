@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>发起会议</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="lib/jquery.datetimepicker.css">
+	<link rel="stylesheet" href="css/setconf.css">
+</head>
+<body>
+<!--头部导航开始-->
+<div class="header">
+	<div class="container clearfix">
+		<div class="nav-left fl">
+			<ul class="clearfix">
+				<li class="fl"><a href="index.html">最新会议</a></li>
+				<li class="fl"><a href="hisconf.html">历史会议</a></li>
+				<li class="fl"><a href="confinfo.html">会议资讯</a></li>
+				<li class="fl"><a href="per.html">个人中心</a></li>
+			</ul>
+		</div>
+		<div class="nav-right fr clearfix">
+			<div class="search fl" id="navSearch">
+				<input type="text" placeholder="请输入关键字查询更多会议">
+				<span></span>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t2.png">
+				<a href="setconf.html">发起会议</a>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t3.png">
+				<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" target="_blank">小秘书</a>-->
+				<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--头部导航结束-->
+<!--中部主体开始-->
+<div class="main container">
+	<div class="set-conf">
+		<div class="conf-type">
+			<span id="pubConf" class="tab-active">公开会议</span>
+			<span id="priConf">私人会议</span>
+		</div>
+		<div class="conf-area">
+			<!--会议模板渲染区域-->
+		</div>
+	</div>
+</div>
+<!--中部主体结束-->
+<!--底部开始-->
+<div class="footer">
+	<!--footer中部,详情-->
+	<div class="footer-detail container clearfix">
+		<!--footer中部左边,二维码-->
+		<div class="footer-left footer-width fl clearfix">
+			<div class="ewmbox fl">
+				<img src="img/b1.png">
+				<p>关注公共微信号</p>
+			</div>
+			<div class="ewmbox fl">
+				<img src="img/erweima.jpg">
+				<p>wind手机客户端下载</p>
+			</div>
+		</div>
+		<!--footer中部中间,联系方式-->
+		<div class="footer-middle footer-width fl">
+			<div class="contact">
+				<div class="contact-img"><img src="img/tel.png"></div>
+				<div class="contact-info">
+					<p>客服电话</p>
+					<p>025-68673555转0</p>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="contact-img"><img src="img/mail.png"></div>
+				<div class="contact-info">
+					<p>邮箱</p>
+					<p><a href="Mailto:3C@wind.com.cn">3C@wind.com.cn</a></p>
+				</div>
+			</div>
+		</div>
+		<!--footer中部右侧,下载-->
+		<div class="footer-right footer-width fl">
+			<div class="download-img"><img src="img/win.png"></div>
+			<div class="download">
+				<p>软件下载</p>
+				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip" id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="agreement.html" target="_blank">用户协议</a></p>
+			</div>
+		</div>
+	</div>
+	<!--footer底部,合作伙伴-->
+	<div class="friend container">
+		<p class="fl">合作伙伴：</p>
+		<ul class="clearfix" id="friendList">
+			<!--<li class="fl"><a href="#">光大证券</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">国信证券</a></li>-->
+			<!--<li class="fl"><a href="#">招商证券</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+		</ul>
+	</div>
+</div>
+<!--底部结束-->
+<!--邀请参会嘉宾开始-->
+<div class="float-div hide">
+	<div class="attend" id="attend">
+		<div class="attend-wrap">
+			<div class="attend-header">
+				<h3>邀请参会嘉宾</h3>
+				<img src="img/d1.png" id="closeAttendImg">
+			</div>
+			<div class="attend-main clearfix">
+				<div class="attend-main-left fl">
+					<div class="search-friend-header">
+						<div class="search-friend-box">
+							<img src="img/t1.png" id="searchImg">
+							<input type="text" placeholder="搜索我的iWind好友" id="searchInput">
+						</div>
+						<div class="add-friend">
+							<img src="img/u436.png" id="addFriend">
+						</div>
+					</div>
+					<div class="iwind-friend-list">
+						<ul class="iwind-friend-box" id="iwindFriendBox">
+							<!--<li>-->
+								<!--<img src="img/u207.png">-->
+								<!--<span class="contact-name">蔡如海</span>-->
+								<!--<span class="contact-compony">德玛西亚军事指挥部</span>-->
+								<!--<span class="add-state" data-addstatus="false" data-uid="1" >-->
+									<!--<img src="img/m2.png">-->
+								<!--</span>-->
+							<!--</li>-->
+						</ul>
+						<ul class="alpha-index" id="alphaIndex">
+							<!--<li>A</li>-->
+						</ul>
+					</div>
+				</div>
+				<div class="attend-main-right fr">
+					<div class="invited-friend-header">
+						<h3 class="">已邀请<span id="ivtedNum">0</span>位参会嘉宾</h3>
+					</div>
+					<div class="invited-friend-list iwind-friend-box">
+						<ul id="ivtFriBox">
+							<!--<li>-->
+								<!--<img src="img/u207.png">-->
+								<!--<span data-uid="1" class="contact-name">蔡如海</span>-->
+								<!--<span class="contact-compony">Wind资讯</span>-->
+								<!--<select name="" id="" class="identify">-->
+									<!--<option value="admin">管理员</option>-->
+									<!--<option value="join">参会者</option>-->
+								<!--</select>-->
+								<!--<img src="img/del.png" class="icon-del">-->
+							<!--</li>-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="attend-header clearfix">
+				<button class="fr" id="closeAttendBtn">取消</button>
+				<button class="fr" id="confirmBtn">保存</button>
+			</div>
+		</div>
+	</div>
+	<!--添加好友弹出框开始-->
+	<div class="add-my-friend hide" id="addMyFriend">
+		<!--<div class="attend-header">-->
+			<!--<h3>添加联系人</h3>-->
+			<!--<img src="img/d1.png" id="closeMyFriend">-->
+		<!--</div>-->
+		<!--<div class="add-my-friend-content">-->
+			<!--<p>-->
+				<!--<span class="add-item-name">* <label for="addName">姓名：</label></span>-->
+				<!--<span class="add-item-input"><input type="text" id="addName"  required="required"></span>-->
+			<!--</p>-->
+			<!--<p>-->
+				<!--<span class="add-item-name">* <label for="addCellphone">手机：</label></span>-->
+				<!--<span class="add-item-input"><input type="text" id="addCellphone"  required="required"></span>-->
+			<!--</p>-->
+			<!--<p>-->
+				<!--<span class="add-item-name">* <label for="addEmail">电子邮件：</label></span>-->
+				<!--<span class="add-item-input"><input type="email" id="addEmail"  required="required"></span>-->
+			<!--</p>-->
+			<!--<p>-->
+				<!--<span class="add-item-name"><label for="addCompanyName">公司名称：</label></span>-->
+				<!--<span class="add-item-input"><input type="text" id="addCompanyName"></span>-->
+			<!--</p>-->
+			<!--<p>-->
+				<!--<span class="add-item-name"><label for="addCompanyTel">公司电话：</label></span>-->
+				<!--<span class="add-item-input"><input type="text" id="addCompanyTel"></span>-->
+			<!--</p>-->
+			<!--<p class="addfri-tips"></p>-->
+		<!--</div>-->
+		<!--<div class="add-my-friend-submitbtn">-->
+			<!--<input id="addFriSubmit" type="button" value="确认" class="add-fri-btn">-->
+			<!--<input id="addFriCancel" type="button" value="取消" class="add-fri-btn">-->
+		<!--</div>-->
+	</div>
+	<!--添加好友弹出框结束-->
+</div>
+<!--邀请参会嘉宾结束-->
+
+<script src="lib/jquery.js"></script>
+<script src="lib/json2.js"></script>
+<script src="lib/layer/layer.js"></script>
+<script src="lib/pin-yin.js"></script>
+<script src="js/common.js"></script>
+<script src="lib/template-native.js"></script>
+<script src="lib/jquery.datetimepicker.js"></script>
+<script id="friendTpl" type="text/html">
+	<% for (var f = 0; f < friendList.length; f++) { %>
+	<li class="fl"><a href="http://<%= friendList[f].url %>" target="_blank"><%= friendList[f].institutionName %></a></li>
+	<% } %>
+</script>
+<script id="publicConf" type="text/html" >
+	<form>
+		<table>
+			<tbody>
+			<tr>
+				<td><span class="must-select">* </span>主题：</td>
+				<td><input type="text" id="confTitle" class="inputUp conf-title">
+					<span class="tipMsg">(30字内)</span>
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span class="must-select">* </span>时间：</td>
+				<td>
+					<input type="text" class="some_class inputUp conf-time" id="some_class_1"> 至
+					<input type="text" class="some_class inputUp conf-time" id="some_class_2">
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span class="must-select">* </span>内容：</td>
+				<td class="textarea-tip">
+					<textarea id="desc" cols="80" rows="10" class="conf-desc"></textarea>
+					<!--<span class="tipMsg">(1000字内)</span>-->
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input id="formSubmit" type="button" value="提交" class="form-btn">
+					<input id="formReset" type="reset" value="重填" class="form-btn">
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</script>
+<script id="privateConf" type="text/html">
+	<form>
+		<table>
+			<tbody>
+			<tr>
+				<td><span class="must-select">* </span>主题：</td>
+				<td><input type="text" id="confTitle" class="inputUp conf-title"><span
+						class="tipMsg">(30字内)</span>
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span class="must-select">* </span>时间：</td>
+				<td>
+					<input type="text" class="some_class inputUp conf-time" id="some_class_3"> 至
+					<input type="text" class="some_class inputUp conf-time" id="some_class_4">
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span class="must-select">* </span>参会嘉宾：</td>
+				<td>
+					<input type="text" readonly="true" class="inputUp ivt-input" id="ivtInput">
+					<img src="img/m2.png" id="addPerson">
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span class="must-select">* </span>内容：</td>
+				<td class="textarea-tip">
+					<textarea name="" id="desc" cols="80" rows="8" class="conf-desc"></textarea>
+					<!--<span class="tipMsg">(1000字内)</span>-->
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><span class="mus t-select"> </span>桌面共享：</td>
+				<td>
+					<label for="shareDesk">
+						<input type="checkbox" id="shareDesk" class="inputUp">会议过程中，我要共享电脑windows桌面或演示PPT或Word等会议资料，给参会者查看
+					</label>
+					<span class="form-tips"></span>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<input id="formSubmit" type="button" value="提交" class="form-btn">
+					<input id="formReset" type="reset" value="重填" class="form-btn">
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</script>
+<script id="contactListInfo" type="text/html">
+	<% for (var i = 0; i < list.length; i++) { %>
+		<% for (var j = 0; j < list[i].userList.length; j++) { %>
+		<li>
+			<img src="img/u207.png">
+			<span class="contact-name" title="<%= list[i].userList[j].userName %>">
+				<%= list[i].userList[j].userName %>
+			</span>
+			<span class="contact-compony" title="<%= list[i].userList[j].company %>"><%= list[i].userList[j].company %></span>
+			<span class="add-state"
+				  data-addstatus="<%= list[i].userList[j].addstatus %>"
+				  data-uid="<%= list[i].userList[j].userID %>"
+				  data-imid="<%= list[i].userList[j].iMID %>"
+				  data-phone="<%= list[i].userList[j].mobilePhone %>"
+				  data-email="<%= list[i].userList[j].email %>">
+				<% if (list[i].userList[j].addstatus) { %>
+				已添加
+				<% } else { %>
+				<img src="img/m2.png">
+				<% } %>
+			</span>
+			<span class="fri-info-edit"
+				  data-addstatus="<%= list[i].userList[j].addstatus %>">
+				<% if (list[i].userList[j].userFrom == "1" && !list[i].userList[j].addstatus) { %>
+				<img src="img/checkfriendinfo.png" data-userfrom="1" id="checkUserInfo">
+				<% } else if (list[i].userList[j].userFrom == "2" && !list[i].userList[j].addstatus) { %>
+				<img src="img/editor.png" data-userfrom="2" id="editUserInfo">
+				<% } else if (list[i].userList[j].userFrom == "1" && list[i].userList[j].addstatus) { %>
+				<img src="img/checkfriendinfo.png" data-userfrom="1" id="checkUserInfo" style="display: none;">
+				<% } else if (list[i].userList[j].userFrom == "2" && list[i].userList[j].addstatus) { %>
+				<img src="img/editor.png" data-userfrom="2" id="editUserInfo" style="display: none;">
+				<% } %>
+			</span>
+		</li>
+		<% } %>
+	<% } %>
+</script>
+<script id="ivtFri" type="text/html">
+	<% for (var i = 0; i < list.length; i++) { %>
+	<li>
+		<img src="img/u207.png">
+		<span data-uid="<%= list[i].userID %>" class="contact-name" title="<%= list[i].userID %>"><%= list[i].userName %></span>
+		<span class="contact-compony"><%= list[i].company %></span>
+		<select name="" id="" class="identify">
+			<option value="join">参会者</option>
+			<option value="admin">管理员</option>
+		</select>
+		<img src="img/del.png" class="icon-del" data-deluid="<%= list[i].userID %>" >
+	</li>
+	<% } %>
+</script>
+<script id="addFriendTpl" type="text/html">
+
+	<div class="attend-header">
+		<% if (actionCode == 1) {%>
+		<h3>联系人详情</h3>
+		<% } else if (actionCode == 2) { %>
+		<h3>编辑联系人信息</h3>
+		<% } else if (actionCode == 3) { %>
+		<h3>添加联系人</h3>
+		<% } %>
+		<img src="img/d1.png" id="closeMyFriend">
+	</div>
+	<% for (var i = 0; i < list.length; i++) { %>
+	<div class="add-my-friend-content">
+		<p>
+			<span class="add-item-name">* <label for="addName">姓名：</label></span>
+			<span class="add-item-input">
+				<% if (actionCode == 1) { %>
+				<input type="text" id="addName"  required="required" value="<%= list[i].userName %>" disabled>
+				<% } else {%>
+				<input type="text" id="addName"  required="required" value="<%= list[i].userName %>">
+				<% } %>
+			</span>
+		</p>
+		<p>
+			<span class="add-item-name">* <label for="addCellphone">手机：</label></span>
+			<span class="add-item-input">
+				<% if (actionCode == 1) { %>
+				<input type="text" id="addCellphone"  required="required" value="<%= list[i].mobilePhone %>" disabled>
+				<% } else {%>
+				<input type="text" id="addCellphone"  required="required" value="<%= list[i].mobilePhone %>">
+				<% } %>
+			</span>
+		</p>
+		<p>
+			<span class="add-item-name">* <label for="addEmail">电子邮件：</label></span>
+			<span class="add-item-input">
+				<% if (actionCode == 1) { %>
+				<input type="email" id="addEmail"  required="required" value="<%= list[i].email %>" disabled>
+				<% } else {%>
+				<input type="email" id="addEmail"  required="required" value="<%= list[i].email %>">
+				<% } %>
+			</span>
+		</p>
+		<p>
+			<span class="add-item-name"><label for="addCompanyName">公司名称：</label></span>
+			<span class="add-item-input">
+				<% if (actionCode == 1) { %>
+				<input type="text" id="addCompanyName" value="<%= list[i].company %>" disabled>
+				<% } else {%>
+				<input type="text" id="addCompanyName" value="<%= list[i].company %>">
+				<% } %>
+			</span>
+		</p>
+		<p>
+			<span class="add-item-name"><label for="addCompanyTel">公司电话：</label></span>
+			<span class="add-item-input">
+				<% if (actionCode == 1) { %>
+				<input type="text" id="addCompanyTel" value="<%= list[i].telephone %>" disabled>
+				<% } else {%>
+				<input type="text" id="addCompanyTel" value="<%= list[i].telephone %>">
+				<% } %>
+			</span>
+		</p>
+		<p class="addfri-tips"></p>
+	</div>
+	<div class="add-my-friend-submitbtn" data-uidinfo="<%= list[i].userID %>">
+		<% if (actionCode == 1) {%>
+		<input id="addFriCancel" class="add-fri-btn" type="button" value="关闭">
+		<% } else if (actionCode == 2) { %>
+		<input id="saveFriBtn" class="add-fri-btn" type="button" value="保存">
+		<input id="addFriDel" class="add-fri-btn" type="button" value="删除">
+		<% } else if (actionCode == 3) { %>
+		<input id="addFriSubmit" class="add-fri-btn" type="button" value="确认">
+		<input id="addFriCancel" class="add-fri-btn" type="button" value="取消">
+		<% } %>
+	</div>
+	<% } %>
+</script>
+<script src="js/setconf.js"></script>
+</body>
+</html>

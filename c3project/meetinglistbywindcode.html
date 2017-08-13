@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>全部会议</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/hisconf.css">
+	<style>
+		.nav-left ul li span {
+			line-height: 45px;
+			margin-right: 25px;
+		}
+
+	</style>
+</head>
+<body>
+<!--头部导航开始-->
+<div class="header">
+	<div class="container clearfix">
+		<div class="nav-left fl">
+			<ul class="clearfix">
+				<li class="fl"><span id="windCodeNum">股票代码</span></li>
+				<li class="fl"><span>全部会议</span></li>
+			</ul>
+		</div>
+		<div class="nav-right fr clearfix">
+			<div class="search fl" id="navSearch">
+				<input type="text" placeholder="请输入关键字查询更多会议">
+				<span></span>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t2.png">
+				<a href="setconf.html">发起会议</a>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t3.png">
+				<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" target="_blank">小秘书</a>-->
+				<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--头部导航结束-->
+<!--中部开始-->
+<div class="main container">
+	<table class="table-content">
+		<thead>
+		<tr>
+			<th class="conf-date">日期</th>
+			<th class="conf-time">时间</th>
+			<th class="conf-title">主题</th>
+			<th class="conf-handle">操作</th>
+			<th class="conf-master">主办方</th>
+			<th class="conf-speach">主讲人</th>
+		</tr>
+		</thead>
+		<tbody id="hisConfBox">
+		<!--<tr>-->
+		<!--<td class="conf-date"></td>-->
+		<!--<td class="conf-time"></td>-->
+		<!--<td class="conf-title"></td>-->
+		<!--<td class="conf-handle">-->
+		<!--</td>-->
+		<!--<td class="conf-master"></td>-->
+		<!--<td class="conf-speach"></td>-->
+		<!--</tr>-->
+		</tbody>
+	</table>
+	<div class="page-index" id="pageIndex">
+		<!--<li id="prePage" class="pre-page"><a href="#">&lt;上一页</a></li>-->
+		<!--<li class="page-num"><a href="#">1</a></li>-->
+		<!--<li class="page-num"><a href="#">2</a></li>-->
+		<!--<li class="page-num"><a href="#">3</a></li>-->
+		<!--<li class="page-num"><a href="#">4</a></li>-->
+		<!--<li class="page-num"><a href="#">5</a></li>-->
+		<!--<li id="nextPage" class="next-page"><a href="#">下一页&gt;</a></li>-->
+	</div>
+</div>
+<!--中部结束-->
+
+<!--底部开始-->
+<div class="footer">
+
+	<!--footer中部,详情-->
+	<div class="footer-detail container clearfix">
+		<!--footer中部左边,二维码-->
+		<div class="footer-left footer-width fl clearfix">
+			<div class="ewmbox fl">
+				<img src="img/b1.png">
+				<p>关注公共微信号</p>
+			</div>
+			<div class="ewmbox fl">
+				<img src="img/erweima.jpg">
+				<p>wind手机客户端下载</p>
+			</div>
+		</div>
+		<!--footer中部中间,联系方式-->
+		<div class="footer-middle footer-width fl">
+			<div class="contact">
+				<div class="contact-img"><img src="img/tel.png"></div>
+				<div class="contact-info">
+					<p>客服电话</p>
+					<p>025-68673555转0</p>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="contact-img"><img src="img/mail.png"></div>
+				<div class="contact-info">
+					<p>邮箱</p>
+					<p><a href="Mailto:3C@wind.com.cn">3C@wind.com.cn</a></p>
+				</div>
+			</div>
+		</div>
+		<!--footer中部右侧,下载-->
+		<div class="footer-right footer-width fl">
+			<div class="download-img"><img src="img/win.png"></div>
+			<div class="download">
+				<p>软件下载</p>
+				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip"
+					  id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="agreement.html" target="_blank">用户协议</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--footer底部,合作伙伴-->
+	<div class="friend container">
+		<p class="fl"><img src="img/partner.png"></p>
+		<ul class="clearfix" id="friendList">
+			<!--<li class="fl"><a href="#">光大证券</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">国信证券</a></li>-->
+			<!--<li class="fl"><a href="#">招商证券</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+		</ul>
+	</div>
+</div>
+<!--底部结束-->
+
+<script src="lib/jquery.js"></script>
+<script src="lib/json2.js"></script>
+<script src="lib/template-native.js"></script>
+<script src="lib/laypage/laypage.js"></script>
+<script id="friendTpl" type="text/html">
+	<% for (var f = 0; f < friendList.length; f++) { %>
+	<li class="fl"><a href="http://<%= friendList[f].url %>" target="_blank"><%= friendList[f].institutionName %></a>
+	</li>
+	<% } %>
+</script>
+<script id="hisConfTlp" type="text/html">
+	<% if(list.length == 0) { %>
+	<tr>
+		<td class="conf-date"></td>
+		<td class="conf-time"></td>
+		<td class="conf-title"><a href="javascript:void(0)" style="text-align: center;">暂无数据</a></td>
+		<td class="conf-handle"><a href="#"></a></td>
+		<td class="conf-master"></td>
+		<td class="conf-speach"></td>
+	</tr>
+	<% } else { %>
+	<% for (var i = 0; i < list.length; i++) { %>
+	<tr data-confId="<%= list[i].id %>">
+		<td class="conf-date"><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>)</td>
+		<td class="conf-time"><%= list[i].confTime[3] %></td>
+		<td class="conf-title">
+			<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
+				<%= list[i].title %>
+			</a>
+		</td>
+		<td class="conf-handle">
+			<% if (list[i].pdfId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+			<a href="#" data-documentid="<%= list[i].pdfId %>" class="read-doc-for-pdf">
+				看速记
+			</a>
+			<% } %>
+			<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+			<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>" data-lecturers="
+					<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
+						<%= list[i].lecturers[j].name %>
+					<% } %>
+					">
+				听录音
+			</a>
+			<% } %>
+			<% if (list[i].broadcastType == "WEBVIDEO") { %>
+			<a href="confdetail.html?id=<%= list[i].id %>" class="read-doc-for-video">
+				看视频
+			</a>
+			<% } %>
+			<% if(list[i].pdfId == 0 && list[i].audioId == 0 && list[i].broadcastType != "WEBVIDEO") { %>
+			<a href="javascript:void(0)" class="urlblank">会议结束</a>
+			<% } %>
+		</td>
+
+		<td class="conf-master" title="
+				<% for(var k = 0; k < list[i].sponsors.length; k++) { %>
+					<%= list[i].sponsors[k].name %>
+				<% } %>
+			">
+			<% for(var m = 0; m < list[i].sponsors.length; m++) { %>
+			<%= list[i].sponsors[m].name %>
+			<% } %>
+		</td>
+
+		<% if(list[i].lecturers[0]) { %>
+		<td class="conf-speach" title="<%= list[i].lecturers[0].name %>"><%= list[i].lecturers[0].name %></td>
+		<% } %>
+	</tr>
+	<% } %>
+	<% } %>
+</script>
+<script src="js/common.js"></script>
+<script src="lib/layer/layer.js"></script>
+<script>
+	var windCode = getQueryString(location.search, 'WindCode');
+	if (windCode) {
+		$('#windCodeNum').text(windCode);
+	}
+	var hisConfPageFunc = {
+		init: function () {
+			//获得合作伙伴
+			renderFriendList();
+			//刚进入页面时，渲染一次
+			this.renderHisConfData(windCode);
+			this.bindEvent();
+		},
+		bindEvent: function () {
+			var self = this;
+			//看速记点击
+			$('#hisConfBox').on('click', '.read-doc-for-pdf', function (e) {
+				e.preventDefault();
+				//写功能点
+				writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));
+				//弹出PDF阅读页
+				var openUrl = getDocuments($(this).data('documentid'), 'SHORTHAND');
+				if (openUrl) {
+					// console.log(openUrl);
+					window.open(host + openUrl);
+				}
+			});
+			//听录音点击
+			$('#hisConfBox').on('click', '.read-doc-for-audio', function (e) {
+				e.preventDefault();
+				//写功能点
+				writeLog(001800040011, 'from=' + window.localStorage.getItem('currentPage'));
+				//弹出音频页
+				var docId = $(this).data('documentid');
+				var meetingTitle = encodeURIComponent($(this).attr('title'));
+				var meetingLecturers = encodeURIComponent($(this).data('lecturers'));
+				if (isIEX()) {
+					var playerUrl = getDocuments(docId, 'AUDIO');
+					var audioType = getQueryString(playerUrl, 'videoExten');
+					if (audioType == '.wav') {
+						window.open(playerUrl, '3C中国财经会议', 'height=80, width=640, top=200, left=200');
+					} else {
+						window.open(playerUrl, '3C中国财经会议', 'height=530, width=640, top=200, left=200');
+					}
+				} else {
+					window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + meetingTitle + '&meetinglecturers=' + meetingLecturers, '3C中国财经会议', 'height=140, width=500, top=500, left=500');
+				}
+			});
+			//看视频点击
+			// $('#hisConfBox').on('click', '.read-doc-for-video', function (e) {
+			// 	e.preventDefault();
+			// 	//写功能点
+			// 	writeLog(901800040018, 'from=' + window.localStorage.getItem('currentPage'));
+			// 	//弹出视频页
+			// 	window.open('//用id去请求页面地址');
+			// });
+			$('.main.container').resize(function () {
+				self.setFooterPosition();
+			});
+		},
+		//获取历史会议列表
+		renderHisConfData: function (param, currentPage) {
+			var self = this;
+			if (!param) {
+				return false;
+			}
+			currentPage = currentPage || 1;
+
+			var ajaxSendData = {
+				"criteria": {
+					"windCode": param
+				},
+				currentPage: currentPage,
+				isPaging: true,
+				pageSize: 10
+			};
+			$.ajax({
+				url: host + 'getMeetingListByWindCode.json',
+				type: 'POST',
+				data: JSON.stringify(ajaxSendData),
+				dataType: 'json',
+				headers: {'Content-Type': 'application/json'},
+				beforeSend: function () {
+					delayDiv(true);
+				},
+				timeout: 15000,
+				complete : function(xhr,status){
+					delayDiv(false);
+					if(status=='timeout'){
+						layer.msg("会议列表请求超时。请稍后尝试重新刷新页面。");
+					}
+				},
+				success: function (data) {
+					delayDiv(false);
+					// console.log(data);
+					//处理数据
+					self.handlerRevData(data.list);
+					console.log('处理后的数据： ', data);
+
+					//模板引擎渲染
+					var hisConf = template('hisConfTlp', data);
+					$('#hisConfBox').html(hisConf);
+					//分页
+					laypage({
+						//容器。值支持id名、原生dom对象，jquery对象
+						cont: $('#pageIndex'),
+						//总页数
+						pages: Math.ceil(data.count / ajaxSendData.pageSize),
+						//是否开启跳页
+						skip: true,
+						//样式
+						skin: '#AF0000',
+						//当前页
+						curr: currentPage || 1,
+						//连续显示分页数
+						groups: 3,
+						//触发分页后的回调
+						jump: function (obj, first) {
+							//一定要加此判断，否则初始时会无限刷新
+							if (!first) {
+								//点击跳页触发函数自身，并传递当前页：obj.curr
+								self.renderHisConfData(param, obj.curr);
+							}
+						}
+					});
+					//表格奇偶行变色
+					$('#hisConfBox').find('tr:odd').css('backgroundColor', '#f8f8f8');
+				},
+				error: function (error) {
+					console.log('获取历史会议列表【失败】：　', error);
+					if (error.readyState == 4 && error.status == 500) {
+						layer.msg('获取历史会议列表失败。');
+					}
+					if (error.readyState == 4 && JSON.parse(error.responseText).errorCode == 1022) {
+						layer.msg('身份验证已经过期或sessionid非法，请重新登入页面.');
+						//清除缓存信息
+						personalInfo.removeStorageInfo();
+					}
+				}
+			});
+		},
+		//处理数据函数
+		handlerRevData: function (data) {
+			var self = this;
+			for (var i = 0, len = data.length; i < len; i++) {
+				//如果sponsors有值但是url为空
+				// if (data[i].sponsors[0] && data[i].sponsors[0].url == '') {
+				//console.log(data[i].sponsors[0]);
+				// data[i].sponsors[0].url = 'img/indexitem.png';
+				// }
+				//如果sponsors无值
+				if (data[i].sponsors.length == 0) {
+					data[i].sponsors.push({
+						id: -1,
+						name: '',
+						category: '',
+						description: '',
+						url: 'img/indexitem.png'
+					});
+				}
+				//如果lecturers无值
+				if (data[i].lecturers.length == 0) {
+					data[i].lecturers.push({
+						description: "",
+						email: "",
+						id: -1,
+						title: "",
+						name: "",
+						institute: {
+							id: -1,
+							name: "",
+							category: "",
+							description: "",
+							url: ""
+						},
+						phoneNum: "",
+						role: "",
+						remark: ""
+					});
+				}
+				//处理时间日期格式
+				data[i].confTime = stringToDate(data[i].startTime, data[i].endTime);
+				//console.log(data[i].confTime);
+			}
+
+		},
+
+	};
+	hisConfPageFunc.init();
+</script>
+</body>
+</html>

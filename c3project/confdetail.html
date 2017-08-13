@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:gs="http://www.gensee.com/gsml">
+<head>
+	<meta charset="UTF-8">
+	<title>会议详情</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/confdetail.css">
+	<script src="lib/gensee/gssdk.js"></script>
+	<style>
+
+		.pdf-container {
+			position: relative;
+			width: 100%;
+			/*height: 3.5rem;*/
+		}
+
+		.pdf-container .previous-pdf {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50%;
+			height: 100%;
+			/*background: rgba(0,0,0,.3);*/
+			cursor: pointer;
+			background: linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -o-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -ms-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -moz-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -webkit-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+
+		}
+
+		.pdf-container .previous-pdf span {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			/*border: 5px solid rgba(255,255,255,.8);*/
+			/*border-top: none;*/
+			/*border-right: none;*/
+			transform: translateY(-50%);
+			background: url(img/left.png) no-repeat center;
+		}
+
+		.pdf-container .next-pdf {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 50%;
+			height: 100%;
+			/*background: rgba(0,0,0,.3);*/
+			cursor: pointer;
+			background: linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
+			background: -o-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
+			background: -ms-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
+			background: -moz-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
+			background: -webkit-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
+
+		}
+
+		.pdf-container .next-pdf span {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			width: 100px;
+			height: 100px;
+			/*border: 5px solid rgba(255,255,255,.8);*/
+			/*border-bottom: none;*/
+			/*border-left: none;*/
+			transform: translateY(-50%);
+			background: url(img/right.png) no-repeat center;
+		}
+
+		.pdf-page-num {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			transform: translateX(-50%);
+			text-align: center;
+			color: #fff;
+			font-size: 24px;
+			background: rgba(0,0,0,.3);
+			border-radius: 20px;
+		}
+
+
+	</style>
+</head>
+<body>
+<!--头部导航开始-->
+<div class="header">
+	<div class="container clearfix">
+		<div class="nav-left fl">
+			<ul class="clearfix">
+				<li class="fl"><a href="index.html">最新会议</a></li>
+				<li class="fl"><a href="hisconf.html">历史会议</a></li>
+				<li class="fl"><a href="confinfo.html">会议资讯</a></li>
+				<li class="fl"><a href="per.html">个人中心</a></li>
+			</ul>
+		</div>
+		<div class="nav-right fr clearfix">
+			<div class="search fl" id="navSearch">
+				<input type="text">
+				<span></span>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t2.png">
+				<a href="setconf.html">发起会议</a>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t3.png">
+				<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" ">小秘书</a>-->
+				<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--头部导航结束-->
+<!--中部主体开始-->
+<div class="main container clearfix">
+	<div class="conf-header">
+		<!--<div>-->
+		<!--<h2>“新经济、新消费”2016年夏季投资策略交流会</h2>-->
+		<!--<p>2016-9-26（周一）12:30-13:30</p>-->
+		<!--<p><span>谭凇</span><span>(东兴证券)</span></p>-->
+		<!--<p><span>合同价</span><span>(东兴证券)</span></p>-->
+		<!--<p><span>回家</span><span>(东兴证券)</span></p>-->
+		<!--<div class="handle clearfix">-->
+		<!--<span class="fl record">看速记</span>-->
+		<!--<span class="fl sound">听录音</span>-->
+		<!--<span class="fl fav">收藏</span>-->
+		<!--</div>-->
+		<!--</div>-->
+	</div>
+	<div class="conf-detail clearfix">
+
+		<div class="conf-detail-content fl">
+			<div id="genseeDocBox" class="hide">
+				<!--<div class="doc-widget">-->
+					<!--<gs:doc id="genseeDocComponent" site="wind.gensee.com" ownerid="31d975bbc50c4ce196ab43383eefba4a" fullscreen="true" ctx="webcast" bgcolor="#000000" />-->
+				<!--</div>-->
+			</div>
+
+			<div id="confDetailContent">
+				<!--<div>-->
+				<!--<div class="conf-view">-->
+				<!--<img src="img/i22.jpg">-->
+				<!--</div>-->
+				<!--<div class="conf-content-detail">-->
+				<!--<div class="conf-intro">-->
+				<!--<h3>会议简介</h3>-->
+				<!--<p>-->
+				<!--一年一度的伯克希尔股东大会已落下帷幕，前海开源基金首席经济学家，执行总经理杨德龙先生亲历了2016巴菲特股东大会全过程。Wind3C特邀杨德龙先生通过3C平台与投资者分享他在奥马哈的感悟。-->
+				<!--</p>-->
+				<!--</div>-->
+				<!--<div class="conf-intro">-->
+				<!--<h3>主讲人</h3>-->
+				<!--<p>-->
+				<!--杨德龙，前海开源基金执行总经理-->
+				<!--拟任首席经济学家。基金从业经历10年；北京大学经济学硕士、清华大学机械工程系学士。2006年7月加入南方基金研究部，曾任汽车行业研究员、首席策略分析师、基金经理；2016年3月加盟前海开源基金。杨德龙是中央电视台特约评论员，凤凰卫视特邀嘉宾，清华大学经济管理学院金融硕士兼职导师。2009年杨德龙获招商银行牛博大赛十佳博客奖；2012年获全景网《中国基金人物曝光度百强榜》第一名；获第十届中国财经风云榜2012年度最佳公募基金经理；曾任南方策略优化基金基金经理，产品荣获2014年度开放式股票型金牛基金奖。-->
+				<!--</p>-->
+				<!--</div>-->
+				<!--<div class="conf-intro">-->
+				<!--<h3>会议议程</h3>-->
+				<!--<table>-->
+				<!--<tr>-->
+				<!--<td>09:00~09:10</td>-->
+				<!--<td>-->
+				<!--<p>致辞</p>-->
+				<!--<p>廖亚滨 国信证券股份有限公司副总裁</p>-->
+				<!--</td>-->
+				<!--</tr>-->
+				<!--<tr>-->
+				<!--<td>09:10~10:10</td>-->
+				<!--<td>-->
+				<!--<p>中国宏观经济展望</p>-->
+				<!--<p>刘世锦 原国务院发展研究中心副主任</p>-->
+				<!--</td>-->
+				<!--</tr>-->
+				<!--<tr>-->
+				<!--<td>10:10~11:10</td>-->
+				<!--<td>-->
+				<!--<p>中国房地产行业发展以及城镇化展望</p>-->
+				<!--<p>陆铭 复旦大学经济学院教授、博士生导师</p>-->
+				<!--</td>-->
+				<!--</tr>-->
+				<!--</table>-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--</div>-->
+			</div>
+		</div>
+		<div class="interaction-box fr">
+			<div id="genseeVideoBox" class="hide">
+				<!--<div class="gensee-player">-->
+					<!--<gs:video-vod site="wind.gensee.com" ownerid="31d975bbc50c4ce196ab43383eefba4a" id="genseePlayer"/>-->
+				<!--</div>-->
+			</div>
+			<h3>最新互动 ( <span id="commentNum" class="comment-number"></span> )</h3>
+			<div class="interaction">
+				<div class="dialog-box" id="dialogBox">
+					<!--<div class="dialog">-->
+					<!--<div class="send-people-info">-->
+					<!--<span>杨汇慧</span>-->
+					<!--<span>刚刚</span>-->
+					<!--<span><img src="img/u277.png"></span>-->
+					<!--</div>-->
+					<!--<div>-->
+					<!--讲得不错-->
+					<!--</div>-->
+					<!--<div class="revert">-->
+					<!--<span>回复</span>-->
+					<!--<span>刘传志</span>-->
+					<!--：-->
+					<!--<span>鼓掌!</span>-->
+					<!--</div>-->
+					<!--</div>-->
+				</div>
+			</div>
+			<div class="send-msg">
+				<textarea id="commentContent" rows="4" style="width:94%;" placeholder="请输入140字以内的评论."></textarea>
+				<div class="clearfix">
+					<label for="anony"><input type="checkbox" id="anony">匿名</label>
+					<button type="button" class="fr push-msg" id="sendMsgBtn">发送</button>
+					<span class="fr font-tip">还剩余<span id="fontNum">140</span>字</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--中部主体结束-->
+<!--底部开始-->
+<div class="footer">
+	<!--footer中部,详情-->
+	<div class="footer-detail container clearfix">
+		<!--footer中部左边,二维码-->
+		<div class="footer-left footer-width fl clearfix">
+			<div class="ewmbox fl">
+				<img src="img/b1.png">
+				<p>关注公共微信号</p>
+			</div>
+			<div class="ewmbox fl">
+				<img src="img/erweima.jpg">
+				<p>wind手机客户端下载</p>
+			</div>
+		</div>
+		<!--footer中部中间,联系方式-->
+		<div class="footer-middle footer-width fl">
+			<div class="contact">
+				<div class="contact-img"><img src="img/tel.png"></div>
+				<div class="contact-info">
+					<p>客服电话</p>
+					<p>025-68673555转0</p>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="contact-img"><img src="img/mail.png"></div>
+				<div class="contact-info">
+					<p>邮箱</p>
+					<p><a href="Mailto:3C@wind.com.cn">3C@wind.com.cn</a></p>
+				</div>
+			</div>
+		</div>
+		<!--footer中部右侧,下载-->
+		<div class="footer-right footer-width fl">
+			<div class="download-img"><img src="img/win.png"></div>
+			<div class="download">
+				<p>软件下载</p>
+				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip" id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="agreement.html" target="_blank">用户协议</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--footer底部,合作伙伴-->
+	<div class="friend container">
+		<p class="fl"><img src="img/partner.png"></p>
+		<ul class="clearfix" id="friendList">
+			<!--<li class="fl"><a href="#">光大证券</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">国信证券</a></li>-->
+			<!--<li class="fl"><a href="#">招商证券</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+		</ul>
+	</div>
+</div>
+<!--底部结束-->
+<script src="lib/jquery.js"></script>
+<script src="lib/layer/layer.js"></script>
+<!--[if lt IE 9]>
+<script src="lib/json2.js"></script>
+<![endif]-->
+<script src="lib/pdf/pdf.js"></script>
+<script src="lib/player/cyberplayer.js"></script>
+<script src="lib/template-native.js"></script>
+<script src="js/common.js"></script>
+<!--合作伙伴模板-->
+<script id="friendTpl" type="text/html">
+	<% for (var f = 0; f < friendList.length; f++) { %>
+	<li class="fl"><a href="http://<%= friendList[f].url %>" target="_blank"><%= friendList[f].institutionName %></a>
+	</li>
+	<% } %>
+</script>
+<!--会议头部模板-->
+<script id="confHeader" type="text/html">
+
+	<div>
+		<h2><%= list[0].title %></h2>
+		<table>
+			<tbody>
+			<tr>
+				<td class="td-width-color">会议时间：</td>
+				<td class="td2"><%= list[0].confTime[0] %><%= list[0].confTime[1] %> ( <%= list[0].confTime[2] %> ) <%= list[0].confTime[3] %></td>
+
+			</tr>
+			<tr>
+				<td class="td-width-color td-vertical">主讲人：</td>
+				<td class="lectures-text">
+					<% for (var i =0,len = list[0].lecturers.length; i < len; i++) { %>
+					<p>
+						<span><%= list[0].lecturers[i].name %></span>
+						<% if (list[0].lecturers[i].title) { %>
+						<span>[<%= list[0].lecturers[i].title %>]</span>
+						<% } %>
+					</p>
+					<% } %>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="td-width-color">主办方：</td>
+				<td class="table-master">
+					<% for (var i =0,len = list[0].sponsors.length; i < len; i++) { %>
+					<span><%= list[0].sponsors[i].name %> </span>
+					<% } %>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+		<div class="handle clearfix">
+			<!--如果是最新会议且没有开始-->
+			<% if (list[0].meetingStatus == "PUBLISHED") { %>
+				<!--如果已经报名-->
+				<% if (list[0].signupStatus) { %>
+				<span class="fl signUp signUped" id="signUp" data-statusMark="true">
+					<span>您已报名</span>
+				</span>
+				<% } else { %>
+					<!--如果没有报名但报名人数满了-->
+					<% if(list[0].signupNum == list[0].capacity) { %>
+					<span class="fl signUp meeting-full" id="signUp" data-statusMark="full">
+						<span id="signUpText">人数已满</span>
+						(<span class="sign-up-num-already"><%= list[0].signupNum %></span>/<span
+					class="sign-up-num-sum"><%= list[0].capacity %></span>)
+					</span>
+					<% } else { %>
+					<!--如果没有报名且报名人数未满-->
+					<span class="fl signUp" id="signUp" data-statusMark="false">
+						<span id="signUpText">立即报名</span>
+					</span>
+					<% } %>
+				<% } %>
+			<!--如果是历史会议-->
+			<% } else if (list[0].meetingStatus == "ENDED") { %>
+					<!--如果有pdf速记，看速记按钮有颜色-->
+					<% if (list[0].pdfId != 0  && list[0].broadcastType != "WEBVIDEO") { %>
+					<a href="#" data-documentid="<%= list[0].pdfId %>" onclick="writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));" class="fl record" id="record">看速记</a>
+					<!--如果没有pdf速记，看速记按钮灰色-->
+					<% } else { %>
+					<a href="javascript:void(0);" class="fl record ed">看速记</a>
+					<% } %>
+					<!--如果会议类型是WEBAUDIO或者PHONEWEB-->
+					<% if (list[0].broadcastType == 'WEBAUDIO' || list[0].broadcastType == 'PHONEWEB') { %>
+						<!--如果有录音地址，听录音按钮有颜色，点击后有播放器播放-->
+						<% if (list[0].audioId != 0) { %>
+						<a href="#" data-documentid="<%= list[0].audioId %>" class="fl sound" id="meetingSound">听录音</a>
+						<% } else { %>
+						<!--如果没有录音地址，听录音按钮灰色-->
+						<a href="javascript:void(0);" data-documentid="<%= list[0].audioId %>" class="fl sound ed">听录音</a>
+						<% } %>
+					<% } %>
+					<!--如果会议类型是WEBVIDEO-->
+					<% if (list[0].broadcastType == 'WEBVIDEO') { %>
+
+						<a href="#" data-documentid="<%= list[0].videoId %>" class="fl sound" id="meetingVideo" class="meeting-video" target="_blank">看视频</a>
+
+					<% } %>
+					<!--如果会议类型是PHONE-->
+					<% if (list[0].broadcastType == 'PHONE') { %>
+						<!--如果有录音地址，听录音按钮有颜色，点击后有播放器播放-->
+						<% if (list[0].audioId != 0) { %>
+						<a href="#" data-documentid="<%= list[0].audioId %>" class="fl sound" id="meetingSound">听录音</a>
+						<% } else { %>
+						<!--如果没有录音地址，听录音按钮灰色-->
+						<a href="javascript:void(0);" class="fl sound ed">听录音</a>
+						<% } %>
+					<% } %>
+			<!--如果是最新会议且已经开始-->
+			<% } else if (list[0].meetingStatus == "STARTED") { %>
+				<!--如果已经报名，可以直接参会-->
+				<% if (list[0].signupStatus) { %>
+				<span class="fl started-meeting" id="startedMeeting" data-statusMark="true">
+				<% } else { %>
+				<!--如果没有报名，先报名，再参会-->
+				<span class="fl started-meeting" id="startedMeeting" data-statusMark="false">
+				<% } %>
+						<span id="startedMeetingText">立即参会</span>
+				</span>
+			<!--如果是会议被取消-->
+			<% } else if (list[0].meetingStatus == "CANCELED") { %>
+				<span class="fl ed fav">已取消</span>
+			<% } %>
+			<!--收藏状态-->
+			<% if (list[0].bookmarkStatus) { %>
+			<span class="fl faved" id="fav" data-fav="true">已收藏</span>
+			<% } else { %>
+			<span class="fl fav" id="fav" data-fav="false">收藏</span>
+			<% } %>
+		</div>
+	</div>
+
+</script>
+<!--会议详情模板-->
+<script id="confDetail" type="text/html">
+	<% if (list[0].pptId != 0) { %>
+	<div class="conf-view">
+		<!--PPT-PDF展示 B-->
+		<div class="pdf-container" id="pdfContainer" onselectstart="return false">
+			<div class="pdf-page-num">
+				<span><span id="page_num"></span> / <span id="page_count"></span></span>
+			</div>
+			<div class="previous-pdf hide" id="prev"><span></span></div>
+			<div class="next-pdf hide" id="next"><span></span></div>
+			<canvas id="the-canvas"></canvas>
+		</div>
+		<!--PPT-PDF展示 E-->
+	</div>
+	<% } %>
+	<div class="player-container hide">
+		<div id="playercontainer"></div>
+		<audio src="#" id="audioPlayer"></audio>
+	</div>
+	<div class="conf-content-detail">
+		<% if (list[0].description) { %>
+			<div class="conf-intro">
+				<h3>会议简介</h3>
+				<div>
+					<%=# list[0].description %>
+				</div>
+			</div>
+		<% } %>
+		<% if (list[0].lecturers) { %>
+			<% if (list[0].lecturers[0].description && list[0].lecturers[0].description != "null") { %>
+			<div class="conf-intro">
+				<h3>主讲人</h3>
+					<% for (var j =0,len = list[0].lecturers.length; j < len; j++) { %>
+					<p>
+						<span><strong><%= list[0].lecturers[j].name %></strong>&nbsp;&nbsp;</span>
+						<span><%= list[0].lecturers[j].description %></span>
+					</p>
+					<% } %>
+			</div>
+			<% } %>
+		<% } %>
+		<% if (list[0].agenda) { %>
+			<div class="conf-intro">
+				<h3>会议议程</h3>
+				<div><%=# list[0].agenda %></div>
+			</div>
+		<% } %>
+		<% if (list[0].relatedStocks) { %>
+		<div class="conf-intro">
+			<h3>相关股票</h3>
+			<% for (var k = 0; k < list[0].relatedStocks.length; k++) { %>
+				<% if (list[0].relatedStocks[k].stockName) { %>
+				<p>
+					<a href="!PAGE('F9',<%= list[0].relatedStocks[k].windCode %>)" title="<%= list[0].relatedStocks[k].windCode %>" class="anchor-color-blue"><%= list[0].relatedStocks[k].stockName %> (<%= list[0].relatedStocks[k].windCode %>)</a>
+				</p>
+				<% } %>
+			<% } %>
+		</div>
+		<% } %>
+		<div class="conf-intro conf-attachment" id="confAttachment">
+			<% if(list[0].attachments.length != 0) { %>
+				<h3>相关附件</h3>
+				<% for (var i = 0; i < list[0].attachments.length; i++) { %>
+					<p>
+						<a href="#" data-documentid="<%= list[0].attachments[i].id %>" download="<%= list[0].attachments[i].documentName %>"><%= list[0].attachments[i].documentName %></a>
+					</p>
+				<% } %>
+			<% } %>
+		</div>
+	</div>
+</script>
+<!--评论模块模板-->
+<script id="dialog" type="text/html">
+	<% for (var j = 0; j < list.length; j++) { %>
+	<div class="dialog">
+		<div class="send-people-info clearfix">
+			<span data-uid="<%= list[j].id %>"><%= list[j].author.name %> </span>
+			<span class="comment-time"> <%= list[j].timeMark %></span>
+			<span class="fr reply" title="点击回复这条评论！"><img src="img/u277.png" title="点击回复这条评论！"> 回复</span>
+		</div>
+		<div>
+			<%= list[j].content %>
+		</div>
+		<% if (list[j].parentCommentId) { %>
+		<div class="revert">
+			<span>回复</span>
+			<% for (var k = 0; k < list.length; k++) { %>
+			<% if (list[j].parentCommentId === list[k].id) { %>
+			<span><%= list[k].author.name %> :</span>
+			<span><%= list[k].content %></span>
+			<% } %>
+			<% } %>
+		</div>
+		<% } %>
+	</div>
+	<% } %>
+</script>
+<script src="js/confdetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head id="Head1" runat="server">
+	<meta charset="UTF-8">
+	<title>加入会议</title>
+	<style type="text/css">
+		.logo {
+			width: 85px;
+			height: 43px;
+			border: 0px;
+			text-align: center;
+			margin: 20px auto 20px auto;
+			background: url(C3/images/clip_logo.gif) no-repeat;
+		}
+
+		.clewStyle {
+			margin-top: 5px;
+			text-align: left;
+			color: #343434;
+		}
+
+		.line {
+			background: url(C3/images/3CVideo/line.png) no-repeat;
+			width: 5px;
+			height: 224px;
+		}
+
+		.join {
+			background: url(C3/images/3CVideo/join.png) no-repeat;
+			width: 102px;
+			height: 27px;
+			border: 0px;
+			margin-top: 20px;
+			cursor: pointer;
+		}
+
+		.download {
+			background: url(C3/images/3CVideo/BtnDownload.png) no-repeat;
+			width: 132px;
+			height: 26px;
+			border: 0px;
+			padding-left: 35px;
+			padding-top: 5px;
+			cursor: pointer;
+			*+margin-left: 50px;
+		}
+
+		.loading {
+			background: url(C3/images/3CVideo/loading.png) no-repeat;
+			width: 330px;
+			height: 13px;
+			border: 0px;
+			float: left;
+		}
+
+		.loaded {
+			background: url(C3/images/3CVideo/loaded.png) repeat-x;
+			height: 13px;
+			border: 0px;
+			float: left;
+			float: left;
+
+		}
+
+		body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+			margin: 0;
+			padding: 0
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			width: 100%
+		}
+
+		fieldset, img {
+			border: 0
+		}
+
+		li {
+			list-style: none
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			font-size: 100%;
+			font-weight: 400
+		}
+
+		input, textarea, select {
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit
+		}
+
+		fieldset {
+			border: 1px solid #CCC;
+			margin: 0 10px 10px;
+			padding: 10px
+		}
+
+		legend {
+			font-weight: 700;
+			padding: 0 5px
+		}
+
+		input, textarea, label {
+			height: 18px;
+			line-height: 18px;
+			vertical-align: middle;
+		}
+
+		.w_inputAreaA input, textarea, label {
+			margin: 5px;
+		}
+
+		input.searchinput {
+			padding-left: 3px;
+			width: 118px;
+			font-family: arial;
+			float: left;
+			color: #636365;
+			margin-left: 4px;
+			font-size: 8pt;
+			vertical-align: middle;
+			margin-right: 3px;
+			border-width: 0
+		}
+
+		body {
+			font-family: Arial, 宋体;
+			color: #333;
+			font-size: 12px
+		}
+
+		a:focus, a:hover {
+			color: #08D
+		}
+
+		a {
+			color: #003DB2;
+			cursor: pointer
+		}
+
+		td, th {
+			white-space: nowrap;
+			vertical-align: middle
+		}
+
+		h1 {
+			font-weight: 700;
+			color: #3D7DCC;
+			font-size: 14px
+		}
+
+		h3 {
+			font-weight: 700;
+			color: #333;
+			font-size: 13px
+		}
+
+		p {
+			white-space: normal
+		}
+	</style>
+</head>
+<body style="background-color: #e9f3fd;">
+<form id="form1" runat="server">
+	<div style="margin-top: 60px;">
+	</div>
+	<div>
+		<div id="div_validate" style="width: 400px; height: 120px; border: solid 1px #abc9e7;
+            margin: 0px auto 20px auto;">
+			<div class="logo">
+			</div>
+			<div style="text-align: center; color: #606060;">
+				正在验证会议室号码和密码，请稍后...
+			</div>
+		</div>
+	</div>
+	<div id="div_login" style="display: none; width: 100%;">
+		<table style="width: 400px; margin: 0px auto; border: solid 1px #abc9e7;">
+			<tr>
+				<td>
+					<table style="width: 250px; line-height: 40px; margin: 10px auto;">
+						<tr>
+							<td align="right">
+								会议室号码：<input type="text" id="txt_roomNum"
+											 style="border: solid 1px #8cb1d6; width: 150px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+								会议室密码：<input type="password" id="txt_pwd"
+											 style="border: solid 1px #8cb1d6; width: 150px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+								<input type="button" id="btn_join" class="join" value="加入会议" onclick="joinMeeting()"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<div class="line" id="Line" style="float: left; margin: 0px 25px;">
+					</div>
+				</td>
+				<td>
+					<div style="*+height: 150px;">
+						<div style="margin-top: -45px; *+margin-left: 50px; *+margin-top: 0px;">
+							下载与安装
+						</div>
+						<div class="download" style="margin-top: 5px;">
+							<a href="http://www.wind.com.cn/windftp/wind.net/3C/3CSetup.exe">下载客户端</a></div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div id="div_download" style="display: none;">
+		<div style="width: 450px; height: 160px; border: solid 1px #abc9e7; margin: 0px auto 20px auto;
+            color: #606060;">
+			<div class="logo">
+			</div>
+			<div style="text-align: center; margin-bottom: 10px;">
+				正在进入远程共享，请勿关闭浏览器，请稍后...
+			</div>
+			<div style="float: left; width: 35px;">
+				&nbsp;
+			</div>
+			<div class="loading">
+				<div class="loaded" id="div_loaded">
+				</div>
+			</div>
+			<div style="float: right; width: 35px;">
+				&nbsp;
+			</div>
+			<div style="margin-top: 30px; text-align: center;" id="loadExplain">
+				正在下载，请稍后...
+			</div>
+			<div style="width: 450px; height: 120px; margin: 0px auto 20px auto;">
+				<div class="clewStyle" style="color: #202020; font-weight: bold; margin-top: 40px;">
+					操作提示：
+				</div>
+				<div class="clewStyle">
+					1. 浏览器2分钟无反应，请尝试<a href="###" onclick="location.replace(location)">刷新</a>操作；
+				</div>
+				<div class="clewStyle">
+					2. 仍然无法进入，请联系您的计算机IT管理员，下载并安装客户端，<a href="###" id="downloadClient">立即下载</a>；
+				</div>
+			</div>
+		</div>
+		<object id="ChelpOcx32" width="0" height="0" classid="CLSID:3532C402-7C39-43BC-824A-32DA1AF09131"
+				codebase="3CMeetingSetup32.CAB#Version=1,0,0,11"></object>
+	</div>
+	<div id="alertWin" class='alertWin' style="display: none">
+	</div>
+
+</form>
+
+<script src="js/3CV2/3CVideo.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+	var C3helpOcx = document.getElementById("ChelpOcx32");
+	var host = 'http://10.102.16.202:8080/3CWeb/';
+	// var host = 'http://10.202.32.15/3CWeb/';
+	// var host = '/3CWeb/';
+	var uname = "test";
+	var meeting = "";
+	var pwd = "";
+	var intervalProgress;
+	var intervalInstallOK;
+	var url = "";
+
+	var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+	init();
+
+	function init() {
+		//判断是否是IE，如果不是，提示用户并退出。
+		if (!isIE()) {
+			alert("您使用的不是IE浏览器，该页面不支持，请使用IE浏览器！")
+			return;
+		}
+		var roomNum = $.Request("roomNum");
+		var password = $.Request("pwd");
+		$("downloadClient").href = "http://www.wind.com.cn/windftp/wind.net/3C/3CSetup.exe";
+		meeting = roomNum;
+		pwd = password;
+		var ieVer = window.navigator.platform;
+		if (ieVer == "Win64") {
+			location.href = "Confirm64.html?roomNum=" + meeting + "&pwd=" + pwd;
+			return;
+		}
+		var _alertDialog = new AlertDialog();
+		if (!roomNum || !password) {
+			$("div_validate").style.display = "none";
+			$("div_login").style.display = "";
+
+			return;
+		}
+		meeting = roomNum;
+		pwd = password;
+		login(roomNum, password);
+	}
+
+	function setLoadedProcess(process) {
+		process = process * 100 + "%";
+		$("div_loaded").style.width = process;
+	}
+
+	function joinMeeting() {
+		var roomNum = $V("txt_roomNum");
+		var password = $V("txt_pwd");
+
+		if (roomNum == "") {
+//			_alertDialog.DataBind('alertWin', {title: '', content: "会议室号码不能为空！"});
+			alert('会议室号码不能为空!');
+			return;
+		}
+		if (password == "") {
+//			_alertDialog.DataBind('alertWin', {title: '', content: "会议室密码不能为空！"});
+			alert('会议室密码不能为空!');
+			return;
+		}
+		meeting = roomNum;
+		pwd = password;
+		login(roomNum, password);
+	}
+
+	//验证登陆密码
+	function login(roomNum, psw) {
+		var parameterArray = new Array(roomNum, psw);
+		Ajax.Request({
+			url: host + 'validateDesktopShare.json',
+			data: 'roomNo=' + roomNum + '&password=' + psw,
+			type: "GET",
+			dataType: 'json',
+			onComplete: ValidateResult,
+			onError: showError
+		});
+	}
+
+	function ValidateResult(xmlhttp) {
+//		var result = xmlhttp.responseText.toJSON();
+		var result = strToJson(xmlhttp.responseText);
+
+		if (result) {
+			var info = result;
+
+			if (info.retrunValue == 0) {
+				//登陆成功
+				$("div_validate").style.display = "none";
+				$("div_login").style.display = "none";
+				$("div_download").style.display = "";
+				//检查是否安装客户端
+				IsUAInstalled();
+			}
+			else if (info.retrunValue == -1) {
+//				_alertDialog.DataBind('alertWin', {title: '', content: "会议室号码不正确，会议室可能还未创建或已关闭！"});
+				alert('会议室号码不正确，会议室可能还未创建或已关闭！');
+				showLogin();
+				$("txt_pwd").value = pwd;
+
+			}
+			else if (info.retrunValue == -2) {
+//				_alertDialog.DataBind('alertWin', {title: '', content: "会议室密码不正确，请重新输入密码！"});
+				alert('会议室密码不正确，请重新输入密码！');
+				$("txt_roomNum").value = meeting;
+				showLogin();
+			}
+			else {
+//				_alertDialog.DataBind('alertWin', {title: '', content: "系统正忙，稍候再试！"});
+				alert('系统正忙，稍候再试！');
+			}
+		}
+	}
+
+	//Ajax请求失败后的回调，用于输出错误信息
+	function showError(xmlhttp) {
+		var mes = "系统正忙，稍候再试! \r\n 代码:  " + xmlhttp.status;
+		if ((xmlhttp.status + "").substr(0, 3) == "500") {
+//			_alertDialog.DataBind('alertWin', {title: '', content: "您好，由于网络原因导致请求失败，请您稍后再试！"});
+			alert('您好，由于网络原因导致请求失败，请您稍后再试！');
+		}
+		else {
+			if (typeof(comErrorMsg) == "string" && comErrorMsg) {
+//				_alertDialog.DataBind('alertWin', {title: '', content: comErrorMsg});
+				alert(comErrorMsg);
+			}
+			else {
+//				_alertDialog.DataBind('alertWin', {title: '', content: "抱歉，系统正忙，请休息一下，稍候再试，谢谢！"});
+				alert('抱歉，系统正忙，请休息一下，稍候再试，谢谢！');
+			}
+		}
+
+	}
+
+	//检查是否安装客户端
+	function IsUAInstalled() {
+
+		var bInstall = C3helpOcx.IsUAInstalled();
+		if (bInstall) {
+			//如果已安装客户端，判断是否需要升级。
+			var updateState = C3helpOcx.UpdateState("http://www.wind.com.cn/windftp/wind.net/3C");
+			if (updateState == 0) {
+				StartUserAgent();
+			}
+			else if (updateState == 1) {
+				//升级客户端
+				$("loadExplain").innerHTML = "正在升级客户端，请稍后..."
+				IsHasPermission();
+			}
+			else if (updateState == 2) {
+				$("loadExplain").innerHTML = "请先卸载旧版本，然后再运行本页面！"
+				return;
+			}
+			else if (updateState == 3) {
+				$("loadExplain").innerHTML = "程序在运行，请先关掉再试！"
+				return;
+			}
+		}
+		else {
+			//检查是否有管理员权限
+			IsHasPermission();
+		}
+	}
+
+	//安装客户端
+	function DownLoadAndInstall() {
+		C3helpOcx.DownLoadAndInstall("http://www.wind.com.cn/windftp/wind.net/3C");
+		GetProgress();
+	}
+
+	//查询安装进度
+	function GetProgress() {
+		var progress = C3helpOcx.GetProgress();
+		setLoadedProcess(progress)
+		if (progress == 1) {
+			//改变下载提示框
+			$("loadExplain").innerHTML = "正在安装，请稍后…";
+			IsInstallOK();
+			setTimeout("alterInstallWarn()", 120000);
+		}
+		else if (progress == -1) {
+			$("loadExplain").innerHTML = "<font color='red'>下载失败，请检查本机网络连接并尝试手动下载安装。</font>";
+			return;
+		}
+		else {
+			setTimeout("GetProgress()", 300);
+		}
+	}
+
+	//是否安装完成
+	function IsInstallOK() {
+		var bOK = C3helpOcx.IsInstallOK();
+		if (bOK == true) {
+			//启动客户端
+			StartUserAgent();
+		}
+		else {
+			setTimeout("IsInstallOK()", 1000);
+		}
+	}
+
+
+	function alterInstallWarn() {
+		showJumpWarn("", "安装过程过长，可以尝试自己下载安装包，手动进行安装！", showLogin);
+	}
+
+	//启动客户端
+	function StartUserAgent() {
+
+		var param = "uname=" + uname + ";meeting=" + meeting + ";pwd=" + pwd + ";";
+
+		param = base64encode(param);
+
+		var result = C3helpOcx.StartUserAgent(param);
+
+		if (result == true) {
+			try {
+				//统计用户行为
+//				AddUserAction();
+			}
+			catch (e) {
+
+			}
+
+			IEClose();
+		}
+		else {
+			showJumpWarn("", "启动客户端失败，点击确定进入下载页面，手动进行安装！", showLogin);
+		}
+	}
+
+	function base64encode(str) {
+		var out, i, len;
+		var c1, c2, c3;
+		len = str.length;
+		i = 0;
+		out = "";
+		while (i < len) {
+			c1 = str.charCodeAt(i++) & 0xff;
+			if (i == len) {
+				out += base64EncodeChars.charAt(c1 >> 2);
+				out += base64EncodeChars.charAt((c1 & 0x3) << 4);
+				out += "==";
+				break;
+			}
+			c2 = str.charCodeAt(i++);
+			if (i == len) {
+				out += base64EncodeChars.charAt(c1 >> 2);
+				out += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+				out += base64EncodeChars.charAt((c2 & 0xF) << 2);
+				out += "=";
+				break;
+			}
+			c3 = str.charCodeAt(i++);
+			out += base64EncodeChars.charAt(c1 >> 2);
+			out += base64EncodeChars.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+			out += base64EncodeChars.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+			out += base64EncodeChars.charAt(c3 & 0x3F);
+		}
+		return out;
+	}
+
+	function showJumpWarn(title, msg, callbackFun) {
+		var askWin = new AlertDialog(callbackFun);
+		askWin.DataBind('alertWin', {title: title, content: msg}, 2);
+	}
+
+	function showLogin() {
+		$("div_validate").style.display = "none";
+		$("div_login").style.display = "";
+		$("div_download").style.display = "none";
+	}
+
+	function IsHasPermission() {
+		var bOK = C3helpOcx.IsHasPermission();
+		if (bOK == false) {
+			ReStartIEWithAdmin();
+		}
+		else {
+			DownLoadAndInstall();
+		}
+	}
+
+	function ReStartIEWithAdmin() {
+
+		var url2 = url + "confirm.html?roomNum=" + meeting + "&pwd=" + pwd;
+
+		var bOK = C3helpOcx.ReStartIEWithAdmin(url2);
+		if (bOK == false) {
+			//判断是否有已经安装的程序，如果有，启动已有的客户端。
+			var bInstall = C3helpOcx.IsUAInstalled();
+			if (bInstall) {
+				//如果已安装客户端，判断是否需要升级。
+				StartUserAgent();
+			}
+			else {
+//				_alertDialog.DataBind('alertWin', {title: '', content: "当前账号不具有管理员权限，无法安装程序。"});
+				alert('当前账号不具有管理员权限，无法安装程序。');
+			}
+		}
+		else {
+			IEClose();
+		}
+	}
+	//统计用户行为
+	//	function AddUserAction() {
+	//		var parameterArray = new Array(3869, 0);
+	//		var dataParameters = {MethodAlias: "AddUserAction", Parameter: parameterArray};
+	//		Ajax.Request({
+	//			url: "../AjaxSecureHandler.aspx",
+	//			type: "POST",
+	//			data: "data=" + escape(JSON2.stringify(dataParameters)),
+	//			onComplete: resultAddUserAction,
+	//			onError: showError
+	//		});
+	//	}
+
+	function resultAddUserAction(xmlhttp) {
+	}
+
+	function strToJson(str) {
+		var json = (new Function("return " + str))();
+		return json;
+	}
+</script>
+</body>
+</html>

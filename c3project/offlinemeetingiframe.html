@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>会议资讯</title>
+	<style>
+		html, body {
+			height: 100%;
+			overflow: hidden;
+		}
+
+		body {
+			font-family: "Arial", "SimSun", "Microsoft YaHei", "SimHei", sans-serif;
+			font-size: 12px;
+			background: #fff;
+			min-width: 1200px;
+			_width: 1200px;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		body, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, fieldset, legend, input, textarea, select {
+			margin: 0;
+			padding: 0;
+		}
+
+		a {
+			color: #000;
+			text-decoration: none;
+
+			-webkit-transition: all .5s;
+			-moz-transition: all .5s;
+			-ms-transition: all .5s;
+			-o-transition: all .5s;
+			transition: all .5s;
+		}
+
+		.header {
+			/*position: fixed;*/
+			width: 100%;
+			/*height: 70px;*/
+			/*margin-top: -45px;*/
+			/*z-index: 999;*/
+			background-color: #eff2f6;
+			border: 1px solid #d0d6de;
+		}
+
+		.container {
+			width: 1110px;
+			margin: 0 auto;
+		}
+
+		a:hover {
+			color: #7e7e7e;
+			text-decoration: none;
+		}
+
+		.clearfix:after {
+			content: "";
+			height: 0;
+			line-height: 0;
+			display: block;
+			clear: both;
+			visibility: hidden;
+		}
+
+		.clearfix {
+			zoom: 1;
+		}
+
+		.fl {
+			float: left;
+		}
+
+		.fr {
+			float: right;
+		}
+
+		.infoline {
+			line-height: 2;
+		}
+
+		.infoline span {
+			display: inline-block;
+			height: 20px;
+			line-height: 20px;
+		}
+
+		.infoline img {
+			width: 12px;
+			height: 12px;
+			vertical-align: middle;
+		}
+
+		.meeting-title {
+			font-family: "Microsoft YaHei";
+			font-size: 16px;
+		}
+
+		.location-open {
+			/*cursor: pointer;*/
+		}
+
+		.location-open .add-text {
+			margin-right: 5px;
+		}
+
+		.advertise-content {
+			height: 100%;
+			overflow: hidden;
+		}
+
+	</style>
+</head>
+<body>
+<!--头部导航开始-->
+<div class="header clearfix">
+	<div class="container clearfix">
+		<p class="infoline clearfix">
+			<span class="fl">
+				<img src="img/message.png">
+				<span class="meeting-title" id="meetingTitle">正在获取中... </span>
+			</span>
+		</p>
+		<p class="infoline clearfix">
+			<span class="fl">
+				<img src="img/master.png">
+				<span>主办方：</span>
+				<span id="meetingMaster">正在获取中... </span>
+			</span>
+			<span class="fr">
+				<img src="img/time.png">
+				<span id="meetingTime">正在获取中... </span>
+			</span>
+		</p>
+		<p class="infoline clearfix location-open" id="localOpen">
+			<span class="fl">
+				<img src="img/href.png">
+				<span class="add-text">地址：</span>
+				<span id="webLoaction">正在获取中... </span>
+				<!--<span> &nbsp;&nbsp;点击此处在浏览器中打开</span>-->
+			</span>
+			<span class="fr">
+				<img src="img/address.png">
+				<span id="meetingAddress">正在获取中... </span>
+			</span>
+		</p>
+	</div>
+</div>
+<!--头部导航结束-->
+
+<div class="advertise-content">
+	<iframe id="iFramePage" src="" style="float: left; width: 100%; height: 100%; border: solid 1px #f5f5f5;">
+	</iframe>
+</div>
+
+<script src="lib/jquery.js"></script>
+<script src="lib/layer/layer.js"></script>
+<script src="lib/json2.js"></script>
+<script src="js/common.js"></script>
+<script>
+	var iframePage = {
+		$webLoaction : $('#webLoaction'),
+		$localOpen : $('#localOpen'),
+		$iFramePage : $('#iFramePage'),
+		target: '',
+		init: function () {
+			this.getData();
+//			this.locationOpen();
+			this.bindEvent();
+		},
+		getData: function () {
+			$.ajax({
+				url: host + 'getOfflineMeetingDetail.json',
+				type: 'GET',
+				data: {'meetingId' : getQueryString(location.search, 'id')},
+				async: false,
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+					this.target = data.url;
+					$('#meetingTitle').text(data.title);
+					$('#meetingMaster').text(data.sponsor);
+					$('#meetingTime').text(confinfoDateHandle(data.date));
+					$('#webLoaction').text(this.target);
+					$('#meetingAddress').text(data.city);
+					$('#iFramePage').attr('src', this.target);
+					$('title').text(data.title);
+				},
+				error: function (error) {
+					console.log(error);
+				}
+
+			});
+		},
+
+		bindEvent: function () {
+			console.log('绑定事件');
+			var that = this;
+//			that.$localOpen.on('click', function () {
+//				that.locationOpen();
+//			})
+		},
+		locationOpen : function () {
+			console.log('在浏览器中打开');
+			window.external.ClientFunc("{func=openie,isGlobal=1,url='" + this.target + "'}");
+		}
+	};
+	iframePage.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,553 @@
+.main.container {
+	min-height: 580px;
+}
+
+input {
+	border: 1px solid #e6e6e6;
+	background-color: #fff;
+	border-radius: 2px;
+	margin-right: 10px;
+}
+
+/*主体内容*/
+.set-conf {
+	width: 1110px;
+	padding-top: 50px;
+	/*background-color: red;*/
+}
+
+/*处理inline-block的4px间隙*/
+#priConf {
+	margin-left: -4px;
+}
+
+.conf-type .tab-active {
+	border-bottom: none;
+	color: #ffffff;
+	background-color: #ff3643;
+}
+
+/*必选项前面的星号变红*/
+.must-select {
+	color: #f00;
+}
+
+.conf-area {
+	margin-top: -1px;
+	margin-bottom: 100px;
+}
+
+/*表格开始*/
+.conf-area table {
+	/*background-color: #f2f2f2;*/
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #000000;
+	color: #393D49;
+}
+
+.conf-area table tr {
+	height: 75px;
+	/*line-height: 75px;*/
+	border: 1px solid #e6e6e6;
+}
+
+.conf-area table tr textarea {
+	margin: 20px 0;
+	padding: 10px;
+	resize: none;
+
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+
+.conf-area table tr td {
+	border: 1px solid #e6e6e6;
+	padding-left: 15px;
+}
+
+.conf-area table tr td.textarea-tip {
+	position: relative;
+}
+
+.conf-area table tr td:first-child {
+	width: 100px;
+	text-align: right;
+	/*padding-left: -15px;*/
+	color: #393D49;
+}
+
+.conf-area table .inputUp[type="text"],
+.conf-area table .inputUp[type="number"],
+.conf-area table .inputUp[type="date"] {
+	font-size: 16px;
+	/*width: 200px;*/
+	height: 38px;
+	line-height: 38px;
+	padding-left: 5px;
+
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+
+/*主题*/
+.conf-area table input.conf-title {
+	width: 590px;
+}
+
+.conf-area table input.conf-time {
+	width: 275px;
+}
+
+/*人数*/
+.conf-area table input.conf-people-num {
+	width: 60px;
+}
+
+/*禁止参会*/
+.conf-area table input.forbid-join {
+	width: 500px;
+}
+
+/*提示语*/
+.tipMsg {
+	margin-left: 10px;
+	font-size: 14px;
+}
+
+/*私会参会嘉宾input*/
+.conf-area table .ivt-input {
+	width: 590px;
+}
+
+.tipMsg span {
+	color: #f00;
+}
+
+.textarea-tip .tipMsg {
+	position: absolute;
+	right: 290px;
+	top: 90px;
+}
+
+/*按钮*/
+.conf-area table .form-btn {
+	width: 80px;
+	height: 35px;
+	line-height: 35px;
+	border: 1px solid #5470b5;
+	background-color: #eff2f6;
+	color: #000;
+	margin-right: 100px;
+	cursor: pointer;
+}
+
+/*禁止行业div*/
+.forbidden-div {
+	position: absolute;
+	left: 14px;
+	top: -302px;
+	background-color: #F3F8FC;
+	width: 508px;
+	border: 1px solid #8EA4C1;
+	/*height: 300px;*/
+}
+
+.forbidden-div-wrap {
+	/*position: relative;*/
+}
+
+.forbidden-div-wrap span {
+	display: inline-block;
+	width: 498px;
+	height: 35px;
+	line-height: 35px;
+	padding-left: 10px;
+	background-color: #CCD8E7;
+}
+
+.forbidden-div .forbidden-div-wrap div {
+	width: 130px;
+	margin: 5px auto;
+}
+
+.forbidden-div .forbidden-div-wrap div button {
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #5470b5;
+	background-color: #eff2f6;
+	color: #000;
+}
+
+.forbidden-list {
+	border-top: 1px solid #8EA4C1;
+	border-bottom: 1px solid #8EA4C1;
+}
+
+.forbidden-list li {
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 7px;
+	text-align: left;
+}
+
+/*表格结束*/
+
+.conf-type span {
+	display: inline-block;
+	width: 116px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+	/*margin-left: -4px;*/
+	background-color: #f2f2f2;
+	border: 1px solid #e6e6e6;
+
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*添加私人会议参会的加号*/
+img#addPerson {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+/*遮罩*/
+.float-div {
+	position: fixed;
+	left: 0;
+	top: 0;
+	/*border: 1px solid red;*/
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+/*弹出框，添加参会嘉宾*/
+.attend {
+	width: 950px;
+	height: 640px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -80px;
+	bottom: 0;
+	margin: auto;
+	z-index: 1000;
+	overflow: hidden;
+}
+
+.attend-wrap {
+	border: 1px solid #d0d6de;
+}
+
+/*标题栏*/
+.attend-header {
+	position: relative;
+	height: 35px;
+	line-height: 35px;
+	padding-left: 10px;
+	background-color: #CCD8E7;
+	color: #15428B;
+}
+
+.attend-header h3 {
+	font-size: 16px;
+}
+
+.attend-header img {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.attend-header button {
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	margin: 3px 10px;
+	border: 1px solid #5470b5;
+	background-color: #eff2f6;
+	color: #000;
+	cursor: pointer;
+	/*margin-right: 50px;*/
+}
+
+/*主体*/
+.attend-main {
+	padding: 5px;
+	background-color: #ffffff;
+}
+
+/*左边包围*/
+.attend-main .attend-main-left {
+	width: 450px;
+}
+
+/*左边头部搜索*/
+.search-friend-header {
+	background-color: #fff;
+	position: relative;
+	padding: 5px;
+	border: 1px solid #eee;
+	margin-bottom: 5px;
+}
+
+.search-friend-box {
+	position: relative;
+}
+
+.search-friend-box img {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	cursor: pointer;
+}
+
+.search-friend-box input {
+	width: 375px;
+	height: 35px;
+	line-height: 35px;
+	padding-left: 25px;
+	font-size: 14px;
+	background-color: #e4e4e4;
+}
+
+.add-friend img {
+	position: absolute;
+	right: 5px;
+	top: 11px;
+	width: 30px;
+	/* height: 24px; */
+	cursor: pointer;
+}
+
+/*好友列表*/
+.iwind-friend-list {
+	overflow: hidden;
+	position: relative;
+}
+
+.iwind-friend-box {
+	height: 500px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.iwind-friend-box li {
+	height: 30px;
+	line-height: 30px;
+	padding: 10px 0 10px 10px;
+	margin-right: 35px;
+	border-bottom: 1px solid #BFBFBF;
+}
+
+.iwind-friend-box li img {
+	width: 30px;
+	margin-right: 5px;
+	margin-top: -5px;
+}
+
+.iwind-friend-box li span {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.iwind-friend-box li .contact-name {
+	width: 100px;
+	font-size: 14px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.iwind-friend-box li .contact-compony {
+	width: 160px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 14px;
+	color: #b8b8b8;
+}
+
+.iwind-friend-box li .add-state,
+.iwind-friend-box li .fri-info-edit {
+	width: 36px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 12px;
+	color: #b8b8b8;
+	cursor: pointer;
+	vertical-align: middle;
+}
+
+.iwind-friend-box li .add-state img,
+.iwind-friend-box li .fri-info-edit img {
+	width: 20px;
+	/*margin-left: 5px;*/
+}
+
+.alpha-index {
+	position: absolute;
+	right: 25px;
+	top: 5px;
+	width: 20px;
+	line-height: 18px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.alpha-index li {
+	color: #b5b5b5;
+	margin-top: 1px;
+}
+
+.alpha-index li:hover {
+	color: red;
+}
+
+/*右边包围*/
+.attend-main .attend-main-right {
+	width: 480px;
+}
+
+/*右边头部标题*/
+.invited-friend-header {
+	height: 45px;
+	line-height: 45px;
+	padding-left: 15px;
+	margin-bottom: 5px;
+	border: 1px solid #eee;
+	background-color: #fff;
+}
+
+/*右边好友列表*/
+.invited-friend-list {
+	position: relative;
+	overflow: hidden;
+}
+
+.identify {
+	width: 75px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.invited-friend-list .icon-del {
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.invited-friend-list ul li {
+	height: 30px;
+	line-height: 30px;
+	padding: 10px 0 10px 10px;
+	margin-right: 0px;
+	border-bottom: 1px solid #BFBFBF;
+}
+
+/*input外发光*/
+.outside-highlight {
+	outline: none;
+	border-color: #f00;
+	-webkit-box-shadow: 0 0 10px #f00;
+	-moz-box-shadow: 0 0 10px #f00;
+	box-shadow: 0 0 10px #f00;
+}
+
+/*表单验证提示字符*/
+.form-tips {
+	font-size: 14px;
+	color: #f00;
+}
+
+/*添加好友弹出框*/
+.add-my-friend {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 350px;
+	height: 270px;
+	z-index: 100001;
+	background-color: #fff;
+	border: 1px solid #678fd6;
+}
+
+.add-my-friend-content {
+	width: 300px;
+	margin: 10px auto;
+}
+
+.add-my-friend-content p {
+	line-height: 30px;
+}
+
+.add-my-friend-content .add-item-name {
+	display: inline-block;
+	width: 100px;
+	height: 25px;
+	line-height: 25px;
+	text-align: right;
+	/*font-size: 30px;*/
+	color: #f00;
+}
+
+.add-my-friend-content .add-item-name label {
+	font-size: 14px;
+	color: #000;
+}
+
+.add-my-friend-submitbtn {
+	width: 145px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+p.addfri-tips {
+	height: 30px;
+	font-size: 12px;
+	color: #f00;
+	text-align: center;
+}
+
+.add-fri-btn {
+	width: 45px;
+	height: 25px;
+	line-height: 25px;
+	border: 1px solid #5470b5;
+	background-color: #eff2f6;
+	color: #000;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.add-fri-btn:first-child {
+	margin-right: 20px;
+}

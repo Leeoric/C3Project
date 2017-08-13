@@ -1,0 +1,71 @@
+.main.container {
+	min-height: 640px;
+	position: relative;
+	margin-bottom: 35px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    /*background-color: #e4e4e4;*/
+}
+
+.search-box div {
+    position: absolute;
+    left: 150px;
+    top: 60px;
+    width: 820px;
+}
+
+.search-box div input {
+    width: 710px;
+    height: 34px;
+    padding: 0 5px;
+	border: 1px solid #d0d6de;
+}
+
+.search-box div span {
+    display: inline-block;
+    width: 90px;
+    height: 36px;
+    line-height: 36px;
+	margin-left: -4px;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+    /*border: 1px solid #000;*/
+	background: url(../img/searchbtn.png);
+}
+
+/*看速记听录音没有url时的样式*/
+#hisConfBox .urlblank {
+	color: #999999;
+	cursor: text;
+}
+
+.footer {
+	/*position: absolute;*/
+	/*bottom: 0;*/
+}
+
+.page-index {
+	right: 0;
+	bottom: -35px;
+}
+
+#searchCount {
+	color: #f00;
+}
+
+#searchTipText {
+	color: #f00;
+}
+
+.search-tip {
+	position: absolute;
+	left: 0;
+	bottom: 18px;
+	color: #a8a8a8;
+	font-size: 14px;
+}

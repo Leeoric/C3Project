@@ -1,0 +1,120 @@
+{
+  "success": true,
+  "errorCode": 0,
+  "errorMsg": "null",
+  "list": [
+    {
+      "id": 2,
+      "title": "测试专用视频会议",
+      "startTime": "2017-08-02 11:00:00",
+      "endTime": "2017-08-02 22:00:00",
+      "description": "哈哈哈哈哈哈哈哈<b>哈哈哈哈哈<i>哦吼吼吼吼<u>尼玛<strike>横岗</strike></u></i></b>",
+      "sponsors": [
+        {
+          "id": 1,
+          "name": "海天证券",
+          "category": "FUND",
+          "description": "基金公司",
+          "url": ""
+        }
+      ],
+      "lecturers": [
+        {
+          "id": 1,
+          "name": "郭敬明",
+          "role": "FUND_MNGR",
+          "description": "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十",
+          "title": "所长",
+          "phoneNum": "18652078192",
+          "email": "sdgao.theodore@wind.com.cn",
+          "institute": {
+            "id": 1,
+            "name": "海天证券",
+            "category": "FUND",
+            "description": "基金公司",
+            "url": ""
+          },
+          "remark": "",
+          "user": {
+            "id": 3,
+            "crmId": 0,
+            "imId": 0,
+            "name": "郭敬明",
+            "phoneNum": "18652078192",
+            "email": "sdgao.theodore@wind.com.cn",
+            "institutionName": "null"
+          }
+        }
+      ],
+      "meetingType": "PUBLIC",
+      "broadcastType": "WEBVIDEO",
+      "meetingStatus": "ENDED",
+      "recommend": true,
+      "signupNum": 4,
+      "capacity": 178,
+      "signupStatus": false,
+      "bookmarkStatus": false,
+      "logoUrl": null,
+      "audioId": 0,
+      "videoId": 0,
+      "pdfId": 0
+    },
+    {
+      "id": 1,
+      "title": "20170802",
+      "startTime": "2017-08-02 09:20:00",
+      "endTime": "2017-08-02 23:50:00",
+      "description": "测试专用",
+      "sponsors": [
+        {
+          "id": 1,
+          "name": "海天证券",
+          "category": "FUND",
+          "description": "基金公司",
+          "url": ""
+        }
+      ],
+      "lecturers": [
+        {
+          "id": 1,
+          "name": "郭敬明",
+          "role": "FUND_MNGR",
+          "description": "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十",
+          "title": "所长",
+          "phoneNum": "18652078192",
+          "email": "sdgao.theodore@wind.com.cn",
+          "institute": {
+            "id": 1,
+            "name": "海天证券",
+            "category": "FUND",
+            "description": "基金公司",
+            "url": ""
+          },
+          "remark": "",
+          "user": {
+            "id": 3,
+            "crmId": 0,
+            "imId": 0,
+            "name": "郭敬明",
+            "phoneNum": "18652078192",
+            "email": "sdgao.theodore@wind.com.cn",
+            "institutionName": "null"
+          }
+        }
+      ],
+      "meetingType": "PUBLIC",
+      "broadcastType": "PHONEWEB",
+      "meetingStatus": "ENDED",
+      "recommend": true,
+      "signupNum": 10,
+      "capacity": 100000,
+      "signupStatus": false,
+      "bookmarkStatus": false,
+      "logoUrl": "MeetingDocument/2017-08-02/ee7c268c-9603-4f1a-9651-ebd9af7af5d9.jpg",
+      "audioId": 0,
+      "videoId": 0,
+      "pdfId": 6
+    }
+  ],
+  "count": 2
+}

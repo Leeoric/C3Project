@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>共享桌面</title>
+</head>
+<body>
+<form id="form1" runat="server">
+	<div>
+	</div>
+</form>
+
+<script src="js/3CV2/3CVideo.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var meeting = "";
+	var pwd = "";
+	init();
+	function init() {
+		//判断是否是IE，如果不是，提示用户并退出。
+		if (!$.Browse.isIE()) {
+			alert("您使用的不是IE浏览器，该页面不支持，请使用IE浏览器！")
+			return;
+		}
+		var roomNum = $.Request("roomNum");
+		var password = $.Request("pwd");
+		meeting = roomNum;
+		pwd = password;
+		var ieVer = window.navigator.platform;
+//		alert(ieVer);
+		if (ieVer == "Win64") {
+			location.href = "confirm64.html?roomNum=" + meeting + "&pwd=" + pwd;
+		}
+		else {
+			location.href = "confirm32.html?roomNum=" + meeting + "&pwd=" + pwd;
+		}
+	}
+</script>
+</body>
+</html>

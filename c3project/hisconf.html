@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>历史会议</title>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/hisconf.css">
+</head>
+<body>
+<!--头部导航开始-->
+<div class="header">
+	<div class="container clearfix">
+		<div class="nav-left fl">
+			<ul class="clearfix">
+				<li class="fl"><a href="index.html">最新会议</a></li>
+				<li class="fl current-page"><a href="hisconf.html">历史会议</a></li>
+				<li class="fl"><a href="confinfo.html">会议资讯</a></li>
+				<li class="fl"><a href="per.html">个人中心</a></li>
+			</ul>
+		</div>
+		<div class="nav-right fr clearfix">
+			<div class="search fl" id="navSearch">
+				<input type="text" placeholder="请输入关键字查询更多会议">
+				<span></span>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t2.png">
+				<a href="setconf.html">发起会议</a>
+			</div>
+			<div class="assistant fl">
+				<img src="img/t3.png">
+				<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" target="_blank">小秘书</a>-->
+				<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--头部导航结束-->
+<!--中部开始-->
+<div class="main container">
+	<div class="table-navbox">
+		<span class="fl table-nav-all nav-active" id="hisConfCategory"><a href="#" title="全部">全部</a></span>
+		<ul class="table-nav clearfix hisConfCategory">
+			<li class="fl"><a href="#" data-hisconfcategory="IR_ROADSHOW" title="IR路演">IR路演</a></li>
+			<li class="fl"><a href="#" data-hisconfcategory="ANALYST_ROADSHOW" title="分析师路演">分析师路演</a></li>
+			<li class="fl"><a href="#" data-hisconfcategory="PRODUCT_ROADSHOW" title="产品路演">产品路演</a></li>
+			<li class="fl"><a href="#" data-hisconfcategory="FORUMSUMMIT" title="论坛峰会">论坛峰会</a></li>
+			<li class="fl"><a href="#" data-hisconfcategory="FINACIAL_TRNG" title="金融培训">金融培训</a></li>
+			<li class="fl"><a href="#" data-hisconfcategory="OTHERS" title="其他">其他</a></li>
+		</ul>
+		<span class="fl table-nav-all nav-active" id="hisConfField"><a href="#" title="全部">全部</a></span>
+		<ul class="table-nav clearfix hisConfField">
+			<li class="fl"><a href="#" data-hisconffield="MACRO_ECONOMY" title="宏观经济">宏观经济</a></li>
+			<li class="fl"><a href="#" data-hisconffield="OPERATIONAL_RESEARCH" title="策略研究">策略研究</a></li>
+			<li class="fl"><a href="#" data-hisconffield="FIXEDINCOME" title="固定收益">固定收益</a></li>
+			<li class="fl"><a href="#" data-hisconffield="NONBANKFINANCE" title="非银金融">非银金融</a></li>
+			<li class="fl"><a href="#" data-hisconffield="REALESTATE" title="房地产">房地产</a></li>
+			<li class="fl"><a href="#" data-hisconffield="INVESTMENT_STRATEGY" title="投资策略">投资策略</a></li>
+			<li class="fl"><a href="#" data-hisconffield="COMPUTER" title="计算机">计算机</a></li>
+			<li class="fl"><a href="#" data-hisconffield="BIO_MEDICINE" title="医药生物">医药生物</a></li>
+			<li class="fl"><a href="#" data-hisconffield=" TELECOMMUNICATION_ELECTRONICS" title="通信电子">通信电子</a></li>
+			<li class="fl"><a href="#" data-hisconffield="SOCIALSERVICE" title="社会服务">社会服务</a></li>
+			<li class="fl table-more"><span href="#" title="更多">更多</span></li>
+			<li class="fl hide"><a href="#" data-hisconffield="PUBLICUTILITIES" title="公共事业">公共事业</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="FOOD_BEVERAGE" title="食品饮料">食品饮料</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="TRADE_RETAIL" title="批发零售">批发零售</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="AUTO_PARTS" title="汽车及零部件">汽车及零部件</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="NONFERROUS_METAL" title="有色金属">有色金属</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="MILITARYMACHINERY" title="军工机械">军工机械</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="TEXTILES_GARMENTS" title="纺织服装">纺织服装</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="AGRICULTURE_FORESTRY" title="农林牧渔">农林牧渔</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="TRANSPORTATION" title="交通运输">交通运输</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="CONSTRUCTION_MATERIALS" title="建筑建材">建筑建材</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="COALMINING" title="煤炭开采">煤炭开采</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="FINANCIAL_ENGINEERING" title="金融工程">金融工程</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="CHEMICAL_INDUSTRY" title="化工">化工</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="POWER_EQUIPMENT" title="电力设备与新能源">电力设备与新能源</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="STEEL" title="钢铁">钢铁</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="APPLIANCES" title="家电">家电</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="CULTURAL" title="文化传播">文化传播</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="PAPER_PRINGING" title="造纸印刷">造纸印刷</a></li>
+			<li class="fl hide"><a href="#" data-hisconffield="OTHERS" title="其他">其他</a></li>
+		</ul>
+	</div>
+	<table class="table-content">
+		<thead>
+		<tr>
+			<th class="conf-date">日期</th>
+			<th class="conf-time">时间</th>
+			<th class="conf-title">主题</th>
+			<th class="conf-handle">操作</th>
+			<th class="conf-master">主办方</th>
+			<th class="conf-speach">主讲人</th>
+		</tr>
+		</thead>
+		<tbody id="hisConfBox">
+		<!--<tr>-->
+			<!--<td class="conf-date"></td>-->
+			<!--<td class="conf-time"></td>-->
+			<!--<td class="conf-title"></td>-->
+			<!--<td class="conf-handle">-->
+			<!--</td>-->
+			<!--<td class="conf-master"></td>-->
+			<!--<td class="conf-speach"></td>-->
+		<!--</tr>-->
+		</tbody>
+	</table>
+	<div class="page-index" id="pageIndex">
+		<!--<li id="prePage" class="pre-page"><a href="#">&lt;上一页</a></li>-->
+		<!--<li class="page-num"><a href="#">1</a></li>-->
+		<!--<li class="page-num"><a href="#">2</a></li>-->
+		<!--<li class="page-num"><a href="#">3</a></li>-->
+		<!--<li class="page-num"><a href="#">4</a></li>-->
+		<!--<li class="page-num"><a href="#">5</a></li>-->
+		<!--<li id="nextPage" class="next-page"><a href="#">下一页&gt;</a></li>-->
+	</div>
+</div>
+<!--中部结束-->
+
+<!--底部开始-->
+<div class="footer">
+
+	<!--footer中部,详情-->
+	<div class="footer-detail container clearfix">
+		<!--footer中部左边,二维码-->
+		<div class="footer-left footer-width fl clearfix">
+			<div class="ewmbox fl">
+				<img src="img/b1.png">
+				<p>关注公共微信号</p>
+			</div>
+			<div class="ewmbox fl">
+				<img src="img/erweima.jpg">
+				<p>wind手机客户端下载</p>
+			</div>
+		</div>
+		<!--footer中部中间,联系方式-->
+		<div class="footer-middle footer-width fl">
+			<div class="contact">
+				<div class="contact-img"><img src="img/tel.png"></div>
+				<div class="contact-info">
+					<p>客服电话</p>
+					<p>025-68673555转0</p>
+				</div>
+			</div>
+			<div class="contact">
+				<div class="contact-img"><img src="img/mail.png"></div>
+				<div class="contact-info">
+					<p>邮箱</p>
+					<p><a href="Mailto:3C@wind.com.cn">3C@wind.com.cn</a></p>
+				</div>
+			</div>
+		</div>
+		<!--footer中部右侧,下载-->
+		<div class="footer-right footer-width fl">
+			<div class="download-img"><img src="img/win.png"></div>
+			<div class="download">
+				<p>软件下载</p>
+				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip"
+					  id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="agreement.html" target="_blank">用户协议</a></p>
+			</div>
+
+		</div>
+	</div>
+	<!--footer底部,合作伙伴-->
+	<div class="friend container">
+		<p class="fl"><img src="img/partner.png"></p>
+		<ul class="clearfix" id="friendList">
+			<!--<li class="fl"><a href="#">光大证券</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">国信证券</a></li>-->
+			<!--<li class="fl"><a href="#">招商证券</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+			<!--<li class="fl"><a href="#">银华基金</a></li>-->
+		</ul>
+	</div>
+</div>
+<!--底部结束-->
+
+<script src="lib/jquery.js"></script>
+<script src="lib/json2.js"></script>
+<script src="lib/layer/layer.js"></script>
+<script src="lib/template-native.js"></script>
+<script src="lib/laypage/laypage.js"></script>
+<script id="friendTpl" type="text/html">
+	<% for (var f = 0; f < friendList.length; f++) { %>
+	<li class="fl"><a href="http://<%= friendList[f].url %>" target="_blank"><%= friendList[f].institutionName %></a>
+	</li>
+	<% } %>
+</script>
+<script id="hisConfTlp" type="text/html">
+	<% if(list.length == 0) { %>
+	<tr>
+		<td class="conf-date"></td>
+		<td class="conf-time"></td>
+		<td class="conf-title"><a href="javascript:void(0)" style="text-align: center;">暂无数据</a></td>
+		<td class="conf-handle"><a href="#"></a></td>
+		<td class="conf-master"></td>
+		<td class="conf-speach"></td>
+	</tr>
+	<% } else { %>
+		<% for (var i = 0; i < list.length; i++) { %>
+		<tr data-confId="<%= list[i].id %>">
+			<td class="conf-date"><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>)</td>
+			<td class="conf-time"><%= list[i].confTime[3] %></td>
+			<td class="conf-title">
+				<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
+					<%= list[i].title %>
+				</a>
+			</td>
+			<td class="conf-handle">
+				<% if (list[i].pdfId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+					<a href="#" data-documentid="<%= list[i].pdfId %>" class="read-doc-for-pdf">
+						看速记
+					</a>
+				<% } %>
+				<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+					<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>" data-lecturers="
+					<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
+						<%= list[i].lecturers[j].name %>
+					<% } %>
+					">
+						听录音
+					</a>
+				<% } %>
+				<% if (list[i].broadcastType == "WEBVIDEO") { %>
+					<a href="confdetail.html?id=<%= list[i].id %>" class="read-doc-for-video">
+						看视频
+					</a>
+				<% } %>
+				<% if(list[i].pdfId == 0 && list[i].audioId == 0 && list[i].broadcastType != "WEBVIDEO") { %>
+					<a href="javascript:void(0)" class="urlblank">会议结束</a>
+				<% } %>
+			</td>
+
+			<td class="conf-master" title="
+				<% for(var k = 0; k < list[i].sponsors.length; k++) { %>
+					<%= list[i].sponsors[k].name %>
+				<% } %>
+			">
+				<% for(var m = 0; m < list[i].sponsors.length; m++) { %>
+				<%= list[i].sponsors[m].name %>
+				<% } %>
+			</td>
+
+			<% if(list[i].lecturers[0]) { %>
+				<% if(list[i].lecturers[0].title) { %>
+				<td class="conf-speach" title="<%= list[i].lecturers[0].name %> [<%= list[i].lecturers[0].title %>]"><%= list[i].lecturers[0].name %>[<%= list[i].lecturers[0].title %>]</td>
+				<% } else { %>
+				<td class="conf-speach" title="<%= list[i].lecturers[0].name %>"><%= list[i].lecturers[0].name %></td>
+				<% } %>
+			<% } else { %>
+				<td class="conf-speach"> </td>
+			<% } %>
+		</tr>
+		<% } %>
+	<% } %>
+</script>
+<script src="js/common.js"></script>
+<script src="js/hisconf.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>3C中国财经会议</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+		}
+		.wrap .header p {
+			margin: 0;
+			height: 30px;
+			line-height: 30px;
+			width: 450px;
+			font-size: 14px;
+			color: #333;
+			text-indent: 0.5em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="header">
+		<p id="meetingTitle"></p>
+		<p id="lecturers"></p>
+	</div>
+	<div class="player-container">
+		<div id="playercontainer"></div>
+	</div>
+	<audio src="#" id="audioPlayer"></audio>
+</div>
+<script src="lib/jquery.js"></script>
+<script src="lib/layer/layer.js"></script>
+<script src="js/common.js"></script>
+<script src="lib/player/cyberplayer.js"></script>
+<!--[if lt IE 9]>
+<script src="lib/json2.js"></script>
+<![endif]-->
+<script>
+
+	//获取ID
+	var documentId = getQueryString(location.search, 'documentid');
+	var meetingTitle = getQueryString(location.search, 'meetingtitle');
+	var meetingLecturers = getQueryString(location.search, 'meetinglecturers');
+	$('#meetingTitle').text(decodeURIComponent(meetingTitle));
+	$('#lecturers').text(decodeURIComponent(meetingLecturers));
+	console.log(documentId);
+	//根据ID拿到PHP地址
+	var playerUrl = getDocuments(documentId, 'AUDIO');
+	//console.log('PHP-playerUrl:  ' + playerUrl);
+	//从PHP页面中解析出资源地址
+	var realUrl = getRealDocUrl(playerUrl);
+	//console.log(realUrl);
+	//用资源地址播放
+	if (isIEX()) {
+		$('#playercontainer').html('<audio><embed src="'+ playerUrl +'"></embed></audio>');
+		$('#audioPlayer').remove();
+	} else {
+		if (realUrl.substr(-3, 4) == 'wav') {
+			//如果是wav，用浏览器自带播放器播放
+			$('#audioPlayer').attr('src', realUrl);
+			$('#audioPlayer').attr('autoplay', 'autoplay');
+			$('#audioPlayer').attr('controls', 'controls');
+			$('#audioPlayer').css({
+				'width': '484px',
+				'height': '35px',
+				'background': '#000'
+			});
+			//移除百度播放器节点
+			$('#playercontainer').remove();
+		} else {
+			palyer(realUrl);
+		}
+	}
+
+
+	//播放器
+	function palyer(url) {
+		console.log(url);
+		//音频直播，打开播放器
+		var myPlayer = cyberplayer("playercontainer").setup({
+			width: 484,
+			height: 40,
+			backcolor: "#000",
+			stretching: "uniform",
+			file: url,
+			ak: "66e6eed2c8e34dcc8df5617eccd5a56f",
+			autoStart: true,
+			repeat: false,
+			volume: 50,
+			controls: "over",
+			rightclick: [ // 右键配置
+				{
+					title: "Wind资讯3C中国财经会议", // 标题1
+					link: "http://www.wind.com.cn" // 跳转链接
+				}
+			],
+		});
+		//myPlayer.play();
+		//}
+	}
+</script>
+</body>
+</html>

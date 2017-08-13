@@ -1,0 +1,120 @@
+{
+  "success": true,
+  "errorCode": 0,
+  "errorMsg": "null",
+  "list": [
+    {
+      "id": 5,
+      "title": "测试",
+      "startTime": "2017-08-02 18:00:00",
+      "endTime": "2017-08-02 22:00:00",
+      "description": "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
+      "sponsors": [
+        {
+          "id": 2,
+          "name": "桌肚底下扛大旗蹦跶",
+          "category": "OTHERS",
+          "description": "其他",
+          "url": ""
+        }
+      ],
+      "lecturers": [
+        {
+          "id": 2,
+          "name": "郭敬明",
+          "role": "SPECIALIST",
+          "description": "一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十",
+          "title": "拜金少男少女培养协会会长",
+          "phoneNum": "18652078192",
+          "email": "sdgao.theodore@wind.com.cn",
+          "institute": {
+            "id": 2,
+            "name": "桌肚底下扛大旗蹦跶",
+            "category": "OTHERS",
+            "description": "其他",
+            "url": ""
+          },
+          "remark": "",
+          "user": {
+            "id": 7,
+            "crmId": 0,
+            "imId": 0,
+            "name": "郭敬明",
+            "phoneNum": "18652078192",
+            "email": "sdgao.theodore@wind.com.cn",
+            "institutionName": "null"
+          }
+        }
+      ],
+      "meetingType": "PUBLIC",
+      "broadcastType": "PHONE",
+      "meetingStatus": "STARTED",
+      "recommend": true,
+      "signupNum": 2,
+      "capacity": 87,
+      "signupStatus": true,
+      "bookmarkStatus": true,
+      "logoUrl": null,
+      "audioId": 0,
+      "videoId": 0,
+      "pdfId": 0
+    },
+    {
+      "id": 8,
+      "title": "【建军90周年】透过建军节庆典解读军工新装备与产业链发展",
+      "startTime": "2017-08-03 14:06:00",
+      "endTime": "2017-08-03 23:00:00",
+      "description": "<div>会议主讲人姚婕[华创证券军工行业首席分析师]</div><div>会议简介：此次会议，华创证券军工行业首席分析师姚婕通过3C中国财经会议与投资者进行交流。</div><div>备注：会议开放提问，您可以在会议开始前将问题发至邮箱3C@wind.com.cn，在邮件中注明会议标题；或在会议进行时按电话上的*2键申请提问。</div>",
+      "sponsors": [
+        {
+          "id": 3,
+          "name": "wind资讯",
+          "category": "GOVERNMENT",
+          "description": "政府机构",
+          "url": ""
+        }
+      ],
+      "lecturers": [
+        {
+          "id": 3,
+          "name": "张能",
+          "role": "ANALYST",
+          "description": "",
+          "title": "",
+          "phoneNum": "13333333333",
+          "email": "sdf@sdf.com",
+          "institute": {
+            "id": 3,
+            "name": "wind资讯",
+            "category": "GOVERNMENT",
+            "description": "政府机构",
+            "url": ""
+          },
+          "remark": "",
+          "user": {
+            "id": 16,
+            "crmId": 0,
+            "imId": 0,
+            "name": "张能",
+            "phoneNum": "13333333333",
+            "email": "sdf@sdf.com",
+            "institutionName": "null"
+          }
+        }
+      ],
+      "meetingType": "PUBLIC",
+      "broadcastType": "PHONEWEB",
+      "meetingStatus": "PUBLISHED",
+      "recommend": false,
+      "signupNum": 1,
+      "capacity": 100000,
+      "signupStatus": true,
+      "bookmarkStatus": true,
+      "logoUrl": "MeetingDocument/2017-08-03/59ba858f-833b-40c8-a548-41999dcf8d8f.jpg",
+      "audioId": 0,
+      "videoId": 0,
+      "pdfId": 11
+    }
+  ],
+  "count": 2
+}
