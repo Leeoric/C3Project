@@ -85,11 +85,11 @@
 		<div class="footer-left footer-width fl clearfix">
 			<div class="ewmbox fl">
 				<img src="img/b1.png">
-				<p>关注公共微信号</p>
+				<p>关注微信公众号</p>
 			</div>
 			<div class="ewmbox fl">
 				<img src="img/erweima.jpg">
-				<p>wind手机客户端下载</p>
+				<p>Wind资讯APP下载</p>
 			</div>
 		</div>
 		<!--footer中部中间,联系方式-->
@@ -114,7 +114,7 @@
 			<div class="download-img"><img src="img/win.png"></div>
 			<div class="download">
 				<p>软件下载</p>
-				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip"
+				<p><a href="http://www.wind.com.cn/NewSite/wft.html"
 					  id="softwareDownload">桌面共享windows版本</a></p>
 				<p><a href="agreement.html" target="_blank">用户协议</a></p>
 			</div>
@@ -136,6 +136,7 @@
 	</div>
 </div>
 <input type="hidden" value="/unitedWeb/CMS/AdPreview.aspx?id=394" id="bannerSRC">
+
 <!--底部结束-->
 <script src="lib/jquery.js"></script>
 <script src="lib/layer/layer.js"></script>
@@ -161,7 +162,7 @@
 			<p class="conf-time">
 				<span><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>) <%= list[i].confTime[3] %></span></p>
 			<p class="conf-master">
-				<span><%= list[i].lecturers[0].name %></span>
+				<span class="conf-lecturers-name"><%= list[i].lecturers[0].name %></span>
 				<span class="conf-sponsors-name">
 					<% for(var j = 0; j < list[i].sponsors.length; j++) { %>
 						<%= list[i].sponsors[j].name %>
@@ -174,7 +175,12 @@
 			<img src="img/tj.png">
 		</div>
 		<% } %>
-		<div class="sign hide">
+		<% if(list[i].meetingStatus == 'STARTED') { %>
+		<div class="conf-started">
+			<span>直播中</span>
+		</div>
+		<% } %>
+		<div class="sign">
 			<% if (list[i].broadcastType == 'PHONE' || list[i].capacity < 100000) { %>
 			<div class="sign-num">
 				<p>当前报名 <span id="aleadySignNum"><%= list[i].signupNum %></span> / <span><%= list[i].capacity %></span>
@@ -188,16 +194,16 @@
 			<% } %>
 			<% if (list[i].signupStatus) { %>
 			<div class="sign-count signed">
-				<p data-statusmark="true">您已报名</p>
+				<span data-statusmark="true">您已报名</span>
 			</div>
 			<% } else { %>
 			<% if(list[i].signupNum == list[i].capacity) { %>
 			<div class="sign-count signed">
-				<p data-statusMark="full">人数已满</p>
+				<span data-statusMark="full">人数已满</span>
 			</div>
 			<% } else { %>
 			<div class="sign-count">
-				<p data-statusMark="false">立即报名</p>
+				<span data-statusMark="false">立即报名</span>
 			</div>
 			<% } %>
 			<% } %>

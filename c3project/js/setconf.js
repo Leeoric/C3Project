@@ -470,6 +470,7 @@ $(function () {
 		},
 		//获取联系人列表（同步ajax请求，成功后为callbackData赋值，与callbackData的位置谨慎改变！）
 		getUserListGroup: function () {
+			var self = this;
 			var ContactListType = {type: 1};
 			$.ajax({
 				url: host + 'getUserListGroup.json',
@@ -491,7 +492,10 @@ $(function () {
 				success: function (data) {
 					opLog.setLog('获得联系人数据: ', data);
 					delayDiv(false);
+					self.connectListUnique(data);
 					callbackData = data;
+					// callbackData = self.connectListUnique(data);
+					console.log(callbackData);
 				},
 				error: function (error) {
 					delayDiv(false);
@@ -780,7 +784,7 @@ $(function () {
 				}
 				var strArrUnique = strArr.unique();
 				$.each(strArrUnique, function (i, v) {
-					str +=  '<li>' + v + '</li>';
+					str += '<li>' + v + '</li>';
 				});
 				$('#alphaIndex').html('<li>全</li>' + str);
 			}
@@ -847,7 +851,7 @@ $(function () {
 									window.location.href = 'index.html';
 								}, 3000);
 							}
-						},function () {
+						}, function () {
 							window.location.href = 'index.html';
 						});
 					} else if (state == 'PRIVATE') {
@@ -861,7 +865,7 @@ $(function () {
 									window.location.href = 'index.html';
 								}, 3000);
 							},
-						},function () {
+						}, function () {
 							window.location.href = 'index.html';
 						});
 					}
@@ -897,6 +901,7 @@ $(function () {
 			opLog.setLog('发送好友信息： ', sendUserInfoArr);
 			return sendUserInfoArr;
 		},
+		//联系人操作
 		handlerContacts: function (type, contactData, fn1, fn2) {
 			if (type == 1) {
 				//创建联系人
@@ -937,6 +942,27 @@ $(function () {
 					}
 				}
 			});
+		},
+		//联系人去重
+		connectListUnique: function (listArr) {
+			var self = this;
+			var afterUniqueArr = [];
+			$.each(listArr, function (i, v) {
+				// 	//根据value.userID去重
+				v.userList = self.arrayUnique(v.userList);
+			});
+		},
+		//去重函数
+		arrayUnique: function (arr) {
+			var hash = {}, result = [], item;
+			$.each(arr, function (i, v) {
+				item = JSON.stringify(v);
+				if (!hash[item]) {
+					hash[item] = true;
+					result.push(JSON.parse(item));
+				}
+			});
+			return result;
 		}
 	};
 	createConfPageFunc.init();

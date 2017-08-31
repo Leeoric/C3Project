@@ -1,11 +1,11 @@
-//version: 20170724-1423
+//version: 20170813-1428
 
 //host
 // var host = 'http://10.102.16.202:8080/3CWeb/';
 // var host = 'http://10.100.2.131:8080/3CWeb/';
 // var host = 'http://10.202.32.15/3CWeb/';
-// var host = 'http://10.10.100.42/3CWeb/';
-var host = '/3CWeb/';
+var host = 'http://10.10.100.42/3CWeb/';
+// var host = '/3CWeb/';
 
 //获取来源页
 var sourcePage = window.localStorage.getItem('currentPage');
@@ -122,6 +122,7 @@ var personalInfo = {
 			}
 		}
 		//将获取到的sid与本地存储的sessionid比较，如果相同，则返回任意一个
+		console.log('sid', sid);
 		if (sid == sidStorage) {
 			opLog.setLog('', '获取到的ID与本地相同，读取缓存login信息、头像');
 			//使用本地缓存的login信息、头像
@@ -171,6 +172,7 @@ var personalInfo = {
 				self.renderUserInfo(data);
 				//根据CRM获取头像
 				self.getUserImg(data.crmId);
+				self.isLoadingStorage = true;
 			},
 			error: function (error) {
 				opLog.setLog('login fail', error);
@@ -178,7 +180,7 @@ var personalInfo = {
 				window.sessionStorage.setItem('sessionid', '');
 				$('#userImg').attr('src', 'img/m1.png');
 				if (JSON.parse(error.responseText).errorCode == 1022) {
-					layer.msg('身份验证已经过期，请重新登入页面.');
+					layer.msg('身份验证过期，请尝试刷新页面.');
 				}
 				if (JSON.parse(error.responseText).errorCode == 1003) {
 					layer.msg('未知错误，错误码1003');
@@ -206,15 +208,16 @@ var personalInfo = {
 			return false;
 		}
 		//检查本地是否保存用户头像
+		console.log('self.isLoadingStorage', self.isLoadingStorage);
 		if (self.isLoadingStorage && window.sessionStorage.getItem('userImage')) {
-			$('#userImg').attr('src', 'data:image/png;base64,' + window.sessionStorage.getItem('userImage'));
+			$('#userImg').attr('src', 'data:image/png;base64,' + JSON.parse(window.sessionStorage.getItem('userImage')));
 			return;
 		}
 		$.ajax({
 			url: host + 'getUserHeadPortraitByCRMId.json',
 			type: 'GET',
 			data: 'crmId=' + crmid,
-			async: false,
+			// async: false,
 			dataType: 'json',
 			timeout: 15000,
 			complete: function (xhr, status) {
@@ -228,7 +231,7 @@ var personalInfo = {
 					$('#userImg').attr('src', 'img/m1.png');
 				} else {
 					$('#userImg').attr('src', 'data:image/png;base64,' + data[0].iconData);
-					window.sessionStorage.setItem('userImage', data);
+					window.sessionStorage.setItem('userImage', JSON.stringify(data));
 				}
 			},
 			error: function (error) {
@@ -287,7 +290,7 @@ var isDisplay = true;
 function shadeStr(msg) {
 	var str = '<div class="shade-wrap">' +
 		'<div class="shade">' +
-		'<img src="img/down.gif">' +
+		'<img src="img/down.gif" />' +
 		'<span>' + msg + '</span>' +
 		'</div>' +
 		'</div>';
@@ -296,53 +299,53 @@ function shadeStr(msg) {
 
 //功能点编号
 //Banner广告
-var bannerADEntance = 901800040022,
+var bannerADEntance = '901800040022',
 	//最新会议打开来源
-	latstMeetingEntance = 1800040005,
+	latstMeetingEntance = '1800040005',
 	//历史会议打开来源
-	historyMeetingEntance = 1800040006,
+	historyMeetingEntance = '1800040006',
 	//搜索打开来源
-	searchMeetingEntance = 1800040004,
+	searchMeetingEntance = '1800040004',
 	//立即参会打开来源
-	joinMeetingFrom = 901800040023,
+	joinMeetingFrom = '901800040023',
 	//立即报名打开来源
-	signUpFrom = 901800040024,
+	signUpFrom = '901800040024',
 	//会议详情页面打开来源
-	confDetailFrom = 001800040009,
+	confDetailFrom = '001800040009',
 	//会议详情页面会议类型
-	meetingType = 001800040009,
+	meetingType = '001800040009',
 	//视频回看打开来源
-	videoBackView = 901800040018,
+	videoBackView = '901800040018',
 	//听录音打开来源
-	audioBackView = 001800040011,
+	audioBackView = '001800040011',
 	//看速记打开来源
-	shortHandBackView = 001800040010,
+	shortHandBackView = '001800040010',
 	//桌面共享软件下载
-	softwareDownload = 901800040031,
+	softwareDownload = '901800040031',
 	//历史会议类型筛选
-	historyMeetingType = 901800040102,
+	historyMeetingType = '901800040102',
 	//历史会议领域筛选
-	historyMeetingIndustry = 901800040101,
+	historyMeetingIndustry = '901800040101',
 	//取消收藏会议打开来源
-	favouriteMeetingCancelEntance = 901800040035,
+	favouriteMeetingCancelEntance = '901800040035',
 	//收藏会议打开来源
-	favouriteMeetingEntance = 901800040020,
+	favouriteMeetingEntance = '901800040020',
 	//会议资讯类型筛选
-	confInfoType = 922300090021,
+	confInfoType = '922300090021',
 	//会议资讯时间筛选
-	confInfoTime = 922300090023,
+	confInfoTime = '922300090023',
 	//会议资讯地点筛选
-	confInfoPlace = 922300090022,
+	confInfoPlace = '922300090022',
 	//搜索词
-	searchWord = 001800040004,
+	searchWord = '001800040004',
 	//搜索打开来源
-	searchFrom = 001800040004,
+	searchFrom = '001800040004',
 	//合作伙伴内容
-	partnersContent = 901800040108,
+	partnersContent = '901800040108',
 	//合作伙伴点击次数
-	partnersNumber = 901800040108,
+	partnersNumber = '901800040108',
 	//下载附件
-	attachmentDownload = 901800040103;
+	attachmentDownload = '901800040103';
 
 
 //弹出浮动层
@@ -516,7 +519,7 @@ function getDocuments(documentId, documentType) {
 		error: function (error) {
 			delayDiv(false);
 			opLog.setLog('get doc failed', error);
-			if (error.errorCode == 1033) {
+			if (JSON.parse(error.responseText).errorCode == 1033) {
 				layer.alert('很遗憾，您未符合主办方审核条件，无法查看本场会议相关资料。如有疑问请联系会议秘书或者拨打：025-68673555转0', {
 					title: '提示',
 					btnAlign: 'c'
@@ -527,8 +530,43 @@ function getDocuments(documentId, documentType) {
 	return url;
 }
 
+function openAudioWindow(jQueryDom) {
+	var docId = jQueryDom.data('documentid');
+	var meetingTitle = encodeURIComponent(jQueryDom.attr('title'));
+	var meetingLecturers = jQueryDom.data('lecturers');
+	var audioWindowParam = {
+		documentId: docId,
+		documentType: 'AUDIO',
+		meetingTitle: meetingTitle,
+		meetingLecturers: meetingLecturers,
+		playerUrl: getDocuments(docId, 'AUDIO')
+	};
+	if (isIEX()) {
+		var audioType = getQueryString(playerUrl, 'videoExten');
+		if (audioType == '.wav') {
+			window.open(audioWindowParam.playerUrl, '3C中国财经会议', 'height=80, width=640, top=200, left=200');
+		} else {
+			window.open(audioWindowParam.playerUrl, '3C中国财经会议', 'height=530, width=640, top=200, left=200');
+		}
+	} else {
+		if (audioWindowParam.playerUrl) {
+			// window.sessionStorage.setItem('audioparam', JSON.stringify(audioWindowParam));
+			// window.open('./audioplayer.html', '3C中国财经会议', 'height=140, width=500, top=500, left=500');
+			var urlStr = './audioplayer.html?urlstr=' + encodeURIComponent(JSON.stringify(audioWindowParam));
+			// console.log('urlStr',urlStr);
+			window.open(urlStr, '3C中国财经会议', 'height=140, width=500, top=500, left=500');
+		}
+	}
+}
+
 //合作伙伴渲染
 function renderFriendList() {
+	if (window.sessionStorage.getItem('friendlist')) {
+		opLog.setLog('', 'getting cooperative partner from sessionStorage');
+		var friTpl = template('friendTpl', JSON.parse(sessionStorage.getItem('friendlist')));
+		$('#friendList').html(friTpl);
+		return;
+	}
 	var clickNum = 0;
 	$.ajax({
 		url: host + 'getPartners.json',
@@ -537,7 +575,6 @@ function renderFriendList() {
 		headers: {'Content-Type': 'application/json'},
 		timeout: 15000,
 		complete: function (xhr, status) {
-			delayDiv(false);
 			if (status == 'timeout') {
 				opLog.setLog('', 'getting cooperative partner timeout');
 			}
@@ -547,13 +584,14 @@ function renderFriendList() {
 			var handlerData = {
 				friendList: data
 			};
+			window.sessionStorage.setItem('friendlist', JSON.stringify(handlerData));
 			var friTpl = template('friendTpl', handlerData);
 			$('#friendList').html(friTpl);
 			//写入功能点
 			$('#friendList').on('click', 'li a', function () {
-				writeLog(901800040108, 'content=' + $(this).text());
+				writeLog(partnersContent, 'content=' + $(this).text());
 				clickNum++;
-				writeLog(901800040108, 'number=' + clickNum);
+				writeLog(partnersNumber, 'number=' + clickNum);
 			});
 		},
 		error: function (error) {
@@ -574,8 +612,8 @@ function stringToDate(st, et) {
 	//日期转为星期
 	var weekArrIndex;
 	//如果传入的时间和当前时间日期相等，就显示”今天“
-	var inputDate = '' + new Date(handledStArr[0]).getFullYear() + new Date(handledStArr[0]).getMonth() + new Date(handledStArr[0]).getDay();
-	var nowDate = '' + new Date().getFullYear() + new Date().getMonth() + new Date().getDay();
+	var inputDate = '' + new Date(handledStArr[0]).getFullYear() + new Date(handledStArr[0]).getMonth() + new Date(handledStArr[0]).getDate();
+	var nowDate = '' + new Date().getFullYear() + new Date().getMonth() + new Date().getDate();
 	if (inputDate == nowDate) {
 		weekArrIndex = 7;
 	} else {
@@ -589,7 +627,6 @@ function stringToDate(st, et) {
 		var fullDateString = handledStArr[0].split("-");
 	}
 
-
 	//年-
 	handledDateArr.push(fullDateString[0] + '-');
 	//月-日
@@ -598,7 +635,9 @@ function stringToDate(st, et) {
 	handledDateArr.push(week);
 	//开始结束时分
 	handledDateArr.push(handledStArr[1] + '-' + handledEtArr[1]);
-	//['2017-', '03-10', '周五', '09:30-10:00']
+	//增加一个成员，2016年及以前的年份可以使用
+	handledDateArr.push(fullDateString[0]);
+	//['2017-', '03-10', '周五', '09:30-10:00', '2017']
 	return handledDateArr;
 }
 
@@ -712,7 +751,7 @@ function getDateStr(count, forSetConfPage, forConfinfoPage) {
 }
 
 //报名
-function signUp(meetingId, jQueryDom, fn) {
+function signUp(meetingId, jQueryDom, fnObj) {
 	// console.log(typeof jQueryDom.data('statusmark'), jQueryDom.data('statusmark'));;
 	meetingId = meetingId || href[1];
 	//如果没有报名权力，则弹出拒绝对话框
@@ -727,9 +766,19 @@ function signUp(meetingId, jQueryDom, fn) {
 		if (jQueryDom.data('statusmark') == true || jQueryDom.data('statusmark') == 'true') {
 			opLog.setLog('', 'you have already signuped...');
 			layer.msg('您已报名！');
+			if (fnObj) {
+				if (fnObj.error) {
+					fnObj.error();
+				}
+			}
 		} else if (jQueryDom.data('statusmark') == 'full') {
 			opLog.setLog('', 'The number is full');
 			layer.msg('对不起，参会人数已满！');
+			if (fnObj) {
+				if (fnObj.error) {
+					fnObj.error();
+				}
+			}
 		} else {
 			//如果没有报名，发送报名请求
 			opLog.setLog('', 'have not signup...will signup soon');
@@ -742,31 +791,51 @@ function signUp(meetingId, jQueryDom, fn) {
 				dataType: 'json',
 				headers: {'Content-Type': 'application/json'},
 				timeout: 15000,
+				beforeSend: function () {
+					if (fnObj) {
+						if (fnObj.beforeSend) {
+							fnObj.beforeSend();
+						}
+					}
+				},
 				complete: function (xhr, status) {
 					if (status == 'timeout') {
 						layer.msg("报名请求超时。");
 					}
+					if (fnObj) {
+						if (fnObj.complete) {
+							fnObj.complete();
+						}
+					}
 				},
 				success: function (data) {
 					opLog.setLog('send signup request success', data);
-					if (fn) {
-						fn(data);
+					if (fnObj) {
+						if (fnObj.success) {
+							fnObj.success(data);
+						}
 					}
 				},
 				error: function (error) {
+					if (fnObj) {
+						if (fnObj.error) {
+							fnObj.error();
+						}
+					}
 					opLog.setLog('send signup request failed', error);
 					if (error.status == 500 && JSON.parse(error.responseText).errorCode == 1033) {
-						layer.alert('很遗憾，报名未成功。如有疑问请联系会议秘书或者拨打：025-68673555转0', {
+						layer.alert('很遗憾，本场会议只允许部分行业人员进入。如有疑问请联系会议秘书或者拨打：025-68673555转0', {
 							title: '提示',
 							icon: 2,
 							btnAlign: 'c'
 						});
-					} else if (error.status == 500 && JSON.parse(error.responseText).errorCode != 1033) {
-						layer.msg('服务器异常，报名失败。');
+					} else if (error.status == 500 && JSON.parse(error.responseText).errorCode == 1041) {
+						layer.msg('您已报名');
+					} else if (error.status == 500 && JSON.parse(error.responseText).errorCode == 1009) {
+						layer.msg('报名人数超过限制');
 					} else {
-						layer.msg('报名失败。');
+						layer.msg('报名失败');
 					}
-
 				}
 			});
 		}
@@ -774,7 +843,8 @@ function signUp(meetingId, jQueryDom, fn) {
 }
 
 //收藏
-function bookmark(meetingId, bookmarked, fn) {
+function bookmark(meetingId, bookmarked, fnObj) {
+
 	$.ajax({
 		url: host + 'bookmarkMeeting.json',
 		type: 'GET',
@@ -784,9 +854,21 @@ function bookmark(meetingId, bookmarked, fn) {
 		},
 		dataType: 'json',
 		timeout: 15000,
+		beforeSend: function () {
+			if (fnObj) {
+				if (fnObj.beforeSend) {
+					fnObj.beforeSend();
+				}
+			}
+		},
 		complete: function (xhr, status) {
 			if (status == 'timeout') {
 				layer.msg("收藏请求超时。");
+			}
+			if (fnObj) {
+				if (fnObj.complete) {
+					fnObj.complete();
+				}
 			}
 		},
 		success: function (data) {
@@ -794,22 +876,31 @@ function bookmark(meetingId, bookmarked, fn) {
 				opLog.setLog('cancel fav success', data);
 				layer.msg('取消收藏！');
 				//写入功能点，取消收藏
-				writeLog(901800040035, 'entance=' + sourcePage);
+				writeLog(favouriteMeetingCancelEntance, 'entance=' + sourcePage);
 			} else {
 				opLog.setLog('get fav success', data);
 				layer.msg('已经收藏！');
 				//写入功能点，收藏
-				writeLog(901800040020, 'entance=' + sourcePage);
+				writeLog(favouriteMeetingEntance, 'entance=' + sourcePage);
 			}
-			if (fn) {
-				fn(data);
+			if (fnObj) {
+				if (fnObj.success) {
+					fnObj.success();
+				}
 			}
 		},
 		error: function (error) {
-			if (error.readyState == 4 && error.status == 500) {
+			if (error.status == 500 && JSON.parse(error.responseText).errorCode == 1022) {
+				layer.msg('身份验证过期，请尝试刷新页面.');
+			} else {
 				layer.msg('收藏/取消收藏，请求失败。');
 			}
 			opLog.setLog('cancel fav failed', error);
+			if (fnObj) {
+				if (fnObj.error) {
+					fnObj.error();
+				}
+			}
 		}
 	});
 }
@@ -976,7 +1067,6 @@ Array.prototype.unique = function () {
 	for (var i = 0; i < this.length; i++) {
 		item = this[i];
 		type = Object.prototype.toString.call(item);
-
 		if ( !hash[item + type] ) {
 			hash[item + type] = true;
 			result.push(item);
@@ -995,26 +1085,16 @@ function isObjectEmpty(obj) {
 }
 //----------以下为通用点击事件-----------
 var commonFunc = {
+	canSearch: true,
 	init: function () {
 		this.bindEvent();
 	},
 	bindEvent: function () {
+		var self = this;
 		//搜索按钮鼠标点击
 		$('body').on('click', '#navSearch span', function () {
-			var searchVal = $(this).siblings('input').val();
-			if ($.trim(searchVal) == '') {
-				layer.msg('请输入您要搜索的内容。')
-			} else {
-				sessionStorage.setItem('searchInput', $.trim(searchVal));
-				//写入功能点，搜索来源
-				writeLog(searchMeetingEntance, 'entance=搜索图标');
-				window.location.href = './search.html';
-			}
-		});
-		//回车键搜索
-		$('body').on('keydown', '#navSearch input', function (e) {
-			if (e.keyCode == 13) {
-				var searchVal = $(this).val();
+			if (self.canSearch) {
+				var searchVal = $(this).siblings('input').val();
 				if ($.trim(searchVal) == '') {
 					layer.msg('请输入您要搜索的内容。')
 				} else {
@@ -1023,6 +1103,36 @@ var commonFunc = {
 					writeLog(searchMeetingEntance, 'entance=搜索图标');
 					window.location.href = './search.html';
 				}
+			} else {
+				layer.msg('搜索内容请不要超过38个字符');
+			}
+		});
+		//回车键搜索
+		$('body').on('keydown', '#navSearch input', function (e) {
+			if (self.canSearch) {
+				if (e.keyCode == 13) {
+					var searchVal = $(this).val();
+					if ($.trim(searchVal) == '') {
+						layer.msg('请输入您要搜索的内容。')
+					} else {
+						sessionStorage.setItem('searchInput', $.trim(searchVal));
+						//写入功能点，搜索来源
+						writeLog(searchMeetingEntance, 'entance=搜索图标');
+						window.location.href = './search.html';
+					}
+				}
+			} else {
+				layer.msg('搜索内容请不要超过38个字符');
+			}
+		});
+		//如果搜索框字数超过38，则提示错误
+		$('#navSearch input').on('keyup', function () {
+			var num = 38 - $(this).val().length;
+			if (num < 0) {
+				self.canSearch = false;
+				layer.msg('搜索内容请不要超过38个字符');
+			} else {
+				self.canSearch = true;
 			}
 		});
 		//点击浮层中的X，或者点击浮层中的“知道了”后，浮层隐藏
@@ -1032,7 +1142,7 @@ var commonFunc = {
 		});
 		//点击页脚的软件下载，写入功能点
 		$('#softwareDownload').on('click', function () {
-			writeLog(901800040031, 'from=' + window.localStorage.getItem('currentPage'));
+			writeLog(softwareDownload, 'from=' + window.localStorage.getItem('currentPage'));
 		});
 	}
 };
@@ -1046,7 +1156,7 @@ function outPutLog() {
 		getLog: function () {
 			var displayLog = '';
 			for (var k in res) {
-				displayLog += '<p>' + encodeURIComponent(JSON.stringify(k)) + ':' + encodeURIComponent(JSON.stringify(res[k])) + '</p><br>';
+				displayLog += '<p>' + encodeURIComponent(JSON.stringify(k)) + ':' + encodeURIComponent(JSON.stringify(res[k])) + '</p></br>';
 			}
 			layer.open({
 				type: 1,

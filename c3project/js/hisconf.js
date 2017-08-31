@@ -7,6 +7,8 @@ $(function () {
 	var itemData = {
 		category: [''],
 		field: [''],
+		startTime: null,
+		endTime: null
 	};
 	var hisConfPageFunc = {
 		init: function () {
@@ -14,6 +16,7 @@ $(function () {
 			renderFriendList();
 			//刚进入页面时，渲染一次
 			this.renderHisConfData(itemData);
+			this.setStyle();
 			this.bindEvent();
 		},
 		bindEvent: function () {
@@ -27,7 +30,7 @@ $(function () {
 			$('#hisConfCategory').on('click', function (e) {
 				e.preventDefault();
 				//写入功能点，会议筛选类型
-				writeLog(901800040102, 'type=' + $(this).text());
+				writeLog(historyMeetingType, 'type=' + $(this).text());
 				$(this).addClass('nav-active');
 				$('.hisConfCategory li a').removeClass('nav-active');
 				itemData.category.length = 0;
@@ -37,7 +40,7 @@ $(function () {
 			$('.hisConfCategory').on('click', 'li a', function (e) {
 				e.preventDefault();
 				//写入功能点，会议筛选类型
-				writeLog(901800040102, 'type=' + $(this).text());
+				writeLog(historyMeetingType, 'type=' + $(this).text());
 				$(this).addClass('nav-active').parent().siblings('li').find('a').removeClass('nav-active');
 				$('#hisConfCategory').removeClass('nav-active');
 				itemData.category = [$(this).data('hisconfcategory')];
@@ -48,7 +51,7 @@ $(function () {
 			$('#hisConfField').on('click', function (e) {
 				e.preventDefault();
 				//写入功能点，会议领域类型
-				writeLog(901800040101, 'industry=' + $(this).text());
+				writeLog(historyMeetingIndustry, 'industry=' + $(this).text());
 				$(this).addClass('nav-active');
 				$('.hisConfField li a').removeClass('nav-active');
 				itemData.field.length = 0;
@@ -59,7 +62,7 @@ $(function () {
 			$('.hisConfField').on('click', 'li a', function (e) {
 				e.preventDefault();
 				//写入功能点，会议领域类型
-				writeLog(901800040101, 'industry=' + $(this).text());
+				writeLog(historyMeetingIndustry, 'industry=' + $(this).text());
 				$(this).addClass('nav-active').parent().siblings('li').find('a').removeClass('nav-active');
 				$('#hisConfField').removeClass('nav-active');
 				itemData.field = [$(this).data('hisconffield')];
@@ -70,7 +73,7 @@ $(function () {
 			$('#hisConfBox').on('click', '.read-doc-for-pdf', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(shortHandBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出PDF阅读页
 				var openUrl = getDocuments($(this).data('documentid'), 'SHORTHAND');
 				if (openUrl) {
@@ -81,31 +84,51 @@ $(function () {
 			$('#hisConfBox').on('click', '.read-doc-for-audio', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040011, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(audioBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出音频页
-				var docId = $(this).data('documentid');
-				var meetingTitle = encodeURIComponent($(this).attr('title'));
-				var meetingLecturers = encodeURIComponent($(this).data('lecturers'));
-				if (isIEX()) {
-					var playerUrl = getDocuments(docId, 'AUDIO');
-					var audioType = getQueryString(playerUrl, 'videoExten');
-					if (audioType == '.wav') {
-						window.open(playerUrl, '3C中国财经会议', 'height=80, width=640, top=200, left=200');
-					} else {
-						window.open(playerUrl, '3C中国财经会议', 'height=530, width=640, top=200, left=200');
-					}
-				} else {
-					window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + meetingTitle + '&meetinglecturers=' + meetingLecturers, '3C中国财经会议', 'height=140, width=500, top=500, left=500');
-				}
+				openAudioWindow($(this));
 			});
 			//看视频点击
 			// $('#hisConfBox').on('click', '.read-doc-for-video', function (e) {
 			// 	e.preventDefault();
 			// 	//写功能点
-			// 	writeLog(901800040018, 'from=' + window.localStorage.getItem('currentPage'));
+			// 	writeLog(videoBackView, 'from=' + window.localStorage.getItem('currentPage'));
 			// 	//弹出视频页
 			// 	window.open('//用id去请求页面地址');
 			// });
+
+			//自定义日期发送请求
+			$('#diyDateConfirm').on('click', function (e) {
+				e.stopPropagation();
+				var st = $('#diyDate1').val().replace(/\//g, '');
+				var et = $('#diyDate2').val().replace(/\//g, '');
+				if (!st) {
+					st = getDateStr(0, false, true);
+				} else if (!et) {
+					et = getDateStr(0, false, true);
+				} else if (parseInt(st.replace(/-/g, '')) > parseInt(et.replace(/-/g, ''))) {
+					layer.msg('结束日期不可早于开始日期，请重新选择日期.');
+				} else {
+					itemData.startTime = st;
+					itemData.endTime = et;
+					self.renderHisConfData(itemData);
+					//写入功能点
+					//writeLog(confInfoTime, 'time=' + st + '-' + et);
+					//$('#diyDatePicker').fadeOut(300);
+				}
+
+			});
+
+		},
+		setStyle: function () {
+			var self = this;
+			//日期选择控件
+			$('.diy-date').datetimepicker({
+				lang:'ch',
+				timepicker: false,
+				format: 'Y-m-d',
+				formatDate: 'Y-m-d'
+			});
 
 			$('.main.container').resize(function () {
 				self.setFooterPosition();
@@ -129,6 +152,8 @@ $(function () {
 						"ENDED"
 					]
 				},
+				startTime: param.startTime,
+				endTime: param.endTime,
 				currentPage: currentPage,
 				isPaging: true,
 				pageSize: 10
@@ -151,7 +176,6 @@ $(function () {
 					}
 				},
 				success: function (data) {
-					delayDiv(false);
 					//处理数据
 					// documentsHandle(data.list);
 					self.handlerRevData(data.list);
@@ -159,6 +183,7 @@ $(function () {
 					//模板引擎渲染
 					var hisConf = template('hisConfTlp', data);
 					$('#hisConfBox').html(hisConf);
+					delayDiv(false);
 					//分页
 					laypage({
 						//容器。值支持id名、原生dom对象，jquery对象
@@ -191,7 +216,7 @@ $(function () {
 						layer.msg('获取历史会议列表失败。');
 					}
 					if (error.readyState == 4 && JSON.parse(error.responseText).errorCode == 1022) {
-						layer.msg('身份验证已经过期或sessionid非法，请重新登入页面.');
+						layer.msg('身份验证过期，请尝试刷新页面.');
 						//清除缓存信息
 						personalInfo.removeStorageInfo();
 					}

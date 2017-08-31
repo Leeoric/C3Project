@@ -12,6 +12,7 @@
 			position: relative;
 			width: 100%;
 			/*height: 3.5rem;*/
+
 		}
 
 		.pdf-container .previous-pdf {
@@ -22,11 +23,11 @@
 			height: 100%;
 			/*background: rgba(0,0,0,.3);*/
 			cursor: pointer;
-			background: linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
-			background: -o-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
-			background: -ms-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
-			background: -moz-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
-			background: -webkit-linear-gradient(right , rgba(253, 253, 253, 0) ,rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: linear-gradient(right, rgba(253, 253, 253, 0), rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -o-linear-gradient(right, rgba(253, 253, 253, 0), rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -ms-linear-gradient(right, rgba(253, 253, 253, 0), rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -moz-linear-gradient(right, rgba(253, 253, 253, 0), rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
+			background: -webkit-linear-gradient(right, rgba(253, 253, 253, 0), rgba(255, 255, 255, 0) 70%, rgba(95, 94, 94, 0.3) 100%);
 
 		}
 
@@ -51,11 +52,11 @@
 			height: 100%;
 			/*background: rgba(0,0,0,.3);*/
 			cursor: pointer;
-			background: linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
-			background: -o-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
-			background: -ms-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
-			background: -moz-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
-			background: -webkit-linear-gradient(right, rgba(94, 94, 94, 0.3) ,rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253,0) 100%);
+			background: linear-gradient(right, rgba(94, 94, 94, 0.3), rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253, 0) 100%);
+			background: -o-linear-gradient(right, rgba(94, 94, 94, 0.3), rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253, 0) 100%);
+			background: -ms-linear-gradient(right, rgba(94, 94, 94, 0.3), rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253, 0) 100%);
+			background: -moz-linear-gradient(right, rgba(94, 94, 94, 0.3), rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253, 0) 100%);
+			background: -webkit-linear-gradient(right, rgba(94, 94, 94, 0.3), rgba(255, 255, 255, 0) 30%, rgba(253, 253, 253, 0) 100%);
 
 		}
 
@@ -83,11 +84,17 @@
 			text-align: center;
 			color: #fff;
 			font-size: 24px;
-			background: rgba(0,0,0,.3);
+			background: rgba(0, 0, 0, .3);
 			border-radius: 20px;
 		}
 
-
+		.layui-layer-setwin a.layui-layer-close2 {
+			-webkit-transition: all 0s;
+			-moz-transition: all 0s;
+			-ms-transition: all 0s;
+			-o-transition: all 0s;
+			transition: all 0s;
+		}
 	</style>
 </head>
 <body>
@@ -114,7 +121,8 @@
 			<div class="assistant fl">
 				<img src="img/t3.png">
 				<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" ">小秘书</a>-->
-				<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
+				<a href="javascript:void(0);"
+				   onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
 			</div>
 		</div>
 	</div>
@@ -123,17 +131,24 @@
 <!--中部主体开始-->
 <div class="main container clearfix">
 	<div class="conf-header">
-		<!--<div>-->
-		<!--<h2>“新经济、新消费”2016年夏季投资策略交流会</h2>-->
-		<!--<p>2016-9-26（周一）12:30-13:30</p>-->
-		<!--<p><span>谭凇</span><span>(东兴证券)</span></p>-->
-		<!--<p><span>合同价</span><span>(东兴证券)</span></p>-->
-		<!--<p><span>回家</span><span>(东兴证券)</span></p>-->
-		<!--<div class="handle clearfix">-->
-		<!--<span class="fl record">看速记</span>-->
-		<!--<span class="fl sound">听录音</span>-->
-		<!--<span class="fl fav">收藏</span>-->
+		<!--<div class="loading-gray-block">-->
+			<!--<h2 class="gray-block"></h2>-->
+			<!--<p class="gray-block gray-block-p1"></p>-->
+			<!--<p class="gray-block gray-block-p2"></p>-->
+			<!--<p class="gray-block gray-block-p3"></p>-->
+			<!--<p class="gray-block gray-block-p3"></p>-->
 		<!--</div>-->
+		<!--<div>-->
+			<!--<h2>“新经济、新消费”2016年夏季投资策略交流会</h2>-->
+			<!--<p>2016-9-26（周一）12:30-13:30</p>-->
+			<!--<p><span>谭凇</span><span>(东兴证券)</span></p>-->
+			<!--<p><span>合同价</span><span>(东兴证券)</span></p>-->
+			<!--<p><span>回家</span><span>(东兴证券)</span></p>-->
+			<!--<div class="handle clearfix">-->
+				<!--<span class="fl record">看速记</span>-->
+				<!--<span class="fl sound">听录音</span>-->
+				<!--<span class="fl fav">收藏</span>-->
+			<!--</div>-->
 		<!--</div>-->
 	</div>
 	<div class="conf-detail clearfix">
@@ -141,7 +156,7 @@
 		<div class="conf-detail-content fl">
 			<div id="genseeDocBox" class="hide">
 				<!--<div class="doc-widget">-->
-					<!--<gs:doc id="genseeDocComponent" site="wind.gensee.com" ownerid="31d975bbc50c4ce196ab43383eefba4a" fullscreen="true" ctx="webcast" bgcolor="#000000" />-->
+				<!--<gs:doc id="genseeDocComponent" site="wind.gensee.com" ownerid="31d975bbc50c4ce196ab43383eefba4a" fullscreen="true" ctx="webcast" bgcolor="#000000" />-->
 				<!--</div>-->
 			</div>
 
@@ -197,10 +212,21 @@
 		<div class="interaction-box fr">
 			<div id="genseeVideoBox" class="hide">
 				<!--<div class="gensee-player">-->
-					<!--<gs:video-vod site="wind.gensee.com" ownerid="31d975bbc50c4ce196ab43383eefba4a" id="genseePlayer"/>-->
+				<!--<gs:video-vod site="wind.gensee.com" ownerid="31d975bbc50c4ce196ab43383eefba4a" id="genseePlayer"/>-->
 				<!--</div>-->
 			</div>
-			<h3>最新互动 ( <span id="commentNum" class="comment-number"></span> )</h3>
+			<h3>
+				<span>
+					最新互动 ( <span id="commentNum" class="comment-number"></span> )
+				</span>
+				<div class="refrash-comment-btn">
+					<div>
+						<span class="refrash-comment-text">自动刷新</span>
+						<input type="checkbox" id="refrashCommentBtn" class="button-switch button-switch-animbg">
+					</div>
+				</div>
+			</h3>
+
 			<div class="interaction">
 				<div class="dialog-box" id="dialogBox">
 					<!--<div class="dialog">-->
@@ -241,11 +267,11 @@
 		<div class="footer-left footer-width fl clearfix">
 			<div class="ewmbox fl">
 				<img src="img/b1.png">
-				<p>关注公共微信号</p>
+				<p>关注微信公众号</p>
 			</div>
 			<div class="ewmbox fl">
 				<img src="img/erweima.jpg">
-				<p>wind手机客户端下载</p>
+				<p>Wind资讯APP下载</p>
 			</div>
 		</div>
 		<!--footer中部中间,联系方式-->
@@ -270,7 +296,7 @@
 			<div class="download-img"><img src="img/win.png"></div>
 			<div class="download">
 				<p>软件下载</p>
-				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip" id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="http://www.wind.com.cn/NewSite/wft.html" id="softwareDownload">桌面共享windows版本</a></p>
 				<p><a href="agreement.html" target="_blank">用户协议</a></p>
 			</div>
 
@@ -300,6 +326,7 @@
 <script src="lib/pdf/pdf.js"></script>
 <script src="lib/player/cyberplayer.js"></script>
 <script src="lib/template-native.js"></script>
+<script src="lib/qrcode.min.js"></script>
 <script src="js/common.js"></script>
 <!--合作伙伴模板-->
 <script id="friendTpl" type="text/html">
@@ -317,8 +344,9 @@
 			<tbody>
 			<tr>
 				<td class="td-width-color">会议时间：</td>
-				<td class="td2"><%= list[0].confTime[0] %><%= list[0].confTime[1] %> ( <%= list[0].confTime[2] %> ) <%= list[0].confTime[3] %></td>
-
+				<td class="td2"><%= list[0].confTime[0] %><%= list[0].confTime[1] %> ( <%= list[0].confTime[2] %> ) <%=
+					list[0].confTime[3] %>
+				</td>
 			</tr>
 			<tr>
 				<td class="td-width-color td-vertical">主讲人：</td>
@@ -332,8 +360,6 @@
 					</p>
 					<% } %>
 				</td>
-				<td></td>
-				<td></td>
 			</tr>
 			<tr>
 				<td class="td-width-color">主办方：</td>
@@ -342,93 +368,112 @@
 					<span><%= list[0].sponsors[i].name %> </span>
 					<% } %>
 				</td>
-				<td></td>
-				<td></td>
 			</tr>
 			</tbody>
 		</table>
 		<div class="handle clearfix">
 			<!--如果是最新会议且没有开始-->
 			<% if (list[0].meetingStatus == "PUBLISHED") { %>
-				<!--如果已经报名-->
-				<% if (list[0].signupStatus) { %>
-				<span class="fl signUp signUped" id="signUp" data-statusMark="true">
-					<span>您已报名</span>
-				</span>
-				<% } else { %>
-					<!--如果没有报名但报名人数满了-->
-					<% if(list[0].signupNum == list[0].capacity) { %>
-					<span class="fl signUp meeting-full" id="signUp" data-statusMark="full">
-						<span id="signUpText">人数已满</span>
-						(<span class="sign-up-num-already"><%= list[0].signupNum %></span>/<span
-					class="sign-up-num-sum"><%= list[0].capacity %></span>)
-					</span>
-					<% } else { %>
-					<!--如果没有报名且报名人数未满-->
-					<span class="fl signUp" id="signUp" data-statusMark="false">
-						<span id="signUpText">立即报名</span>
-					</span>
-					<% } %>
-				<% } %>
+			<!--如果已经报名-->
+			<% if (list[0].signupStatus) { %>
+			<div class="fl signUp signUped" id="signUp" data-statusMark="true">
+				<div>您已报名</div>
+			</div>
+			<% } else { %>
+			<!--如果没有报名但报名人数满了-->
+			<% if(list[0].signupNum == list[0].capacity) { %>
+			<div class="fl signUp meeting-full" id="signUp" data-statusMark="full">
+				<div id="signUpText">人数已满</div>
+				(
+				<div class="sign-up-num-already"><%= list[0].signupNum %></div>
+				/
+				<div
+						class="sign-up-num-sum"><%= list[0].capacity %>
+				</div>
+				)
+			</div>
+			<% } else { %>
+			<!--如果没有报名且报名人数未满-->
+			<div class="fl signUp" id="signUp" data-statusMark="false">
+				<div id="signUpText">立即报名</div>
+			</div>
+			<% } %>
+			<% } %>
 			<!--如果是历史会议-->
 			<% } else if (list[0].meetingStatus == "ENDED") { %>
-					<!--如果有pdf速记，看速记按钮有颜色-->
-					<% if (list[0].pdfId != 0  && list[0].broadcastType != "WEBVIDEO") { %>
-					<a href="#" data-documentid="<%= list[0].pdfId %>" onclick="writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));" class="fl record" id="record">看速记</a>
-					<!--如果没有pdf速记，看速记按钮灰色-->
-					<% } else { %>
-					<a href="javascript:void(0);" class="fl record ed">看速记</a>
-					<% } %>
-					<!--如果会议类型是WEBAUDIO或者PHONEWEB-->
-					<% if (list[0].broadcastType == 'WEBAUDIO' || list[0].broadcastType == 'PHONEWEB') { %>
-						<!--如果有录音地址，听录音按钮有颜色，点击后有播放器播放-->
-						<% if (list[0].audioId != 0) { %>
-						<a href="#" data-documentid="<%= list[0].audioId %>" class="fl sound" id="meetingSound">听录音</a>
-						<% } else { %>
-						<!--如果没有录音地址，听录音按钮灰色-->
-						<a href="javascript:void(0);" data-documentid="<%= list[0].audioId %>" class="fl sound ed">听录音</a>
-						<% } %>
-					<% } %>
-					<!--如果会议类型是WEBVIDEO-->
-					<% if (list[0].broadcastType == 'WEBVIDEO') { %>
+			<!--如果有pdf速记，看速记按钮有颜色-->
+			<% if (list[0].pdfId != 0 && list[0].broadcastType != "WEBVIDEO") { %>
+			<a href="#" data-documentid="<%= list[0].pdfId %>"
+			   onclick="writeLog(shortHandBackView, 'from=' + window.localStorage.getItem('currentPage'));" class="fl record"
+			   id="record">看速记</a>
+			<!--如果没有pdf速记，看速记按钮灰色-->
+			<% } else { %>
+			<a href="javascript:void(0);" class="fl record ed">看速记</a>
+			<% } %>
+			<!--如果会议类型是WEBAUDIO或者PHONEWEB-->
+			<% if (list[0].broadcastType == 'WEBAUDIO' || list[0].broadcastType == 'PHONEWEB') { %>
+			<!--如果有录音地址，听录音按钮有颜色，点击后有播放器播放-->
+			<% if (list[0].audioId != 0) { %>
+			<a href="#" data-documentid="<%= list[0].audioId %>" class="fl sound" id="meetingSound">听录音</a>
+			<% } else { %>
+			<!--如果没有录音地址，听录音按钮灰色-->
+			<a href="javascript:void(0);" data-documentid="<%= list[0].audioId %>" class="fl sound ed">听录音</a>
+			<% } %>
+			<% } %>
+			<!--如果会议类型是WEBVIDEO-->
+			<% if (list[0].broadcastType == 'WEBVIDEO') { %>
 
-						<a href="#" data-documentid="<%= list[0].videoId %>" class="fl sound" id="meetingVideo" class="meeting-video" target="_blank">看视频</a>
+			<a href="#" data-documentid="<%= list[0].videoId %>" class="fl sound" id="meetingVideo"
+			   class="meeting-video" target="_blank">看视频</a>
 
-					<% } %>
-					<!--如果会议类型是PHONE-->
-					<% if (list[0].broadcastType == 'PHONE') { %>
-						<!--如果有录音地址，听录音按钮有颜色，点击后有播放器播放-->
-						<% if (list[0].audioId != 0) { %>
-						<a href="#" data-documentid="<%= list[0].audioId %>" class="fl sound" id="meetingSound">听录音</a>
-						<% } else { %>
-						<!--如果没有录音地址，听录音按钮灰色-->
-						<a href="javascript:void(0);" class="fl sound ed">听录音</a>
-						<% } %>
-					<% } %>
+			<% } %>
+			<!--如果会议类型是PHONE-->
+			<% if (list[0].broadcastType == 'PHONE') { %>
+			<!--如果有录音地址，听录音按钮有颜色，点击后有播放器播放-->
+			<% if (list[0].audioId != 0) { %>
+			<a href="#" data-documentid="<%= list[0].audioId %>" class="fl sound" id="meetingSound">听录音</a>
+			<% } else { %>
+			<!--如果没有录音地址，听录音按钮灰色-->
+			<a href="javascript:void(0);" class="fl sound ed">听录音</a>
+			<% } %>
+			<% } %>
 			<!--如果是最新会议且已经开始-->
 			<% } else if (list[0].meetingStatus == "STARTED") { %>
-				<!--如果已经报名，可以直接参会-->
-				<% if (list[0].signupStatus) { %>
-				<span class="fl started-meeting" id="startedMeeting" data-statusMark="true">
+			<!--如果已经报名，可以直接参会-->
+			<% if (list[0].signupStatus) { %>
+			<div class="fl started-meeting" id="startedMeeting" data-statusMark="true">
 				<% } else { %>
 				<!--如果没有报名，先报名，再参会-->
-				<span class="fl started-meeting" id="startedMeeting" data-statusMark="false">
+				<div class="fl started-meeting" id="startedMeeting" data-statusMark="false">
+					<% } %>
+					<div id="startedMeetingText">立即参会</div>
+				</div>
+				<!--如果是会议被取消-->
+				<% } else if (list[0].meetingStatus == "CANCELED") { %>
+				<div class="fl ed fav">已取消</div>
 				<% } %>
-						<span id="startedMeetingText">立即参会</span>
-				</span>
-			<!--如果是会议被取消-->
-			<% } else if (list[0].meetingStatus == "CANCELED") { %>
-				<span class="fl ed fav">已取消</span>
-			<% } %>
-			<!--收藏状态-->
-			<% if (list[0].bookmarkStatus) { %>
-			<span class="fl faved" id="fav" data-fav="true">已收藏</span>
-			<% } else { %>
-			<span class="fl fav" id="fav" data-fav="false">收藏</span>
-			<% } %>
+				<!--收藏状态-->
+				<% if (list[0].bookmarkStatus) { %>
+				<div class="fl faved" id="fav" data-fav="true">取消收藏<i></i></div>
+				<% } else { %>
+				<div class="fl fav" id="fav" data-fav="false">收藏<i></i></div>
+				<% } %>
+			</div>
 		</div>
-	</div>
-
+		<!--分享按钮-->
+		<div class="share-box">
+			<!--<div id="qrcodeBox" class="qrcode-box hide">-->
+				<!--&lt;!&ndash;<div id="qrcode" class="qrcode"></div>&ndash;&gt;-->
+				<!--<div class="qrcode-text">-->
+					<!--<p>打开微信，点击底部的“发现”，</p>-->
+					<!--<p>使用“扫一扫”即可将网页分享至朋友圈。</p>-->
+				<!--</div>-->
+			<!--</div>-->
+			<div id="shareBtn" class="share-btn">
+				<span>分享</span>
+				<!--<img src="img/share.png">-->
+			</div>
+		</div>
 </script>
 <!--会议详情模板-->
 <script id="confDetail" type="text/html">
@@ -446,58 +491,66 @@
 		<!--PPT-PDF展示 E-->
 	</div>
 	<% } %>
-	<div class="player-container hide">
-		<div id="playercontainer"></div>
+	<div class="player-container hide clearfix">
+		<div class="refresh-media" id="refreshMedia" title="重新载入播放器">
+			<img src="img/refresh.png">
+		</div>
+		<div id="playercontainer" class="fr"></div>
 		<audio src="#" id="audioPlayer"></audio>
 	</div>
 	<div class="conf-content-detail">
 		<% if (list[0].description) { %>
-			<div class="conf-intro">
-				<h3>会议简介</h3>
-				<div>
-					<%=# list[0].description %>
-				</div>
+		<div class="conf-intro">
+			<h3>会议简介</h3>
+			<div>
+				<%=# list[0].description %>
 			</div>
+		</div>
 		<% } %>
 		<% if (list[0].lecturers) { %>
-			<% if (list[0].lecturers[0].description && list[0].lecturers[0].description != "null") { %>
-			<div class="conf-intro">
-				<h3>主讲人</h3>
-					<% for (var j =0,len = list[0].lecturers.length; j < len; j++) { %>
-					<p>
-						<span><strong><%= list[0].lecturers[j].name %></strong>&nbsp;&nbsp;</span>
-						<span><%= list[0].lecturers[j].description %></span>
-					</p>
-					<% } %>
-			</div>
+		<div class="conf-intro">
+			<% if (list[0].isDisplayLecturersDescription) { %>
+			<h3>主讲人简介</h3>
+			<% for (var j = 0,len = list[0].lecturers.length; j < len; j++) { %>
+				<% if (list[0].lecturers[j].description && list[0].lecturers[j].description != "null") { %>
+				<div>
+					<span><strong><%= list[0].lecturers[j].name %></strong>&nbsp;&nbsp;</span>
+					<span><%= list[0].lecturers[j].description %></span>
+				</div>
+				<% } %>
 			<% } %>
+			<% } %>
+		</div>
 		<% } %>
 		<% if (list[0].agenda) { %>
-			<div class="conf-intro">
-				<h3>会议议程</h3>
-				<div><%=# list[0].agenda %></div>
-			</div>
+		<div class="conf-intro">
+			<h3>会议议程</h3>
+			<div><%=# list[0].agenda %></div>
+		</div>
 		<% } %>
 		<% if (list[0].relatedStocks) { %>
 		<div class="conf-intro">
 			<h3>相关股票</h3>
 			<% for (var k = 0; k < list[0].relatedStocks.length; k++) { %>
-				<% if (list[0].relatedStocks[k].stockName) { %>
-				<p>
-					<a href="!PAGE('F9',<%= list[0].relatedStocks[k].windCode %>)" title="<%= list[0].relatedStocks[k].windCode %>" class="anchor-color-blue"><%= list[0].relatedStocks[k].stockName %> (<%= list[0].relatedStocks[k].windCode %>)</a>
-				</p>
-				<% } %>
+			<% if (list[0].relatedStocks[k].stockName) { %>
+			<div>
+				<a href="!PAGE('F9',<%= list[0].relatedStocks[k].windCode %>)"
+				   title="<%= list[0].relatedStocks[k].windCode %>" class="anchor-color-blue"><%=
+					list[0].relatedStocks[k].stockName %> (<%= list[0].relatedStocks[k].windCode %>)</a>
+			</div>
+			<% } %>
 			<% } %>
 		</div>
 		<% } %>
 		<div class="conf-intro conf-attachment" id="confAttachment">
 			<% if(list[0].attachments.length != 0) { %>
-				<h3>相关附件</h3>
-				<% for (var i = 0; i < list[0].attachments.length; i++) { %>
-					<p>
-						<a href="#" data-documentid="<%= list[0].attachments[i].id %>" download="<%= list[0].attachments[i].documentName %>"><%= list[0].attachments[i].documentName %></a>
-					</p>
-				<% } %>
+			<h3>相关附件</h3>
+			<% for (var i = 0; i < list[0].attachments.length; i++) { %>
+			<div>
+				<a href="#" data-documentid="<%= list[0].attachments[i].id %>"
+				   download="<%= list[0].attachments[i].documentName %>"><%= list[0].attachments[i].documentName %></a>
+			</div>
+			<% } %>
 			<% } %>
 		</div>
 	</div>
@@ -509,9 +562,9 @@
 		<div class="send-people-info clearfix">
 			<span data-uid="<%= list[j].id %>"><%= list[j].author.name %> </span>
 			<span class="comment-time"> <%= list[j].timeMark %></span>
-			<span class="fr reply" title="点击回复这条评论！"><img src="img/u277.png" title="点击回复这条评论！"> 回复</span>
+			<!--<span class="fr reply" title="点击回复这条评论！"><img src="img/u277.png" title="点击回复这条评论！"> 回复</span>-->
 		</div>
-		<div>
+		<div class="comment-content">
 			<%= list[j].content %>
 		</div>
 		<% if (list[j].parentCommentId) { %>

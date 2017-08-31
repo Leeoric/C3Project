@@ -14,131 +14,133 @@
 	</style>
 </head>
 <body>
-<!--头部导航开始-->
-<div class="header">
-	<div class="container clearfix">
-		<div class="nav-left fl">
-			<ul class="clearfix">
-				<li class="fl"><span id="windCodeNum">股票代码</span></li>
-				<li class="fl"><span>全部会议</span></li>
+
+	<!--头部导航开始-->
+	<div class="header">
+		<div class="container clearfix">
+			<div class="nav-left fl">
+				<ul class="clearfix">
+					<li class="fl"><span id="windCodeNum">股票代码</span></li>
+					<li class="fl"><span>全部会议</span></li>
+				</ul>
+			</div>
+			<div class="nav-right fr clearfix">
+				<div class="search fl" id="navSearch">
+					<input type="text" placeholder="请输入关键字查询更多会议">
+					<span></span>
+				</div>
+				<div class="assistant fl">
+					<img src="img/t2.png">
+					<a href="setconf.html">发起会议</a>
+				</div>
+				<div class="assistant fl">
+					<img src="img/t3.png">
+					<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" target="_blank">小秘书</a>-->
+					<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--头部导航结束-->
+	<!--中部开始-->
+	<div class="main container">
+		<table class="table-content">
+			<thead>
+			<tr>
+				<th class="conf-date">日期</th>
+				<th class="conf-time">时间</th>
+				<th class="conf-title">主题</th>
+				<th class="conf-handle">操作</th>
+				<th class="conf-master">主办方</th>
+				<th class="conf-speach">主讲人</th>
+			</tr>
+			</thead>
+			<tbody id="hisConfBox">
+			<!--<tr>-->
+			<!--<td class="conf-date"></td>-->
+			<!--<td class="conf-time"></td>-->
+			<!--<td class="conf-title"></td>-->
+			<!--<td class="conf-handle">-->
+			<!--</td>-->
+			<!--<td class="conf-master"></td>-->
+			<!--<td class="conf-speach"></td>-->
+			<!--</tr>-->
+			</tbody>
+		</table>
+		<div class="page-index" id="pageIndex">
+			<!--<li id="prePage" class="pre-page"><a href="#">&lt;上一页</a></li>-->
+			<!--<li class="page-num"><a href="#">1</a></li>-->
+			<!--<li class="page-num"><a href="#">2</a></li>-->
+			<!--<li class="page-num"><a href="#">3</a></li>-->
+			<!--<li class="page-num"><a href="#">4</a></li>-->
+			<!--<li class="page-num"><a href="#">5</a></li>-->
+			<!--<li id="nextPage" class="next-page"><a href="#">下一页&gt;</a></li>-->
+		</div>
+	</div>
+	<!--中部结束-->
+
+	<!--底部开始-->
+	<div class="footer">
+
+		<!--footer中部,详情-->
+		<div class="footer-detail container clearfix">
+			<!--footer中部左边,二维码-->
+			<div class="footer-left footer-width fl clearfix">
+				<div class="ewmbox fl">
+					<img src="img/b1.png">
+					<p>关注微信公众号</p>
+				</div>
+				<div class="ewmbox fl">
+					<img src="img/erweima.jpg">
+					<p>Wind资讯APP下载</p>
+				</div>
+			</div>
+			<!--footer中部中间,联系方式-->
+			<div class="footer-middle footer-width fl">
+				<div class="contact">
+					<div class="contact-img"><img src="img/tel.png"></div>
+					<div class="contact-info">
+						<p>客服电话</p>
+						<p>025-68673555转0</p>
+					</div>
+				</div>
+				<div class="contact">
+					<div class="contact-img"><img src="img/mail.png"></div>
+					<div class="contact-info">
+						<p>邮箱</p>
+						<p><a href="Mailto:3C@wind.com.cn">3C@wind.com.cn</a></p>
+					</div>
+				</div>
+			</div>
+			<!--footer中部右侧,下载-->
+			<div class="footer-right footer-width fl">
+				<div class="download-img"><img src="img/win.png"></div>
+				<div class="download">
+					<p>软件下载</p>
+					<p><a href="http://www.wind.com.cn/NewSite/wft.html"
+						  id="softwareDownload">桌面共享windows版本</a></p>
+					<p><a href="agreement.html" target="_blank">用户协议</a></p>
+				</div>
+
+			</div>
+		</div>
+		<!--footer底部,合作伙伴-->
+		<div class="friend container">
+			<p class="fl"><img src="img/partner.png"></p>
+			<ul class="clearfix" id="friendList">
+				<!--<li class="fl"><a href="#">光大证券</a></li>-->
+				<!--<li class="fl"><a href="#">银华基金</a></li>-->
+				<!--<li class="fl"><a href="#">国信证券</a></li>-->
+				<!--<li class="fl"><a href="#">招商证券</a></li>-->
+				<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+				<!--<li class="fl"><a href="#">银华基金</a></li>-->
+				<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
+				<!--<li class="fl"><a href="#">银华基金</a></li>-->
 			</ul>
 		</div>
-		<div class="nav-right fr clearfix">
-			<div class="search fl" id="navSearch">
-				<input type="text" placeholder="请输入关键字查询更多会议">
-				<span></span>
-			</div>
-			<div class="assistant fl">
-				<img src="img/t2.png">
-				<a href="setconf.html">发起会议</a>
-			</div>
-			<div class="assistant fl">
-				<img src="img/t3.png">
-				<!--<a href="!COMMANDPARAM(149,OPType=4,WMID=10654048)" target="_blank">小秘书</a>-->
-				<a href="javascript:void(0);" onclick="javascript:window.location.href='!COMMANDPARAM(149,OPType=4,WMID=10654048)'">小秘书</a>
-			</div>
-		</div>
 	</div>
-</div>
-<!--头部导航结束-->
-<!--中部开始-->
-<div class="main container">
-	<table class="table-content">
-		<thead>
-		<tr>
-			<th class="conf-date">日期</th>
-			<th class="conf-time">时间</th>
-			<th class="conf-title">主题</th>
-			<th class="conf-handle">操作</th>
-			<th class="conf-master">主办方</th>
-			<th class="conf-speach">主讲人</th>
-		</tr>
-		</thead>
-		<tbody id="hisConfBox">
-		<!--<tr>-->
-		<!--<td class="conf-date"></td>-->
-		<!--<td class="conf-time"></td>-->
-		<!--<td class="conf-title"></td>-->
-		<!--<td class="conf-handle">-->
-		<!--</td>-->
-		<!--<td class="conf-master"></td>-->
-		<!--<td class="conf-speach"></td>-->
-		<!--</tr>-->
-		</tbody>
-	</table>
-	<div class="page-index" id="pageIndex">
-		<!--<li id="prePage" class="pre-page"><a href="#">&lt;上一页</a></li>-->
-		<!--<li class="page-num"><a href="#">1</a></li>-->
-		<!--<li class="page-num"><a href="#">2</a></li>-->
-		<!--<li class="page-num"><a href="#">3</a></li>-->
-		<!--<li class="page-num"><a href="#">4</a></li>-->
-		<!--<li class="page-num"><a href="#">5</a></li>-->
-		<!--<li id="nextPage" class="next-page"><a href="#">下一页&gt;</a></li>-->
-	</div>
-</div>
-<!--中部结束-->
+	<!--底部结束-->
 
-<!--底部开始-->
-<div class="footer">
-
-	<!--footer中部,详情-->
-	<div class="footer-detail container clearfix">
-		<!--footer中部左边,二维码-->
-		<div class="footer-left footer-width fl clearfix">
-			<div class="ewmbox fl">
-				<img src="img/b1.png">
-				<p>关注公共微信号</p>
-			</div>
-			<div class="ewmbox fl">
-				<img src="img/erweima.jpg">
-				<p>wind手机客户端下载</p>
-			</div>
-		</div>
-		<!--footer中部中间,联系方式-->
-		<div class="footer-middle footer-width fl">
-			<div class="contact">
-				<div class="contact-img"><img src="img/tel.png"></div>
-				<div class="contact-info">
-					<p>客服电话</p>
-					<p>025-68673555转0</p>
-				</div>
-			</div>
-			<div class="contact">
-				<div class="contact-img"><img src="img/mail.png"></div>
-				<div class="contact-info">
-					<p>邮箱</p>
-					<p><a href="Mailto:3C@wind.com.cn">3C@wind.com.cn</a></p>
-				</div>
-			</div>
-		</div>
-		<!--footer中部右侧,下载-->
-		<div class="footer-right footer-width fl">
-			<div class="download-img"><img src="img/win.png"></div>
-			<div class="download">
-				<p>软件下载</p>
-				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip"
-					  id="softwareDownload">桌面共享windows版本</a></p>
-				<p><a href="agreement.html" target="_blank">用户协议</a></p>
-			</div>
-
-		</div>
-	</div>
-	<!--footer底部,合作伙伴-->
-	<div class="friend container">
-		<p class="fl"><img src="img/partner.png"></p>
-		<ul class="clearfix" id="friendList">
-			<!--<li class="fl"><a href="#">光大证券</a></li>-->
-			<!--<li class="fl"><a href="#">银华基金</a></li>-->
-			<!--<li class="fl"><a href="#">国信证券</a></li>-->
-			<!--<li class="fl"><a href="#">招商证券</a></li>-->
-			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
-			<!--<li class="fl"><a href="#">银华基金</a></li>-->
-			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
-			<!--<li class="fl"><a href="#">银华基金</a></li>-->
-		</ul>
-	</div>
-</div>
-<!--底部结束-->
 
 <script src="lib/jquery.js"></script>
 <script src="lib/json2.js"></script>
@@ -179,7 +181,7 @@
 			<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
 			<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>" data-lecturers="
 					<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
-						<%= list[i].lecturers[j].name %>
+						<%= list[i].lecturers[j].name %>、
 					<% } %>
 					">
 				听录音
@@ -233,7 +235,7 @@
 			$('#hisConfBox').on('click', '.read-doc-for-pdf', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(shortHandBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出PDF阅读页
 				var openUrl = getDocuments($(this).data('documentid'), 'SHORTHAND');
 				if (openUrl) {
@@ -245,7 +247,7 @@
 			$('#hisConfBox').on('click', '.read-doc-for-audio', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040011, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(audioBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出音频页
 				var docId = $(this).data('documentid');
 				var meetingTitle = encodeURIComponent($(this).attr('title'));
@@ -259,14 +261,16 @@
 						window.open(playerUrl, '3C中国财经会议', 'height=530, width=640, top=200, left=200');
 					}
 				} else {
-					window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + meetingTitle + '&meetinglecturers=' + meetingLecturers, '3C中国财经会议', 'height=140, width=500, top=500, left=500');
+					//弹出音频页
+					openAudioWindow($(this));
+//					window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + meetingTitle + '&meetinglecturers=' + meetingLecturers, '3C中国财经会议', 'height=140, width=500, top=500, left=500');
 				}
 			});
 			//看视频点击
 			// $('#hisConfBox').on('click', '.read-doc-for-video', function (e) {
 			// 	e.preventDefault();
 			// 	//写功能点
-			// 	writeLog(901800040018, 'from=' + window.localStorage.getItem('currentPage'));
+			// 	writeLog(videoBackView, 'from=' + window.localStorage.getItem('currentPage'));
 			// 	//弹出视频页
 			// 	window.open('//用id去请求页面地址');
 			// });
@@ -348,7 +352,7 @@
 						layer.msg('获取历史会议列表失败。');
 					}
 					if (error.readyState == 4 && JSON.parse(error.responseText).errorCode == 1022) {
-						layer.msg('身份验证已经过期或sessionid非法，请重新登入页面.');
+						layer.msg('身份验证过期，请尝试刷新页面.');
 						//清除缓存信息
 						personalInfo.removeStorageInfo();
 					}

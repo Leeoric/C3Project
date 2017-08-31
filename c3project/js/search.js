@@ -3,6 +3,7 @@ $(function () {
 	window.localStorage.setItem('currentPage', '搜索');
 	var searchVal = sessionStorage.getItem('searchInput');
 	var searchPageFunc = {
+		canSearch: true,
 		init: function () {
 			//获取合作伙伴
 			renderFriendList();
@@ -12,47 +13,118 @@ $(function () {
 		},
 		bindEvent: function () {
 			var self = this;
+			var hasClickSignup = 0;
+			var lastSearch = sessionStorage.getItem('searchInput');
 			$('#searchBtn').on('click', function () {
-				sessionStorage.setItem('searchInput', $('#searchInput').val());
-				var searchVal = sessionStorage.getItem('searchInput');
-				if (searchVal) {
-					self.searchMeeting(searchVal);
-				} else {
-					layer.msg('请输入要搜索的内容.');
-				}
-			});
-			//回车键搜索
-			$('#searchInput').on('keydown', function (e) {
-				if (e.keyCode == 13) {
-					sessionStorage.setItem('searchInput', $('#searchInput').val());
+				if (self.canSearch) {
+					var latestSearch = $('#searchInput').val();
+					if (lastSearch == latestSearch) {
+						layer.msg('您输入的搜索内容与上一次搜索内容相同');
+						return false;
+					}
+					sessionStorage.setItem('searchInput', latestSearch);
 					var searchVal = sessionStorage.getItem('searchInput');
 					if (searchVal) {
 						self.searchMeeting(searchVal);
 					} else {
 						layer.msg('请输入要搜索的内容.');
 					}
+				} else {
+					layer.msg('搜索内容请不要超过38个字符');
+				}
+
+			});
+			//回车键搜索
+			$('#searchInput').on('keydown', function (e) {
+				if (e.keyCode == 13) {
+					if (self.canSearch) {
+						var lastSearch = sessionStorage.getItem('searchInput');
+						var latestSearch = $('#searchInput').val();
+						if (lastSearch == latestSearch) {
+							layer.msg('您输入的搜索内容与上一次搜索内容相同');
+							return false;
+						}
+						sessionStorage.setItem('searchInput', $('#searchInput').val());
+						var searchVal = sessionStorage.getItem('searchInput');
+						if (searchVal) {
+							self.searchMeeting(searchVal);
+						} else {
+							layer.msg('请输入要搜索的内容.');
+						}
+					} else {
+						layer.msg('搜索内容请不要超过38个字符');
+					}
+				}
+			});
+			//如果搜索框字数超过38，则提示错误
+			$('#searchInput').on('keyup', function (e) {
+				e.stopPropagation();
+				var num = 38 - $(this).val().length;
+				if (num < 0) {
+					self.canSearch = false;
+					layer.msg('搜索内容请不要超过38个字符');
+				} else {
+					self.canSearch = true;
 				}
 			});
 			//立即报名
 			$('#hisConfBox').on('click', '.just-sign-up', function () {
 				var that = $(this);
-				signUp($(this).data('meetingid'), $(this), function (data) {
-					enterTips(true);
-					//立即报名四个字改为已报名，颜色改变
-					that.data("statusmark", true)
-						.text('您已报名');
-				});
+				if (hasClickSignup == 0) {
+					hasClickSignup++;
+					// signUp($(this).data('meetingid'), $(this), function (data) {
+					// 	enterTips(true);
+					// 	//立即报名四个字改为已报名，颜色改变
+					// 	that.data("statusmark", true)
+					// 		.text('您已报名');
+					// 	hasClickSignup = 0;
+					// 	console.log('success,hasClickSignup:', hasClickSignup);
+					// }, function () {
+					// 	hasClickSignup = 0;
+					// 	console.log('error,hasClickSignup:', hasClickSignup);
+					// });
+					var beforeSendFontColor = that.css('color');
+					signUp($(this).data('meetingid'), $(this), {
+						beforeSend: function () {
+							console.log('beforeSend');
+							that.css({
+								'color': '#B6B6B6'
+							});
+						},
+						complete: function () {
+							// that.src = 'img/starblack.png';
+							console.log('complete');
+							hasClickSignup = 0;
+						},
+						success: function (data) {
+							console.log('success');
+							enterTips(true);
+							//立即报名四个字改为已报名，颜色改变
+							that.data("statusmark", true)
+								.text('您已报名');
+							that.css('color', '#B6B6B6');
+							hasClickSignup = 0;
+							console.log('success,hasClickSignup:', hasClickSignup);
+						},
+						error: function () {
+							hasClickSignup = 0;
+							that.css('color', beforeSendFontColor);
+							console.log('error,hasClickSignup:', hasClickSignup);
+						}
+					});
+
+				}
 			});
 			//立即参会--跳转详情页
 			$('#hisConfBox').on('click', '.just-join-it', function () {
 				var that = $(this);
-				window.location.href = 'confdetail.html?id=' + that.data('meetingid');
+				window.open('confdetail.html?id=' + that.data('meetingid'));
 			});
 			//看速记点击
 			$('#hisConfBox').on('click', '.read-doc-for-pdf', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(shortHandBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出PDF阅读页
 				var openUrl = getDocuments($(this).data('documentid'), 'SHORTHAND');
 				if (openUrl) {
@@ -64,20 +136,24 @@ $(function () {
 			$('#hisConfBox').on('click', '.read-doc-for-audio', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040011, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(audioBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出音频页
 				var docId = $(this).data('documentid');
-				window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + encodeURIComponent($(this).attr('title')), '3C中国财经会议', 'height=140, width=500, top=500, left=500');
+				var meetingtitle = encodeURIComponent($(this).attr('title'));
 
+				var meetinglecturers = $(this).data('lecturers');
+				//弹出音频页
+				openAudioWindow($(this));
+				// window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + meetingtitle + '&meetinglecturers=' + meetinglecturers, '3C中国财经会议', 'width=500, height=140, top=500, left=500');
 			});
 			//看视频点击
-			$('#hisConfBox').on('click', '.read-doc-for-video', function (e) {
-				e.preventDefault();
-				//写功能点
-				writeLog(901800040018, 'from=' + window.localStorage.getItem('currentPage'));
-				//弹出视频页
-				window.open('//用id去请求页面地址');
-			});
+			// $('#hisConfBox').on('click', '.read-doc-for-video', function (e) {
+			// 	e.preventDefault();
+			// 	//写功能点
+			// 	writeLog(videoBackView, 'from=' + window.localStorage.getItem('currentPage'));
+			// 	//弹出视频页
+			// 	window.open('//用id去请求页面地址');
+			// });
 		},
 		searchMeeting: function (searchVal, currentPage) {
 			var self = this;
@@ -86,7 +162,11 @@ $(function () {
 			//写入功能点，搜索打开来源
 			writeLog(searchFrom, 'from=' + sourcePage);
 			var sendData = {
-				criteria: {name: searchVal},
+				criteria: {
+					name: searchVal,
+					lecturer: searchVal,
+					sponsor: searchVal
+				},
 				currentPage: currentPage || 1,
 				isPaging: true,
 				pageSize: 12
@@ -101,14 +181,13 @@ $(function () {
 				beforeSend: function () {
 					delayDiv(true);
 				},
-				complete : function(xhr,status){
+				complete: function (xhr, status) {
 					delayDiv(false);
-					if(status=='timeout'){
+					if (status == 'timeout') {
 						layer.msg("列表请求超时。请稍后尝试重新刷新页面。");
 					}
 				},
 				success: function (data) {
-					delayDiv(false);
 					opLog.setLog('', data);
 					//处理数据
 					// documentsHandle(data.list);
@@ -130,6 +209,7 @@ $(function () {
 					//搜索提示
 					$('#searchCount').text(data.count);
 					$('#searchTipText').text(searchVal);
+					delayDiv(false);
 					//分页
 					laypage({
 						//容器。值支持id名、原生dom对象，jquery对象

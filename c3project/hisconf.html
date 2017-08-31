@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>历史会议</title>
 	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="lib/jquery.datetimepicker.css">
 	<link rel="stylesheet" href="css/hisconf.css">
 </head>
 <body>
@@ -43,7 +44,7 @@
 		<ul class="table-nav clearfix hisConfCategory">
 			<li class="fl"><a href="#" data-hisconfcategory="IR_ROADSHOW" title="IR路演">IR路演</a></li>
 			<li class="fl"><a href="#" data-hisconfcategory="ANALYST_ROADSHOW" title="分析师路演">分析师路演</a></li>
-			<li class="fl"><a href="#" data-hisconfcategory="PRODUCT_ROADSHOW" title="产品路演">产品路演</a></li>
+			<li class="fl"><a href="#" data-hisconfcategory="PRODUCT_ROADSHOW" title="产品项目路演">产品项目路演</a></li>
 			<li class="fl"><a href="#" data-hisconfcategory="FORUMSUMMIT" title="论坛峰会">论坛峰会</a></li>
 			<li class="fl"><a href="#" data-hisconfcategory="FINACIAL_TRNG" title="金融培训">金融培训</a></li>
 			<li class="fl"><a href="#" data-hisconfcategory="OTHERS" title="其他">其他</a></li>
@@ -55,13 +56,13 @@
 			<li class="fl"><a href="#" data-hisconffield="FIXEDINCOME" title="固定收益">固定收益</a></li>
 			<li class="fl"><a href="#" data-hisconffield="NONBANKFINANCE" title="非银金融">非银金融</a></li>
 			<li class="fl"><a href="#" data-hisconffield="REALESTATE" title="房地产">房地产</a></li>
-			<li class="fl"><a href="#" data-hisconffield="INVESTMENT_STRATEGY" title="投资策略">投资策略</a></li>
+			<!--<li class="fl"><a href="#" data-hisconffield="INVESTMENT_STRATEGY" title="投资策略">投资策略</a></li>-->
 			<li class="fl"><a href="#" data-hisconffield="COMPUTER" title="计算机">计算机</a></li>
 			<li class="fl"><a href="#" data-hisconffield="BIO_MEDICINE" title="医药生物">医药生物</a></li>
 			<li class="fl"><a href="#" data-hisconffield=" TELECOMMUNICATION_ELECTRONICS" title="通信电子">通信电子</a></li>
 			<li class="fl"><a href="#" data-hisconffield="SOCIALSERVICE" title="社会服务">社会服务</a></li>
+			<li class="fl"><a href="#" data-hisconffield="PUBLICUTILITIES" title="公共事业">公共事业</a></li>
 			<li class="fl table-more"><span href="#" title="更多">更多</span></li>
-			<li class="fl hide"><a href="#" data-hisconffield="PUBLICUTILITIES" title="公共事业">公共事业</a></li>
 			<li class="fl hide"><a href="#" data-hisconffield="FOOD_BEVERAGE" title="食品饮料">食品饮料</a></li>
 			<li class="fl hide"><a href="#" data-hisconffield="TRADE_RETAIL" title="批发零售">批发零售</a></li>
 			<li class="fl hide"><a href="#" data-hisconffield="AUTO_PARTS" title="汽车及零部件">汽车及零部件</a></li>
@@ -81,6 +82,17 @@
 			<li class="fl hide"><a href="#" data-hisconffield="PAPER_PRINGING" title="造纸印刷">造纸印刷</a></li>
 			<li class="fl hide"><a href="#" data-hisconffield="OTHERS" title="其他">其他</a></li>
 		</ul>
+		<span class="fl table-nav-all nav-active" id="hisConfDate"><a href="#" title="全部">全部</a></span>
+		<ul class="table-nav clearfix hisConfDate">
+			<li class="fl"><a href="#" id="diyDate">时间</a></li>
+			<div id="diyDatePicker" class="datepicker-box">
+				<input type="text" class="diy-date" id="diyDate1">
+				&nbsp;&nbsp;至&nbsp;&nbsp;
+				<input type="text" class="diy-date" id="diyDate2">
+				<button id="diyDateConfirm">前往</button>
+			</div>
+		</ul>
+
 	</div>
 	<table class="table-content">
 		<thead>
@@ -126,11 +138,11 @@
 		<div class="footer-left footer-width fl clearfix">
 			<div class="ewmbox fl">
 				<img src="img/b1.png">
-				<p>关注公共微信号</p>
+				<p>关注微信公众号</p>
 			</div>
 			<div class="ewmbox fl">
 				<img src="img/erweima.jpg">
-				<p>wind手机客户端下载</p>
+				<p>Wind资讯APP下载</p>
 			</div>
 		</div>
 		<!--footer中部中间,联系方式-->
@@ -155,7 +167,7 @@
 			<div class="download-img"><img src="img/win.png"></div>
 			<div class="download">
 				<p>软件下载</p>
-				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip"
+				<p><a href="http://www.wind.com.cn/NewSite/wft.html"
 					  id="softwareDownload">桌面共享windows版本</a></p>
 				<p><a href="agreement.html" target="_blank">用户协议</a></p>
 			</div>
@@ -167,13 +179,6 @@
 		<p class="fl"><img src="img/partner.png"></p>
 		<ul class="clearfix" id="friendList">
 			<!--<li class="fl"><a href="#">光大证券</a></li>-->
-			<!--<li class="fl"><a href="#">银华基金</a></li>-->
-			<!--<li class="fl"><a href="#">国信证券</a></li>-->
-			<!--<li class="fl"><a href="#">招商证券</a></li>-->
-			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
-			<!--<li class="fl"><a href="#">银华基金</a></li>-->
-			<!--<li class="fl"><a href="#">汇添富基金</a></li>-->
-			<!--<li class="fl"><a href="#">银华基金</a></li>-->
 		</ul>
 	</div>
 </div>
@@ -181,6 +186,7 @@
 
 <script src="lib/jquery.js"></script>
 <script src="lib/json2.js"></script>
+<script src="lib/jquery.datetimepicker.js"></script>
 <script src="lib/layer/layer.js"></script>
 <script src="lib/template-native.js"></script>
 <script src="lib/laypage/laypage.js"></script>
@@ -203,7 +209,11 @@
 	<% } else { %>
 		<% for (var i = 0; i < list.length; i++) { %>
 		<tr data-confId="<%= list[i].id %>">
+			<% if (list[i].confTime[4] < '2017' ) { %>
+			<td class="conf-date"><%= list[i].confTime[0]+list[i].confTime[1] %></td>
+			<% } else { %>
 			<td class="conf-date"><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>)</td>
+			<% } %>
 			<td class="conf-time"><%= list[i].confTime[3] %></td>
 			<td class="conf-title">
 				<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
@@ -219,18 +229,18 @@
 				<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
 					<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>" data-lecturers="
 					<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
-						<%= list[i].lecturers[j].name %>
+						<%= list[i].lecturers[j].name %>、
 					<% } %>
 					">
 						听录音
 					</a>
 				<% } %>
 				<% if (list[i].broadcastType == "WEBVIDEO") { %>
-					<a href="confdetail.html?id=<%= list[i].id %>" class="read-doc-for-video">
+					<a href="confdetail.html?id=<%= list[i].id %>" target="_blank" class="read-doc-for-video">
 						看视频
 					</a>
 				<% } %>
-				<% if(list[i].pdfId == 0 && list[i].audioId == 0 && list[i].broadcastType != "WEBVIDEO") { %>
+				<% if(!list[i].pdfId && !list[i].audioId && !list[i].videoId && list[i].broadcastType != "WEBVIDEO") { %>
 					<a href="javascript:void(0)" class="urlblank">会议结束</a>
 				<% } %>
 			</td>

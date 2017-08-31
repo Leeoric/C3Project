@@ -22,7 +22,7 @@ $(function () {
 			$('#confInfoCategory').on('click', function (e) {
 				e.preventDefault();
 				//写入功能点，会议资讯类型
-				writeLog(922300090021, 'type=' + $(this).text());
+				writeLog(confInfoType, 'type=' + $(this).text());
 				$(this).addClass('nav-active');
 				$('.hisConfCategory li a').removeClass('nav-active');
 				item.meetingCategory = '';
@@ -32,7 +32,7 @@ $(function () {
 			$('.hisConfCategory').on('click', 'li a', function (e) {
 				e.preventDefault();
 				//写入功能点，会议资讯类型
-				writeLog(922300090021, 'type=' + $(this).text());
+				writeLog(confInfoType, 'type=' + $(this).text());
 				$(this).addClass('nav-active').parent().siblings('li').find('a').removeClass('nav-active');
 				$('#confInfoCategory').removeClass('nav-active');
 				item.meetingCategory = $(this).data("meetingcategory");
@@ -43,7 +43,7 @@ $(function () {
 			$('#confInfoCity').on('click', function (e) {
 				e.preventDefault();
 				//写入功能点，会议资讯地点
-				writeLog(922300090022, 'place=' + $(this).text());
+				writeLog(confInfoPlace, 'place=' + $(this).text());
 				$(this).addClass('nav-active');
 				$('.hisConfField li a').removeClass('nav-active');
 				item.city = '';
@@ -53,7 +53,7 @@ $(function () {
 			$('.hisConfField').on('click', 'li a', function (e) {
 				e.preventDefault();
 				//写入功能点，会议资讯地点
-				writeLog(922300090022, 'place=' + $(this).text());
+				writeLog(confInfoPlace, 'place=' + $(this).text());
 				$(this).addClass('nav-active').parent().siblings('li').find('a').removeClass('nav-active');
 				$('#confInfoCity').removeClass('nav-active');
 				item.city = $(this).data("cityvalue");
@@ -64,7 +64,7 @@ $(function () {
 			$('#confInfoDate').on('click', function (e) {
 				e.preventDefault();
 				//写入功能点，会议资讯时间
-				writeLog(922300090023, 'time=' + $(this).text());
+				writeLog(confInfoTime, 'time=' + $(this).text());
 				$(this).addClass('nav-active');
 				$('.confInfoDate li a').removeClass('nav-active');
 				item.startTime = '';
@@ -75,7 +75,7 @@ $(function () {
 			$('.confInfoDate').on('click', 'li a', function (e) {
 				e.preventDefault();
 				//写入功能点，会议资讯时间
-				writeLog(922300090023, 'time=' + $(this).text());
+				writeLog(confInfoTime, 'time=' + $(this).text());
 				$(this).addClass('nav-active').parent().siblings('li').find('a').removeClass('nav-active');
 				$('#confInfoDate').removeClass('nav-active');
 				item.startTime = getDateStr(0, false, true);
@@ -104,7 +104,7 @@ $(function () {
 					item.endTime = et;
 					self.renderOfflineConfData(item);
 					//写入功能点，会议资讯时间
-					writeLog(922300090023, 'time=' + st + '-' + et);
+					writeLog(confInfoTime, 'time=' + st + '-' + et);
 					$('#diyDatePicker').fadeOut(300);
 				}
 
@@ -178,7 +178,6 @@ $(function () {
 					}
 				},
 				success: function (data) {
-					delayDiv(false);
 					opLog.setLog('', data);
 					//处理数据
 //					documentsHandle(data.list);
@@ -186,6 +185,7 @@ $(function () {
 					//模板引擎渲染
 					var confInfo = template('confInfoTlp', handledData);
 					$('#confInfoBox').html(confInfo);
+					delayDiv(false);
 					//分页
 					laypage({
 						//容器。值支持id名、原生dom对象，jquery对象

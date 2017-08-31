@@ -91,11 +91,11 @@
 		<div class="footer-left footer-width fl clearfix">
 			<div class="ewmbox fl">
 				<img src="img/b1.png">
-				<p>关注公共微信号</p>
+				<p>关注微信公众号</p>
 			</div>
 			<div class="ewmbox fl">
 				<img src="img/erweima.jpg">
-				<p>wind手机客户端下载</p>
+				<p>Wind资讯APP下载</p>
 			</div>
 		</div>
 		<!--footer中部中间,联系方式-->
@@ -120,7 +120,7 @@
 			<div class="download-img"><img src="img/win.png"></div>
 			<div class="download">
 				<p>软件下载</p>
-				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip" id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="http://www.wind.com.cn/NewSite/wft.html" id="softwareDownload">桌面共享windows版本</a></p>
 				<p><a href="agreement.html" target="_blank">用户协议</a></p>
 			</div>
 
@@ -170,7 +170,11 @@
 	<% for (var i = 0, len = list.length; i < len; i++) { %>
 	<% if(list[i].meetingType != 'PRIVITE') { %>
 	<tr data-confId="<%= list[i].id %>">
+		<% if (list[i].confTime[4] < '2017' ) { %>
+		<td class="conf-date"><%= list[i].confTime[0]+list[i].confTime[1] %></td>
+		<% } else { %>
 		<td class="conf-date"><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>)</td>
+		<% } %>
 		<td class="conf-time"><%= list[i].confTime[3] %></td>
 		<td class="conf-title">
 			<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
@@ -179,27 +183,27 @@
 		</td>
 		<td class="conf-handle">
 			<% if (list[i].meetingStatus == 'ENDED') { %>
-				<% if(!list[i].pdfId && !list[i].audioId && !list[i].videoId) { %>
+				<% if(!list[i].pdfId && !list[i].audioId && !list[i].videoId && list[i].broadcastType != "WEBVIDEO") { %>
 					<a href="javascript:void(0)" class="urlblank">会议结束</a>
 				<% } else { %>
-					<% if (list[i].pdfId != 0) { %>
+					<% if (list[i].pdfId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
 					<a href="#" data-documentid="<%= list[i].pdfId %>" class="read-doc-for-pdf">
 						看速记
 					</a>
 					<% } %>
-					<% if (list[i].audioId != 0) { %>
-						<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>"  data-lecturers="
-							<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
-							<%= list[i].lecturers[j].name %>
-							<% } %>
+					<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+					<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>" data-lecturers="
+						<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
+							<%= list[i].lecturers[j].name %>、
+						<% } %>
 						">
-							听录音
-						</a>
+						听录音
+					</a>
 					<% } %>
-					<% if (list[i].videoId != 0) { %>
-						<a href="#" data-documentid="<%= list[i].videoId %>" class="read-doc-for-video">
-							看视频
-						</a>
+					<% if (list[i].broadcastType == "WEBVIDEO") { %>
+					<a href="confdetail.html?id=<%= list[i].id %>" target="_blank" class="read-doc-for-video">
+						看视频
+					</a>
 					<% } %>
 				<% } %>
 			<% } else if (list[i].meetingStatus == 'PUBLISHED') {%>

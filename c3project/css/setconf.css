@@ -140,14 +140,15 @@ input {
 
 /*按钮*/
 .conf-area table .form-btn {
-	width: 80px;
+	width: 100px;
 	height: 35px;
 	line-height: 35px;
 	border: 1px solid #5470b5;
 	background-color: #eff2f6;
 	color: #000;
-	margin-right: 100px;
+	margin-left: 250px;
 	cursor: pointer;
+	font-family: "Microsoft YaHei", "SimHei", "SimSun", "Arial", sans-serif;
 }
 
 /*禁止行业div*/

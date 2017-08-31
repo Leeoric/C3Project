@@ -11,6 +11,7 @@ $(function () {
 		myFavNumber: -1,
 		init: function () {
 			renderFriendList();
+			//首次进入页面，渲染我的会议列表，以及获取我的会议数量
 			this.renderHisConfData();
 			this.bindEvent();
 			this.setStyle();
@@ -26,7 +27,7 @@ $(function () {
 				self.renderHisConfData(self.myConfAjaxUrl, 1, function (data) {
 					self.myConfNumber = data.count;
 					$('#myConfNum').text(self.myConfNumber);
-				});
+				}, 'closeShade');
 			}
 
 			if (self.myFavNumber < 0) {
@@ -34,13 +35,14 @@ $(function () {
 				self.renderHisConfData(self.myFavAjaxUrl, 1, function (data) {
 					self.myFavNumber = data.count;
 					$('#myFavNum').text(self.myFavNumber);
-				});
+				}, 'closeShade');
 			}
 
 		},
 		//绑定事件
 		bindEvent: function () {
 			var self = this;
+			var hasClickSignup = 0;
 			//左侧tab切换节流阀,1是我的会议，2是我的收藏
 			var tabName = 1;
 			//我的会议
@@ -70,23 +72,60 @@ $(function () {
 			//立即报名
 			$('.myconf-table').on('click', '#justSignUp', function () {
 				var that = $(this);
-				signUp($(this).data('meetingid'), $(this), function (data) {
-					enterTips(true);
-					//立即报名四个字改为已报名，颜色改变
-					that.data("statusmark", true)
-						.text('您已报名');
-				});
+				if (hasClickSignup == 0) {
+					hasClickSignup++;
+					// signUp($(this).data('meetingid'), $(this), function (data) {
+					// 	enterTips(true);
+					// 	//立即报名四个字改为已报名，颜色改变
+					// 	that.data("statusmark", true)
+					// 		.text('您已报名');
+					// 	hasClickSignup = 0;
+					// 	console.log('success,hasClickSignup:', hasClickSignup);
+					// }, function () {
+					// 	hasClickSignup = 0;
+					// 	console.log('error,hasClickSignup:', hasClickSignup);
+					// });
+					var beforeSendFontColor = that.css('color');
+					signUp($(this).data('meetingid'), $(this), {
+						beforeSend: function () {
+							console.log('beforeSend');
+							that.css({
+								'color': '#B6B6B6'
+							});
+						},
+						complete: function () {
+							// that.src = 'img/starblack.png';
+							console.log('complete');
+							hasClickSignup = 0;
+						},
+						success: function (data) {
+							console.log('success');
+							enterTips(true);
+							//立即报名四个字改为已报名，颜色改变
+							that.data("statusmark", true)
+								.text('您已报名');
+							that.css('color', '#B6B6B6');
+							hasClickSignup = 0;
+							console.log('success,hasClickSignup:', hasClickSignup);
+						},
+						error: function () {
+							hasClickSignup = 0;
+							that.css('color', beforeSendFontColor);
+							console.log('error,hasClickSignup:', hasClickSignup);
+						}
+					});
+				}
 			});
 			//立即参会--跳转详情页
 			$('.myconf-table').on('click', '#justJoin', function () {
 				var that = $(this);
-				window.location.href = 'confdetail.html?id=' + that.data('meetingid');
+				window.open('confdetail.html?id=' + that.data('meetingid'));
 			});
 			//看速记点击
 			$('.myconf-table').on('click', '.read-doc-for-pdf', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040010, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(shortHandBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出PDF阅读页
 				var openUrl = getDocuments($(this).data('documentid'), 'SHORTHAND');
 				if (openUrl) {
@@ -98,24 +137,29 @@ $(function () {
 			$('.myconf-table').on('click', '.read-doc-for-audio', function (e) {
 				e.preventDefault();
 				//写功能点
-				writeLog(001800040011, 'from=' + window.localStorage.getItem('currentPage'));
+				writeLog(audioBackView, 'from=' + window.localStorage.getItem('currentPage'));
 				//弹出音频页
 				var docId = $(this).data('documentid');
-				window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + encodeURIComponent($(this).attr('title')), '3C中国财经会议', 'width=500, height=140, top=500, left=500');
+				var meetingtitle = encodeURIComponent($(this).attr('title'))
+				var meetinglecturers = $(this).data('lecturers');
+				//弹出音频页
+				openAudioWindow($(this));
+				// window.open('./audioplayer.html?documentid=' + docId + '&meetingtitle=' + meetingtitle + '&meetinglecturers=' + meetinglecturers, '3C中国财经会议', 'width=500, height=140, top=500, left=500');
 
 			});
 			//看视频点击
-			$('.myconf-table').on('click', '.read-doc-for-video', function (e) {
-				e.preventDefault();
-				//写功能点
-				writeLog(901800040018, 'from=' + window.localStorage.getItem('currentPage'));
-				//弹出视频页
-				window.open('//用id去请求页面地址');
-			});
+			// $('.myconf-table').on('click', '.read-doc-for-video', function (e) {
+			// 	e.preventDefault();
+			// 	//写功能点
+			// 	writeLog(videoBackView, 'from=' + window.localStorage.getItem('currentPage'));
+			// 	//弹出视频页
+			// 	window.open('//用id去请求页面地址');
+			// });
 		},
 		//获取我的会议列表
-		renderHisConfData: function (url, currentPage, fn) {
+		renderHisConfData: function (url, currentPage, fn, isOpenShade) {
 			var self = this;
+			isOpenShade = isOpenShade || 'openShade';
 			currentPage = currentPage || 1;
 			url = url || host + 'getMyMeetingList.json';
 			var ajaxSendData = {
@@ -130,19 +174,25 @@ $(function () {
 				dataType: 'json',
 				headers: {'Content-Type': 'application/json'},
 				beforeSend: function () {
-					delayDiv(true);
+					if (isOpenShade == 'openShade') {
+						delayDiv(true);
+					}
 				},
 				timeout: 15000,
-				complete : function(xhr,status){
-					delayDiv(false);
-					if(status=='timeout'){
+				complete: function (xhr, status) {
+					if (isOpenShade == 'openShade') {
+						delayDiv(false);
+					}
+					if (status == 'timeout') {
 						layer.msg("列表请求超时。请稍后尝试重新刷新页面。");
 					}
 				},
 				success: function (data) {
-					delayDiv(false);
 					if (fn) {
 						fn(data);
+						if (isOpenShade == 'openShade') {
+							delayDiv(false);
+						}
 						return;
 					}
 					//处理数据
@@ -161,6 +211,9 @@ $(function () {
 					opLog.setLog('', handledData);
 					var myConf = template('myConfTlp', handledData);
 					$('#myConfList').html(myConf);
+					if (isOpenShade == 'openShade') {
+						delayDiv(false);
+					}
 //					render(handledData);
 					//表格奇偶行变色
 					$('.table-content').find('tr:odd').css('backgroundColor', '#f8f8f8');
@@ -168,12 +221,14 @@ $(function () {
 					self.paging(url, currentPage, data, ajaxSendData);
 				},
 				error: function (error) {
-					delayDiv(false);
+					if (isOpenShade == 'openShade') {
+						delayDiv(false);
+					}
 					if (error.readyState == 4 && error.status == 500) {
 						layer.msg('获取列表失败。');
 					}
 					if (error.readyState == 4 && JSON.parse(error.responseText).errorCode == 1022) {
-						layer.msg('身份验证已经过期或sessionid非法，请重新登入页面.');
+						layer.msg('身份验证过期，请尝试刷新页面.');
 						//清除缓存信息
 						personalInfo.removeStorageInfo();
 					}
@@ -219,10 +274,6 @@ $(function () {
 						remark: ""
 					});
 				}
-				//判断broadcastType类型
-				// if (data.broadcastType == 'WEBVIDEO') {
-				// 	data.broadcastTypeIMG = 'img/u193.png';
-				// }
 
 				//处理时间日期格式
 				data[i].confTime = stringToDate(data[i].startTime, data[i].endTime);

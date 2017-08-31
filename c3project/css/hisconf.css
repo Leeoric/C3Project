@@ -86,3 +86,60 @@
 	color: #999999;
     cursor: text;
 }
+
+.datepicker-box {
+	font-size: 14px;
+}
+
+.datepicker-box button {
+	outline: none;
+	color: #333;
+	background-color: #fff;
+	display: inline-block;
+	padding: 1px 12px;
+	margin-bottom: 0;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	white-space: nowrap;
+	/*vertical-align: middle;*/
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	vertical-align: top;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	-ms-transition: all .5s;
+	-o-transition: all .5s;
+	transition: all .5s;
+}
+
+.datepicker-box button:hover {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+	text-decoration: none;
+}
+
+.datepicker-box button:active {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+	box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+}
+
+.diy-date {
+	border: 1px solid #ccc;
+	width: 12%;
+	padding: 1px 10px;
+	box-sizing: border-box;
+}

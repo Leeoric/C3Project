@@ -105,11 +105,11 @@
 		<div class="footer-left footer-width fl clearfix">
 			<div class="ewmbox fl">
 				<img src="img/b1.png">
-				<p>关注公共微信号</p>
+				<p>关注微信公众号</p>
 			</div>
 			<div class="ewmbox fl">
 				<img src="img/erweima.jpg">
-				<p>wind手机客户端下载</p>
+				<p>Wind资讯APP下载</p>
 			</div>
 		</div>
 		<!--footer中部中间,联系方式-->
@@ -134,7 +134,7 @@
 			<div class="download-img"><img src="img/win.png"></div>
 			<div class="download">
 				<p>软件下载</p>
-				<p><a href="http://114.80.212.2/windftp/wind.net/WFT_Setup_CHS.zip" id="softwareDownload">桌面共享windows版本</a></p>
+				<p><a href="http://www.wind.com.cn/NewSite/wft.html" id="softwareDownload">桌面共享windows版本</a></p>
 				<p><a href="agreement.html" target="_blank">用户协议</a></p>
 			</div>
 
@@ -179,82 +179,92 @@
 		</tr>
 	<% } else { %>
 		<% for (var i = 0; i < list.length; i++) { %>
-		<tr>
-			<td class="conf-date"><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>)</td>
-			<td class="conf-time"><%= list[i].confTime[3] %></td>
-			<td class="conf-title">
-				<% if (list[i].meetingType) { %>
-					<% if(list[i].meetingType == 'PUBLIC') { %>
-					<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
-						<%= list[i].title %>
-					</a>
-					<% } else if (list[i].meetingType == 'PRIVATE') { %>
-					<!--<a href="javascript:void(0)">-->
-						<!--<%= list[i].title %>-->
-					<!--</a>-->
-					<% } %>
+			<% if (list[i].meetingType != 'PRIVATE') { %>
+			<tr>
+				<% if (list[i].confTime[4] < '2017' ) { %>
+				<td class="conf-date"><%= list[i].confTime[0]+list[i].confTime[1] %></td>
 				<% } else { %>
-					<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
-						<%= list[i].title %>
-					</a>
+				<td class="conf-date"><%= list[i].confTime[1] %>(<%= list[i].confTime[2] %>)</td>
 				<% } %>
-			</td>
-			<td class="conf-handle">
-				<% if (list[i].meetingStatus == 'ENDED') { %>
-					<% if(!list[i].pdfId && !list[i].audioId && !list[i].videoId) { %>
-						<a href="javascript:void(0)" class="urlblank">会议结束</a>
+				<td class="conf-time"><%= list[i].confTime[3] %></td>
+				<td class="conf-title">
+					<% if (list[i].meetingType) { %>
+						<% if(list[i].meetingType == 'PUBLIC') { %>
+						<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
+							<%= list[i].title %>
+						</a>
+						<% } else if (list[i].meetingType == 'PRIVATE') { %>
+						<!--<a href="javascript:void(0)">-->
+							<!--<%= list[i].title %>-->
+						<!--</a>-->
+						<% } %>
 					<% } else { %>
-						<% if (list[i].pdfId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
-							<a href="#" data-documentid="<%= list[i].pdfId %>" class="read-doc-for-pdf">
-								看速记
-							</a>
-						<% } %>
-						<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
-							<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>">
-								听录音
-							</a>
-						<% } %>
-						<% if (list[i].broadcastType == "WEBVIDEO") { %>
-							<a href="#" data-documentid="<%= list[i].videoId %>" class="read-doc-for-video">
-								看视频
-							</a>
-						<% } %>
+						<a href="confdetail.html?id=<%= list[i].id %>" title="<%= list[i].title %>" target="_blank">
+							<%= list[i].title %>
+						</a>
 					<% } %>
-				<% } else if (list[i].meetingStatus == 'PUBLISHED') {%>
-					<!--如果已经报名-->
-					<% if (list[i].signupStatus) { %>
-					<a href="javascript:void(0)" class="urlblank" data-statusMark="true">您已报名</a>
-					<% } else { %>
-						<!--如果没有报名但报名人数满了-->
-						<% if(list[i].signupNum == list[i].capacity) { %>
-						<a href="javascript:void(0)" class="urlblank" data-statusMark="full">人数已满</a>
+				</td>
+				<td class="conf-handle">
+					<% if (list[i].meetingStatus == 'ENDED') { %>
+						<% if(!list[i].pdfId && !list[i].audioId && !list[i].videoId && list[i].broadcastType != "WEBVIDEO") { %>
+							<a href="javascript:void(0)" class="urlblank">会议结束</a>
 						<% } else { %>
-						<!--如果没有报名且报名人数未满-->
-						<a href="javascript:void(0)" id="justSignUp" class="just-sign-up" data-statusMark="false" data-meetingid="<%= list[i].id %>">立即报名</a>
+							<% if (list[i].pdfId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+								<a href="#" data-documentid="<%= list[i].pdfId %>" class="read-doc-for-pdf">
+									看速记
+								</a>
+							<% } %>
+							<% if (list[i].audioId != 0 && list[i].broadcastType != "WEBVIDEO") { %>
+								<a href="#" data-documentid="<%= list[i].audioId %>" class="read-doc-for-audio" title="<%= list[i].title %>" data-lecturers="
+							<% for(var j = 0; j < list[i].lecturers.length; j++) { %>
+								<%= list[i].lecturers[j].name %>、
+							<% } %>
+							">
+									听录音
+								</a>
+							<% } %>
+							<% if (list[i].broadcastType == "WEBVIDEO") { %>
+								<a href="confdetail.html?id=<%= list[i].id %>" target="_blank" class="read-doc-for-video">
+									看视频
+								</a>
+							<% } %>
 						<% } %>
+					<% } else if (list[i].meetingStatus == 'PUBLISHED') {%>
+						<!--如果已经报名-->
+						<% if (list[i].signupStatus) { %>
+						<a href="javascript:void(0)" class="urlblank" data-statusMark="true">您已报名</a>
+						<% } else { %>
+							<!--如果没有报名但报名人数满了-->
+							<% if(list[i].signupNum == list[i].capacity) { %>
+							<a href="javascript:void(0)" class="urlblank" data-statusMark="full">人数已满</a>
+							<% } else { %>
+							<!--如果没有报名且报名人数未满-->
+							<a href="javascript:void(0)" id="justSignUp" class="just-sign-up" data-statusMark="false" data-meetingid="<%= list[i].id %>">立即报名</a>
+							<% } %>
+						<% } %>
+					<% } else if (list[i].meetingStatus == 'STARTED') { %>
+						<!--如果已经报名，可以直接参会-->
+						<% if (list[i].signupStatus) { %>
+						<a href="javascript:void(0)" id="justJoin" class="just-join-it" data-statusMark="true" data-meetingid="<%= list[i].id %>">
+						<% } else { %>
+							<!--如果没有报名，先报名，再参会-->
+							<a href="javascript:void(0)" id="justJoin" class="just-join-it" data-statusMark="false" data-meetingid="<%= list[i].id %>">
+						<% } %>
+							立即参会</a>
+					<% } else if (list[i].meetingStatus == 'CANCELED') { %>
+							<a href="javascript:void(0)" class="urlblank" data-statusMark="canceled">已取消</a>
 					<% } %>
-				<% } else if (list[i].meetingStatus == 'STARTED') { %>
-					<!--如果已经报名，可以直接参会-->
-					<% if (list[i].signupStatus) { %>
-					<a href="javascript:void(0)" id="justJoin" class="just-join-it" data-statusMark="true" data-meetingid="<%= list[i].id %>">
-					<% } else { %>
-						<!--如果没有报名，先报名，再参会-->
-						<a href="javascript:void(0)" id="justJoin" class="just-join-it" data-statusMark="false" data-meetingid="<%= list[i].id %>">
+				</td>
+				<td class="conf-master" title="<% for(var k = 0; k < list[i].sponsors.length; k++) { %> <%= list[i].sponsors[k].name %> <% } %>">
+					<% for(var m = 0; m < list[i].sponsors.length; m++) { %>
+					<%= list[i].sponsors[m].name %>
 					<% } %>
-						立即参会</a>
-				<% } else if (list[i].meetingStatus == 'CANCELED') { %>
-						<a href="javascript:void(0)" class="urlblank" data-statusMark="canceled">已取消</a>
+				</td>
+				<% if(list[i].lecturers[0]) { %>
+				<td class="conf-speach" title="<%= list[i].lecturers[0].name %>"><%= list[i].lecturers[0].name %></td>
 				<% } %>
-			</td>
-			<td class="conf-master" title="<% for(var k = 0; k < list[i].sponsors.length; k++) { %> <%= list[i].sponsors[k].name %> <% } %>">
-				<% for(var m = 0; m < list[i].sponsors.length; m++) { %>
-				<%= list[i].sponsors[m].name %>
-				<% } %>
-			</td>
-			<% if(list[i].lecturers[0]) { %>
-			<td class="conf-speach" title="<%= list[i].lecturers[0].name %>"><%= list[i].lecturers[0].name %></td>
+			</tr>
 			<% } %>
-		</tr>
 		<% } %>
 	<% } %>
 </script>
